@@ -3,23 +3,19 @@ using Core.Domain.Services;
 using Core.Features.Usuario.Command;
 using Core.Infraestructure;
 using Core.Infraestructure.Persistance;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Presentation;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
-builder.Services.AddMediatR(typeof(Usuario).Assembly);
-builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Usuario).Assembly));
 builder.Services.AddPresentationServices(builder.Configuration);
 builder.Services.AddSecurity(builder.Configuration);
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 //Database
 const string connectionName = "ConexionMaestra";
