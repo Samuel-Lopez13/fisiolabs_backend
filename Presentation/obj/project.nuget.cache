@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/wJzIueW7+Zwg9K6PY8+JFnIJ6NxIaJKdRIj3FXMboH8DrgOKouLJX3qcRxw8UCx/+y3HCxIVGdMdx/N3jmMqg==",
+  "dgSpecHash": "XSWIsQK40Q+yZLBbfmE2NZBsnBKpRb31zdyKwD8cxEJj/BgoKvvT7bLL70mGo4qkMxJOMr6AISo89pPdo6BSNQ==",
   "success": true,
   "projectFilePath": "D:\\FisioLabs\\BackEnd\\fisiolabs_backend\\Presentation\\Presentation.csproj",
   "expectedPackageFiles": [
@@ -49,6 +49,7 @@
     "C:\\Users\\lopez\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\lopez\\.nuget\\packages\\microsoft.netcore.targets\\1.1.3\\microsoft.netcore.targets.1.1.3.nupkg.sha512",
     "C:\\Users\\lopez\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\lopez\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.5\\microsoft.visualstudio.azure.containers.tools.targets.1.19.5.nupkg.sha512",
     "C:\\Users\\lopez\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\lopez\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\lopez\\.nuget\\packages\\mysql.data\\8.4.0\\mysql.data.8.4.0.nupkg.sha512",

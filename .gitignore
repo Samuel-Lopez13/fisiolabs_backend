@@ -1,6 +1,6 @@
 # Archivos de configuración de la aplicación
-appsettings.json
-appsettings.Development.json
+Presentation/appsettings.json
+Presentation/appsettings.Development.json
 
 # Configuraciones y archivos específicos del entorno
-.env
+Presentation/.env

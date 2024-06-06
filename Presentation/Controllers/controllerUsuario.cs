@@ -24,4 +24,11 @@ public class controllerUsuario : ControllerBase
     {
         return await _mediator.Send(new ObtenerUsuariosPrueba());
     }
+    
+    [AllowAnonymous]
+    [HttpGet("mensaje")]
+    public async Task<IActionResult> GetMensaje()
+    {
+        return Ok("Este es un mensaje");
+    }
 }
