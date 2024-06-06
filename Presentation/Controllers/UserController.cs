@@ -9,11 +9,11 @@ namespace Presentation.Controllers;
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 [ApiController]
 [Route("[controller]")]
-public class controllerUsuario : ControllerBase
+public class UserController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public controllerUsuario(IMediator mediator)
+    public UserController(IMediator mediator)
     {
         _mediator = mediator;
     }
