@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Domain.Entities;
 
-public partial class GinecoObstetrico
+public class GinecoObstetrico
 {
     public int GinecoObstetricoId { get; set; }
 
@@ -36,8 +36,6 @@ public partial class GinecoObstetrico
     public int? ExpededienteId { get; set; }
 
     public virtual Expediente? Expedediente { get; set; }
-
     public virtual FlujoVaginal? FlujoVaginal { get; set; }
-
     public virtual TipoAnticonceptivo? TipoAnticonceptivo { get; set; }
 }

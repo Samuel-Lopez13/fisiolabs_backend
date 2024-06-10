@@ -3,8 +3,16 @@ using System.Collections.Generic;
 
 namespace Core.Domain.Entities;
 
-public partial class Expediente
+public class Expediente
 {
+    public Expediente()
+    {
+        Diagnosticos = new HashSet<Diagnostico>();
+        GinecoObstetricos = new HashSet<GinecoObstetrico>();
+        HeredoFamiliars = new HashSet<HeredoFamiliar>();
+        NoPatologicos = new HashSet<NoPatologico>();
+    }
+    
     public int ExpedienteId { get; set; }
 
     public bool? TipoInterrogatorio { get; set; }

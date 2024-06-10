@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Domain.Entities;
 
-public partial class MapaCorporal
+public class MapaCorporal
 {
     public int MapaCorporalId { get; set; }
 

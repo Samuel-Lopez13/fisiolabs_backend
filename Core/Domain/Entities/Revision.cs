@@ -16,6 +16,5 @@ public partial class Revision
     public int? DiagnosticoId { get; set; }
 
     public virtual Diagnostico? Diagnostico { get; set; }
-
     public virtual Fisioterapeutum? Fisioterapeuta { get; set; }
 }

@@ -3,11 +3,16 @@ using System.Collections.Generic;
 
 namespace Core.Domain.Entities;
 
-public partial class TipoAnticonceptivo
+public class TipoAnticonceptivo
 {
+    public TipoAnticonceptivo()
+    {
+        GinecoObstetricos = new HashSet<GinecoObstetrico>();
+    }
+    
     public int TipoAnticonceptivoId { get; set; }
 
-    public string? TipoAnticonceptivo1 { get; set; }
+    public string? Anticonceptivo { get; set; }
 
     public virtual ICollection<GinecoObstetrico> GinecoObstetricos { get; set; } = new List<GinecoObstetrico>();
 }

@@ -7,45 +7,26 @@ namespace Core.Infraestructure.Persistance;
 
 public partial class FisiolabsSofwaredbContext : DbContext
 {
-    public FisiolabsSofwaredbContext()
-    {
-    }
+    public FisiolabsSofwaredbContext() { }
 
     public FisiolabsSofwaredbContext(DbContextOptions<FisiolabsSofwaredbContext> options)
-        : base(options)
-    {
-    }
+        : base(options) { }
 
     public virtual DbSet<Cita> Citas { get; set; }
-
     public virtual DbSet<Diagnostico> Diagnosticos { get; set; }
-
     public virtual DbSet<EstadoCivil> EstadoCivils { get; set; }
-
     public virtual DbSet<Expediente> Expedientes { get; set; }
-
     public virtual DbSet<ExploracionFisica> ExploracionFisicas { get; set; }
-
     public virtual DbSet<Fisioterapeutum> Fisioterapeuta { get; set; }
-
     public virtual DbSet<FlujoVaginal> FlujoVaginals { get; set; }
-
     public virtual DbSet<GinecoObstetrico> GinecoObstetricos { get; set; }
-
     public virtual DbSet<HeredoFamiliar> HeredoFamiliars { get; set; }
-
     public virtual DbSet<MapaCorporal> MapaCorporals { get; set; }
-
     public virtual DbSet<NoPatologico> NoPatologicos { get; set; }
-
     public virtual DbSet<Paciente> Pacientes { get; set; }
-
     public virtual DbSet<ProgramaFisioterapeutico> ProgramaFisioterapeuticos { get; set; }
-
     public virtual DbSet<Revision> Revisions { get; set; }
-
     public virtual DbSet<TipoAnticonceptivo> TipoAnticonceptivos { get; set; }
-
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
@@ -69,7 +50,7 @@ public partial class FisiolabsSofwaredbContext : DbContext
                 .HasColumnName("motivo");
             entity.Property(e => e.PacienteId).HasColumnName("paciente_id");
 
-            entity.HasOne(d => d.Paciente).WithMany(p => p.Cita)
+            entity.HasOne(d => d.Paciente).WithMany(p => p.Citas)
                 .HasForeignKey(d => d.PacienteId)
                 .HasConstraintName("citas_ibfk_1");
         });
@@ -481,7 +462,7 @@ public partial class FisiolabsSofwaredbContext : DbContext
             entity.ToTable("tipo_anticonceptivo");
 
             entity.Property(e => e.TipoAnticonceptivoId).HasColumnName("tipo_anticonceptivo_id");
-            entity.Property(e => e.TipoAnticonceptivo1)
+            entity.Property(e => e.Anticonceptivo)
                 .HasMaxLength(50)
                 .HasColumnName("tipo_anticonceptivo");
         });
@@ -493,12 +474,14 @@ public partial class FisiolabsSofwaredbContext : DbContext
             entity.ToTable("usuario");
 
             entity.Property(e => e.UsuarioId).HasColumnName("usuario_id");
-            entity.Property(e => e.Password)
-                .HasMaxLength(50)
-                .HasColumnName("password");
+            entity.HasIndex(e => e.Password).IsUnique();
             entity.Property(e => e.Username)
                 .HasMaxLength(50)
                 .HasColumnName("username");
+            entity.Property(e => e.Password)
+                .IsRequired()
+                .HasMaxLength(255)
+                .HasColumnName("password");
         });
 
         OnModelCreatingPartial(modelBuilder);

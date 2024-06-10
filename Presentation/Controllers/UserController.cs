@@ -1,4 +1,5 @@
 ﻿using Core.Features.Usuario;
+using Core.Features.Usuario.command;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -19,16 +20,17 @@ public class UserController : ControllerBase
     }
     
     [AllowAnonymous]
-    [HttpGet("usuario")]
-    public async Task<UsuarioResponse> GetUsuario()
+    [HttpPost("Login")]
+    public async Task<LoginResponse> Login([FromBody] Login command)
     {
-        return await _mediator.Send(new ObtenerUsuariosPrueba());
+        return await _mediator.Send(command);
     }
-    
+
     [AllowAnonymous]
-    [HttpGet("mensaje")]
-    public async Task<IActionResult> GetMensaje()
+    [HttpPost("usuario")]
+    public async Task<IActionResult> PostUsuario([FromBody] CrearUsuario command)
     {
-        return Ok("Este es un mensaje");
+        await _mediator.Send(command);
+        return Ok("Se registro el usuario correctamente");
     }
 }

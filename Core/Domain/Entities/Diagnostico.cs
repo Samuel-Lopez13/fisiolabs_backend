@@ -3,8 +3,16 @@ using System.Collections.Generic;
 
 namespace Core.Domain.Entities;
 
-public partial class Diagnostico
+public class Diagnostico
 {
+    public Diagnostico()
+    {
+        ExploracionFisicas = new HashSet<ExploracionFisica>();
+        MapaCorporals = new HashSet<MapaCorporal>();
+        ProgramaFisioterapeuticos = new HashSet<ProgramaFisioterapeutico>();
+        Revisions = new HashSet<Revision>();
+    }
+    
     public int DiagnosticoId { get; set; }
 
     public string? MotivoAlta { get; set; }
@@ -50,10 +58,7 @@ public partial class Diagnostico
     public virtual Expediente? Expedediente { get; set; }
 
     public virtual ICollection<ExploracionFisica> ExploracionFisicas { get; set; } = new List<ExploracionFisica>();
-
     public virtual ICollection<MapaCorporal> MapaCorporals { get; set; } = new List<MapaCorporal>();
-
     public virtual ICollection<ProgramaFisioterapeutico> ProgramaFisioterapeuticos { get; set; } = new List<ProgramaFisioterapeutico>();
-
     public virtual ICollection<Revision> Revisions { get; set; } = new List<Revision>();
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Domain.Entities;
 
-public partial class HeredoFamiliar
+public class HeredoFamiliar
 {
     public int HeredoFamiliarId { get; set; }
 

@@ -3,8 +3,13 @@ using System.Collections.Generic;
 
 namespace Core.Domain.Entities;
 
-public partial class FlujoVaginal
+public class FlujoVaginal
 {
+    public FlujoVaginal()
+    {
+        GinecoObstetricos = new HashSet<GinecoObstetrico>();
+    }
+    
     public int FlujoVaginalId { get; set; }
 
     public string? FlujoVaginal1 { get; set; }

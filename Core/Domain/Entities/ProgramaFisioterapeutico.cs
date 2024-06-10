@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Domain.Entities;
 
-public partial class ProgramaFisioterapeutico
+public class ProgramaFisioterapeutico
 {
     public int ProgramaFisioterapeuticoId { get; set; }
 

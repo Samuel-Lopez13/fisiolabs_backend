@@ -3,6 +3,7 @@ using Core.Domain.Services;
 using Core.Features.Usuario.Command;
 using Core.Infraestructure;
 using Core.Infraestructure.Persistance;
+using dotenv.net;
 using Microsoft.EntityFrameworkCore;
 using Presentation;
 
@@ -16,6 +17,9 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Usuar
 builder.Services.AddPresentationServices(builder.Configuration);
 builder.Services.AddSecurity(builder.Configuration);
 builder.Services.AddScoped<IAuthService, AuthService>();
+
+// Cargar variables de entorno desde el archivo .env
+DotEnv.Load();
 
 //Database
 const string connectionName = "ConexionMaestra";

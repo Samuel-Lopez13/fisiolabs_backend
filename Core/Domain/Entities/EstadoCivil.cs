@@ -3,8 +3,13 @@ using System.Collections.Generic;
 
 namespace Core.Domain.Entities;
 
-public partial class EstadoCivil
+public class EstadoCivil
 {
+    public EstadoCivil()
+    {
+        Pacientes = new HashSet<Paciente>();
+    }
+    
     public int EstadoCivilId { get; set; }
 
     public string? EstadoCivil1 { get; set; }

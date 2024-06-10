@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Domain.Entities;
 
-public partial class NoPatologico
+public class NoPatologico
 {
     public int NoPatologicoId { get; set; }
 

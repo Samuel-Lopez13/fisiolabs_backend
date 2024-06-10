@@ -3,8 +3,13 @@ using System.Collections.Generic;
 
 namespace Core.Domain.Entities;
 
-public partial class Fisioterapeutum
+public class Fisioterapeutum
 {
+    public Fisioterapeutum()
+    {
+        Revisions = new HashSet<Revision>();
+    }
+    
     public int FisioterapeutaId { get; set; }
 
     public string? Fisioterapeuta { get; set; }

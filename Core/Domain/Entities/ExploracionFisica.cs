@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Domain.Entities;
 
-public partial class ExploracionFisica
+public class ExploracionFisica
 {
     public int ExploracionFisicaId { get; set; }
 

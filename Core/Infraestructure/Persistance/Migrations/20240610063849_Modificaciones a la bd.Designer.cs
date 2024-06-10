@@ -3,6 +3,7 @@ using System;
 using Core.Infraestructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Infraestructure.Persistance.Migrations
 {
     [DbContext(typeof(FisiolabsSofwaredbContext))]
-    partial class FisiolabsSofwaredbContextModelSnapshot : ModelSnapshot
+    [Migration("20240610063849_Modificaciones a la bd")]
+    partial class Modificacionesalabd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
