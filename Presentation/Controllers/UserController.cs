@@ -20,6 +20,7 @@ public class UserController : ControllerBase
         _mediator = mediator;
     }
     
+    [AllowAnonymous]
     [HttpGet("verifyUser")]
     public async Task<VerifyUserResponse> veryUser()
     {

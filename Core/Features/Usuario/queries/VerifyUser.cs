@@ -22,13 +22,15 @@ public class VerifyUserHandler : IRequestHandler<VerifyUser, VerifyUserResponse>
     public async Task<VerifyUserResponse> Handle(VerifyUser request, CancellationToken cancellationToken)
     {
         var user = await _context.Usuarios.FirstOrDefaultAsync(x => x.UsuarioId == _authorization.UsuarioActual());
-        
-        if(user == null)
-            throw new ForbiddenAccessException("Error el usuario no esta registrado");
+
+        bool resgistrado = true;
+
+        if (user == null)
+            resgistrado = false;
         
         var response = new VerifyUserResponse()
         {
-            verify = true
+            verify = resgistrado
         };
 
         return response;
