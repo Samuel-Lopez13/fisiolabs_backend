@@ -1,5 +1,6 @@
 ﻿using Core.Features.Usuario;
 using Core.Features.Usuario.command;
+using Core.Features.Usuario.queries;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -17,6 +18,12 @@ public class UserController : ControllerBase
     public UserController(IMediator mediator)
     {
         _mediator = mediator;
+    }
+    
+    [HttpGet("verifyUser")]
+    public async Task<VerifyUserResponse> veryUser()
+    {
+        return await _mediator.Send(new VerifyUser());
     }
     
     [AllowAnonymous]
