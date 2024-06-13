@@ -21,10 +21,10 @@ public class UserController : ControllerBase
     }
     
     [AllowAnonymous]
-    [HttpGet("verifyUser")]
-    public async Task<VerifyUserResponse> veryUser()
+    [HttpGet("verifyUser/{token}")]
+    public async Task<VerifyUserResponse> veryUser(string token)
     {
-        return await _mediator.Send(new VerifyUser());
+        return await _mediator.Send(new VerifyUser(){token = token});
     }
     
     [AllowAnonymous]

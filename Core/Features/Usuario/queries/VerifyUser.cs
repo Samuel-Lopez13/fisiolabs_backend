@@ -1,12 +1,18 @@
-﻿using Core.Domain.Exceptions;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Core.Domain.Exceptions;
 using Core.Domain.Services;
 using Core.Infraestructure.Persistance;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Core.Features.Usuario.queries;
 
-public record VerifyUser : IRequest<VerifyUserResponse>;
+public record VerifyUser : IRequest<VerifyUserResponse>
+{
+    public string token { get; set; }
+};
 
 public class VerifyUserHandler : IRequestHandler<VerifyUser, VerifyUserResponse>
 {
@@ -21,19 +27,40 @@ public class VerifyUserHandler : IRequestHandler<VerifyUser, VerifyUserResponse>
 
     public async Task<VerifyUserResponse> Handle(VerifyUser request, CancellationToken cancellationToken)
     {
-        var user = await _context.Usuarios.FirstOrDefaultAsync(x => x.UsuarioId == _authorization.UsuarioActual());
+        bool response = ValidateToken(request.token);
 
-        bool resgistrado = true;
-
-        if (user == null)
-            resgistrado = false;
-        
-        var response = new VerifyUserResponse()
+        var resp = new VerifyUserResponse()
         {
-            verify = resgistrado
+            verify = response
         };
+        
+        return resp;
+    }
+    
+    public bool ValidateToken(string token)
+    {
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var key = Encoding.UTF8.GetBytes("jWsHs48F2v5Pj9TzY3d7QgD6eM1qZyRvXoWnEgGw"); // Cambia esto por tu clave secreta
+        try
+        {
+            tokenHandler.ValidateToken(token, new TokenValidationParameters
+            {
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = "https://localhost:5054/", // Cambia esto por tu emisor válido
+                ValidAudience = "localhost", // Cambia esto por tu audiencia válida
+                IssuerSigningKey = new SymmetricSecurityKey(key)
+            }, out SecurityToken validatedToken);
 
-        return response;
+            // Token es válido
+            return true;
+        }
+        catch
+        {
+            // Token no es válido
+            return false;
+        }
     }
 }
 
