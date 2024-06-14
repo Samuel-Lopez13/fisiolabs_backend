@@ -7,4 +7,12 @@ public class Usuario
     public string Username { get; set; } = null!;
 
     public string Password { get; set; } = null!;
+    
+    public string? Especialidad { get; set; }
+    
+    public string? Correo { get; set; }
+    
+    public string? Telefono { get; set; }
+
+    public string? Nacionalidad { get; set; }
 }
