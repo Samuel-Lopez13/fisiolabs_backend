@@ -42,7 +42,7 @@ public class AuthService : IAuthService
                 new Claim(ClaimTypes.Name, user.UsuarioId.ToString()),
                 new Claim(ClaimTypes.Email, user.Username)
             }),
-            Expires = DateTime.UtcNow.AddMonths(1),
+            Expires = DateTime.UtcNow.AddDays(1),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
         

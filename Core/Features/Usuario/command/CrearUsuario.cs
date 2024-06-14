@@ -42,8 +42,6 @@ public class CrearUsuarioHandler : IRequestHandler<CrearUsuario>
             Especialidad = "Fisioterapeuta general",
             Nacionalidad = "Mexico",
         };
-
-        Console.WriteLine(usuario.Password);
         
         await _context.Usuarios.AddAsync(usuario);
         await _context.SaveChangesAsync();
