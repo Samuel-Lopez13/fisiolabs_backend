@@ -15,7 +15,7 @@ public class Paciente
 
     public string? Nombre { get; set; }
 
-    public int? Edad { get; set; }
+    public DateTime? Edad { get; set; }
 
     public bool? Sexo { get; set; }
 

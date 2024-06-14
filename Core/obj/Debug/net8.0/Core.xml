@@ -28,5 +28,17 @@
         <member name="M:Core.Infraestructure.Persistance.Migrations.Modificacionesalabd.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Core.Infraestructure.Persistance.Migrations.Deneuvo">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.Deneuvo.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.Deneuvo.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.Deneuvo.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>
