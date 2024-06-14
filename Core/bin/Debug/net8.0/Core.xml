@@ -28,5 +28,29 @@
         <member name="M:Core.Infraestructure.Persistance.Migrations.Modificacionesalabd.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Core.Infraestructure.Persistance.Migrations.Modificacionusuariosypacientes">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.Modificacionusuariosypacientes.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.Modificacionusuariosypacientes.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.Modificacionusuariosypacientes.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Core.Infraestructure.Persistance.Migrations.Modificacionusuariosypaciente">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.Modificacionusuariosypaciente.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.Modificacionusuariosypaciente.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.Modificacionusuariosypaciente.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

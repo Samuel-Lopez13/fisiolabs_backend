@@ -550,17 +550,18 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .HasColumnType("int")
                         .HasColumnName("paciente_id");
 
-                    b.Property<int?>("CodigoPostal")
+                    b.Property<int>("CodigoPostal")
                         .HasColumnType("int")
                         .HasColumnName("codigo_postal");
 
                     b.Property<string>("Domicilio")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)")
                         .HasColumnName("domicilio");
 
-                    b.Property<int?>("Edad")
-                        .HasColumnType("int")
+                    b.Property<DateTime>("Edad")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("edad");
 
                     b.Property<int?>("EstadoCivilId")
@@ -573,11 +574,13 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .HasColumnName("institucion");
 
                     b.Property<string>("Nombre")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)")
                         .HasColumnName("nombre");
 
                     b.Property<string>("Ocupacion")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)")
                         .HasColumnName("ocupacion");
@@ -709,22 +712,44 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .HasColumnType("int")
                         .HasColumnName("usuario_id");
 
+                    b.Property<string>("Correo")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Especialidad")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Nacionalidad")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)")
                         .HasColumnName("password");
 
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
                         .HasColumnName("username");
 
                     b.HasKey("UsuarioId")
                         .HasName("PRIMARY");
 
-                    b.HasIndex("Password")
+                    b.HasIndex("Correo")
+                        .IsUnique();
+
+                    b.HasIndex("Telefono")
+                        .IsUnique();
+
+                    b.HasIndex("Username")
                         .IsUnique();
 
                     b.ToTable("usuario", (string)null);

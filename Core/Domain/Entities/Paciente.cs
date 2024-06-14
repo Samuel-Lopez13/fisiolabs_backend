@@ -13,19 +13,19 @@ public class Paciente
     
     public int PacienteId { get; set; }
 
-    public string? Nombre { get; set; }
+    public string Nombre { get; set; } = null!;
 
-    public int? Edad { get; set; }
+    public DateTime Edad { get; set; } 
 
     public bool? Sexo { get; set; }
 
     public string? Institucion { get; set; }
 
-    public string? Domicilio { get; set; }
+    public string Domicilio { get; set; } = null!;
 
-    public int? CodigoPostal { get; set; }
+    public int CodigoPostal { get; set; }
 
-    public string? Ocupacion { get; set; }
+    public string Ocupacion { get; set; } = null!;
 
     public string? Telefono { get; set; }
 
