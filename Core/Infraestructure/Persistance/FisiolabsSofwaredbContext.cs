@@ -474,9 +474,9 @@ public partial class FisiolabsSofwaredbContext : DbContext
             entity.ToTable("usuario");
 
             entity.Property(e => e.UsuarioId).HasColumnName("usuario_id");
-            entity.HasIndex(e => e.Username).IsUnique();
             entity.HasIndex(e => e.Correo).IsUnique();
             entity.HasIndex(e => e.Telefono).IsUnique();
+            entity.HasIndex(e => e.Username).IsUnique();
             entity.Property(e => e.Username)
                 .HasMaxLength(255)
                 .HasColumnName("username");

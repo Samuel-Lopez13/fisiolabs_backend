@@ -38,7 +38,9 @@ public class CrearUsuarioHandler : IRequestHandler<CrearUsuario>
         var usuario = new Domain.Entities.Usuario()
         {
             Username = request.Username,
-            Password = BCrypt.Net.BCrypt.HashPassword(request.Contraseña)
+            Password = BCrypt.Net.BCrypt.HashPassword(request.Contraseña),
+            Especialidad = "Fisioterapeuta general",
+            Nacionalidad = "Mexico",
         };
 
         Console.WriteLine(usuario.Password);
