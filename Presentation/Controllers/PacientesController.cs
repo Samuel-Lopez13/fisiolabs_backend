@@ -20,8 +20,8 @@ public class PacientesController: ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("Pacientes/{pagina}")]
-    public async Task<List<PacientesResponse>> getPacientes(int pagina)
+    [HttpGet("Pacientes")]
+    public async Task<List<PacientesResponse>> getPacientes([FromQuery] int pagina)
     {
         return await _mediator.Send(new Pacientes() { Pagina = pagina });
     }
