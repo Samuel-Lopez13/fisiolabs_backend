@@ -26,6 +26,12 @@ public class PacientesController: ControllerBase
         return await _mediator.Send(new Pacientes() { Pagina = pagina });
     }
     
+    [HttpGet("paginas")]
+    public async Task<NumeroPaginasResponse> getPaginas()
+    {
+        return await _mediator.Send(new NumeroPaginas());
+    }
+    
     [HttpGet("UltimosPacientes")]
     public async Task<List<UltimosPacientesResponse>> getUltimosPacientes()
     {
@@ -33,7 +39,7 @@ public class PacientesController: ControllerBase
     }
     
     [HttpPost("CrearPaciente")]
-    public async Task<IActionResult> PostPaciente([FromBody] CrearPaciente command)
+    public async Task<IActionResult> PostPaciente([FromForm] CrearPaciente command)
     {
         await _mediator.Send(command);
         return Ok("El paciente se registro correctamente");

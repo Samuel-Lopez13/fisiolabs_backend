@@ -30,6 +30,8 @@ public class Paciente
     public string? Telefono { get; set; }
 
     public int? EstadoCivilId { get; set; }
+    
+    public string? FotoPerfil {get; set;}
 
     public virtual EstadoCivil? EstadoCivil { get; set; }
     

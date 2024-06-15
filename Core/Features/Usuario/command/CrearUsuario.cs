@@ -4,6 +4,7 @@ using Core.Infraestructure.Persistance;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Core.Domain.Entities;
+using Core.Domain.Services;
 
 namespace Core.Features.Usuario.command;
 
@@ -19,7 +20,7 @@ public record CrearUsuario : IRequest
 public class CrearUsuarioHandler : IRequestHandler<CrearUsuario>
 {
     private readonly FisiolabsSofwaredbContext _context;
-
+    
     public CrearUsuarioHandler(FisiolabsSofwaredbContext context)
     {
         _context = context;
@@ -41,6 +42,7 @@ public class CrearUsuarioHandler : IRequestHandler<CrearUsuario>
             Password = BCrypt.Net.BCrypt.HashPassword(request.Contraseña),
             Especialidad = "Fisioterapeuta general",
             Nacionalidad = "Mexico",
+            FotoPerfil = "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png"
         };
         
         await _context.Usuarios.AddAsync(usuario);

@@ -567,6 +567,9 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .HasColumnType("int")
                         .HasColumnName("estado_civil_id");
 
+                    b.Property<string>("FotoPerfil")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Institucion")
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)")
@@ -713,6 +716,9 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("Especialidad")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("FotoPerfil")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Nacionalidad")
