@@ -10,17 +10,17 @@ using Presentation;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSwaggerGen();
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
         builder =>
         {
-            builder.WithOrigins("http://localhost:5173")
+            builder.WithOrigins("https://fisiolabs.netlify.app")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials();
         });
-builder.Services.AddEndpointsApiExplorer();
 });
 builder.Services.AddControllers();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Usuario).Assembly));
@@ -50,8 +50,9 @@ app.UseCors("AllowSpecificOrigin");
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseAuthentication();
 
 app.MapControllers();
 
