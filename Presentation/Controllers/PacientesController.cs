@@ -40,6 +40,7 @@ public class PacientesController: ControllerBase
     }
     
     [HttpPost("CrearPaciente")]
+    [DisableCors]
     public async Task<IActionResult> PostPaciente([FromForm] CrearPaciente command)
     {
         await _mediator.Send(command);
