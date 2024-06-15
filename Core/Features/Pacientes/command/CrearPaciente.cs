@@ -51,13 +51,10 @@ public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
     {
         var validar = await _context.Pacientes.
             AsNoTracking().
-            FirstOrDefaultAsync(x => x.Telefono == request.Telefono || x.Nombre == request.Nombre);
+            FirstOrDefaultAsync(x => x.Telefono == request.Telefono);
 
         if (validar != null) {
-            if(request.Telefono == validar.Telefono)
-                throw new BadRequestException("Telefono - Ya existe un paciente con el numero telefonico ingresado");
-            else
-                throw new BadRequestException("Nombre - Ya existe un paciente con este nombre");
+            throw new BadRequestException("Ya existe un paciente con el numero telefonico ingresado");
         }
         
         var paciente = new Paciente() {
