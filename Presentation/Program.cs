@@ -48,7 +48,7 @@ if (app.Environment.IsDevelopment())
 }
 
 //app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-app.UseCors("AllowSpecificOrigin");
+app.UseCors();
 
 app.UseHttpsRedirection();
 
