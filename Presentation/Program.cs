@@ -16,8 +16,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigin",
         builder =>
         {
-            builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
-            //builder.WithOrigins("http://localhost:5173")
+            builder.WithOrigins("https://fisiolabs-backend.onrender.com", "http://localhost:5173")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials();
