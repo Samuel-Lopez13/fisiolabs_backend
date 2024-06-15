@@ -16,7 +16,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigin",
         builder =>
         {
-            builder.WithOrigins("http://localhost:5173")
+            builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+            //builder.WithOrigins("http://localhost:5173")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials();
@@ -45,10 +46,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseHttpsRedirection();
+
 //app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.UseCors("AllowSpecificOrigin");
-
-app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
