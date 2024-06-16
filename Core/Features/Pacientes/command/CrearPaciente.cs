@@ -45,10 +45,12 @@ public record CrearPaciente : IRequest
 public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
 {
     private readonly FisiolabsSofwaredbContext _context;
+    private readonly IUploadFile _uploadFile;
     
-    public CrearPacienteHandler(FisiolabsSofwaredbContext context)
+    public CrearPacienteHandler(FisiolabsSofwaredbContext context, IUploadFile uploadFile)
     {
         _context = context;
+        _uploadFile = uploadFile;
     }
     
     public async Task Handle(CrearPaciente request, CancellationToken cancellationToken)
