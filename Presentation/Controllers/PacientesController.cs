@@ -15,12 +15,10 @@ namespace Presentation.Controllers;
 public class PacientesController: ControllerBase
 {
     private readonly IMediator _mediator;
-    private readonly IUploadFile _uploadFile;
     
-    public PacientesController(IMediator mediator, IUploadFile uploadFile)
+    public PacientesController(IMediator mediator)
     {
         _mediator = mediator;
-        _uploadFile = uploadFile;
     }
 
     [HttpGet("Pacientes")]
@@ -46,14 +44,5 @@ public class PacientesController: ControllerBase
     {
         await _mediator.Send(command);
         return Ok("El paciente se registro correctamente");
-    }
-    
-    [HttpPost]
-    [Route("upload")]
-    public async Task<IActionResult> UploadImage(IFormFile file)
-    {
-        string fotoPerfil = _uploadFile.UploadImages(file, ": Paciente");
-        Console.WriteLine(fotoPerfil);
-        return Ok(new { message = "Imagen subida correctamente" });
     }
 }

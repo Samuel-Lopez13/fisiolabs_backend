@@ -67,8 +67,8 @@ public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
 
         if (request.FotoPerfil == null)
             fotoPerfil = "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png";
-        //else 
-            //fotoPerfil = _uploadFile.UploadImages(request.FotoPerfil, validar.PacienteId + ": Paciente");
+        else 
+            fotoPerfil = _uploadFile.UploadImages(request.FotoPerfil, validar.PacienteId + ": Paciente");
         
         
         var paciente = new Paciente() {

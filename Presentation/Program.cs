@@ -17,8 +17,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigin",
         builder =>
         {
-            builder.SetIsOriginAllowedToAllowWildcardSubdomains()
-                .WithOrigins("https://fisiolabs.netlify.app", "http://localhost:5173")
+            builder.WithOrigins("https://fisiolabs.netlify.app", "http://localhost:5173")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials();
