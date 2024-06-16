@@ -45,12 +45,10 @@ public record CrearPaciente : IRequest
 public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
 {
     private readonly FisiolabsSofwaredbContext _context;
-    private readonly IUploadFile _uploadFile;
     
-    public CrearPacienteHandler(FisiolabsSofwaredbContext context, IUploadFile uploadFile)
+    public CrearPacienteHandler(FisiolabsSofwaredbContext context)
     {
         _context = context;
-        _uploadFile = uploadFile;
     }
     
     public async Task Handle(CrearPaciente request, CancellationToken cancellationToken)
@@ -67,8 +65,8 @@ public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
 
         if (request.FotoPerfil == null)
             fotoPerfil = "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png";
-        else 
-            fotoPerfil = _uploadFile.UploadImages(request.FotoPerfil, validar.PacienteId + ": Paciente");
+        //else 
+            //fotoPerfil = _uploadFile.UploadImages(request.FotoPerfil, validar.PacienteId + ": Paciente");
         
         
         var paciente = new Paciente() {
