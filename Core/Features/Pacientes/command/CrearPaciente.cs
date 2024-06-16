@@ -38,19 +38,15 @@ public record CrearPaciente : IRequest
     
     [Required]
     public int EstadoCivilId { get; set; }
-    
-    public string? FotoPerfil { get; set; }
 }
 
 public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
 {
     private readonly FisiolabsSofwaredbContext _context;
-    private readonly IUploadFile _uploadFile;
     
-    public CrearPacienteHandler(FisiolabsSofwaredbContext context, IUploadFile uploadFile)
+    public CrearPacienteHandler(FisiolabsSofwaredbContext context)
     {
         _context = context;
-        _uploadFile = uploadFile;
     }
     
     public async Task Handle(CrearPaciente request, CancellationToken cancellationToken)
@@ -63,13 +59,12 @@ public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
             throw new BadRequestException("Ya existe un paciente con el numero telefonico ingresado");
         }
 
-        var fotoPerfil = "";
+        //var fotoPerfil = "";
 
-        if (request.FotoPerfil == null)
-            fotoPerfil = "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png";
+        //if (request.FotoPerfil == null)
+          //  fotoPerfil = "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png";
         //else 
             //fotoPerfil = _uploadFile.UploadImages(request.FotoPerfil, validar.PacienteId + ": Paciente");
-        
         
         var paciente = new Paciente() {
             Nombre = request.Nombre,
@@ -81,7 +76,7 @@ public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
             Ocupacion = request.Ocupacion,
             Telefono = request.Telefono,
             EstadoCivilId = request.EstadoCivilId,
-            FotoPerfil = fotoPerfil
+            FotoPerfil = "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png"
         };
 
         await _context.Pacientes.AddAsync(paciente);

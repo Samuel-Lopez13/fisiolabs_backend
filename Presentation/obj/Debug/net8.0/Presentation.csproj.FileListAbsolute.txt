@@ -291,3 +291,4 @@ D:\FisioLabs\BackEnd\fisiolabs_backend\Presentation\obj\Debug\net8.0\Presentatio
 D:\FisioLabs\BackEnd\fisiolabs_backend\Presentation\obj\Debug\net8.0\Presentation.pdb
 D:\FisioLabs\BackEnd\fisiolabs_backend\Presentation\obj\Debug\net8.0\Presentation.genruntimeconfig.cache
 D:\FisioLabs\BackEnd\fisiolabs_backend\Presentation\obj\Debug\net8.0\ref\Presentation.dll
+D:\FisioLabs\BackEnd\fisiolabs_backend\Presentation\bin\Debug\net8.0\Presentation.staticwebassets.runtime.json
