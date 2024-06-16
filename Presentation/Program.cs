@@ -56,7 +56,7 @@ app.Use(async (context, next) =>
 {
     if (context.Request.Path.StartsWithSegments("/Pacientes/upload"))
     {
-        context.Response.Headers.Add("Access-Control-Allow-Origin", "https://fisiolabs.netlify.app");
+        context.Response.Headers.Add("Access-Control-Allow-Origin", "http://localhost:5173");
         context.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Authorization");
         context.Response.Headers.Add("Access-Control-Allow-Methods", "POST");
     }
