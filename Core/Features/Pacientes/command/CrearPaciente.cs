@@ -45,12 +45,10 @@ public record CrearPaciente : IRequest
 public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
 {
     private readonly FisiolabsSofwaredbContext _context;
-    private readonly IUploadFile _uploadFile;
     
-    public CrearPacienteHandler(FisiolabsSofwaredbContext context, IUploadFile uploadFile)
+    public CrearPacienteHandler(FisiolabsSofwaredbContext context)
     {
         _context = context;
-        _uploadFile = uploadFile;
     }
     
     public async Task Handle(CrearPaciente request, CancellationToken cancellationToken)
@@ -70,9 +68,7 @@ public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
         else 
             fotoPerfil = _uploadFile.UploadImages(request.FotoPerfil, validar.PacienteId + ": Paciente");*/
         
-        var fotoPerfil = _uploadFile.UploadImages(request.FotoPerfil, ": Paciente");
-        
-        Console.WriteLine(fotoPerfil);
+        //var fotoPerfil = _uploadFile.UploadImages(request.FotoPerfil, ": Paciente");
         
         var paciente = new Paciente() {
             Nombre = request.Nombre,
@@ -84,7 +80,7 @@ public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
             Ocupacion = request.Ocupacion,
             Telefono = request.Telefono,
             EstadoCivilId = request.EstadoCivilId,
-            FotoPerfil = fotoPerfil
+            FotoPerfil = request.FotoPerfil
         };
 
         await _context.Pacientes.AddAsync(paciente);
