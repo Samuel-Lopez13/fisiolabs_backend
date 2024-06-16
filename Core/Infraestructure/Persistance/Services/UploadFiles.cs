@@ -36,15 +36,15 @@ public class UploadFiles : IUploadFile
         return result.Url.ToString();
     }
     
-    public string UploadImages(IFormFile image, string titulo)
+    public string UploadImages(string image, string titulo)
     {
-        _validateFiles.ValidateImages(image);
+        //_validateFiles.ValidateImages(image);
         
         //tipo de formato que se subira
         ImageUploadResult result = cloudinary.UploadLarge(new ImageUploadParams
         {
             //Sube una imagen en base64 y lo desconvierte para subirla
-            File = new FileDescription(Guid.NewGuid().ToString(), new MemoryStream(Convert.FromBase64String(_convert.ConvertBase64(image)))),
+            File = new FileDescription(Guid.NewGuid().ToString(), new MemoryStream(Convert.FromBase64String(image))),
             PublicId = titulo,
             Folder = "Fisiolabs/Img"
         });

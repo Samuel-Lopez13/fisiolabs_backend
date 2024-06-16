@@ -6,7 +6,7 @@ public interface IUploadFile
 {
     public string UploadRaw(IFormFile raw, string titulo);
     
-    public string UploadImages(IFormFile image, string titulo);
+    public string UploadImages(string image, string titulo);
     
     public string UploadVideo(IFormFile video, string titulo);
 }
