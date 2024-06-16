@@ -40,7 +40,7 @@ public class PacientesController: ControllerBase
     }
     
     [HttpPost("CrearPaciente")]
-    public async Task<IActionResult> PostPaciente([FromForm] CrearPaciente command)
+    public async Task<IActionResult> PostPaciente([FromBody] CrearPaciente command)
     {
         await _mediator.Send(command);
         return Ok("El paciente se registro correctamente");
