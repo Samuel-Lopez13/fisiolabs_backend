@@ -40,6 +40,9 @@ public class UploadFiles : IUploadFile
     {
         //_validateFiles.ValidateImages(image);
         
+        // Decodificar la cadena Base64 a bytes
+        byte[] imageBytes = Convert.FromBase64String(image);
+        
         //tipo de formato que se subira
         ImageUploadResult result = cloudinary.UploadLarge(new ImageUploadParams
         {

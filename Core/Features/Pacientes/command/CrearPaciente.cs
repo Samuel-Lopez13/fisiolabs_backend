@@ -63,13 +63,16 @@ public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
             throw new BadRequestException("Ya existe un paciente con el numero telefonico ingresado");
         }
 
-        var fotoPerfil = "";
+        /*var fotoPerfil = "";
 
         if (request.FotoPerfil == null)
             fotoPerfil = "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png";
         else 
-            fotoPerfil = _uploadFile.UploadImages(request.FotoPerfil, validar.PacienteId + ": Paciente");
+            fotoPerfil = _uploadFile.UploadImages(request.FotoPerfil, validar.PacienteId + ": Paciente");*/
         
+        var fotoPerfil = _uploadFile.UploadImages(request.FotoPerfil, ": Paciente");
+        
+        Console.WriteLine(fotoPerfil);
         
         var paciente = new Paciente() {
             Nombre = request.Nombre,
