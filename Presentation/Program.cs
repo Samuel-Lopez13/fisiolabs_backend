@@ -51,26 +51,6 @@ app.UseRouting();
 
 //app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
-app.Use(async (context, next) =>
-{
-    if (context.Request.Path.StartsWithSegments("/Pacientes/upload"))
-    {
-        context.Response.Headers.Add("Access-Control-Allow-Origin", "http://localhost:5173");
-        context.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Authorization");
-        context.Response.Headers.Add("Access-Control-Allow-Methods", "OPTIONS, POST");
-    }
-
-    if (context.Request.Method == "OPTIONS")
-    {
-        context.Response.StatusCode = 200;
-        await context.Response.CompleteAsync();
-    }
-    else
-    {
-        await next();
-    }
-});
-
 app.UseCors("AllowSpecificOrigin");
 
 app.UseHttpsRedirection();
