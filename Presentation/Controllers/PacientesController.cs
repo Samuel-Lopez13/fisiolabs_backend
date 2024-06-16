@@ -14,10 +14,12 @@ namespace Presentation.Controllers;
 public class PacientesController: ControllerBase
 {
     private readonly IMediator _mediator;
+    private readonly IWebHostEnvironment _environment;
 
-    public PacientesController(IMediator mediator)
+    public PacientesController(IMediator mediator, IWebHostEnvironment environment)
     {
         _mediator = mediator;
+        _environment = environment;
     }
 
     [HttpGet("Pacientes")]
@@ -43,5 +45,29 @@ public class PacientesController: ControllerBase
     {
         await _mediator.Send(command);
         return Ok("El paciente se registro correctamente");
+    }
+    
+    [HttpPost]
+    [Route("upload")]
+    public async Task<IActionResult> UploadImage(IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+            return BadRequest("No se ha subido ningún archivo.");
+
+        var uploadsFolder = Path.Combine(_environment.ContentRootPath, "wwwroot", "uploads");
+        if (!Directory.Exists(uploadsFolder))
+        {
+            Directory.CreateDirectory(uploadsFolder);
+        }
+
+        var filePath = Path.Combine(uploadsFolder, file.FileName);
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await file.CopyToAsync(stream);
+        }
+
+        var relativePath = Path.Combine("uploads", file.FileName);
+        return Ok(new { message = "Imagen subida correctamente", path = relativePath });
     }
 }
