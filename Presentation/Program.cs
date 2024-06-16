@@ -50,7 +50,8 @@ if (app.Environment.IsDevelopment())
 app.UseRouting();
 
 //app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-//app.UseCors("AllowSpecificOrigin");
+
+app.UseCors("AllowSpecificOrigin");
 
 app.Use(async (context, next) =>
 {
