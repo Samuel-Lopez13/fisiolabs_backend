@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Features.Pacientes.Command;
 
-public record CrearPaciente : IRequest
+public record CrearPaciente : IRequest<CrearPacienteResponse>
 {
     [Required]
     public string Nombre { get; set; }
@@ -42,7 +42,7 @@ public record CrearPaciente : IRequest
     public string? FotoPerfil { get; set; }
 }
 
-public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
+public class CrearPacienteHandler : IRequestHandler<CrearPaciente, CrearPacienteResponse>
 {
     private readonly FisiolabsSofwaredbContext _context;
     
@@ -51,7 +51,7 @@ public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
         _context = context;
     }
     
-    public async Task Handle(CrearPaciente request, CancellationToken cancellationToken)
+    public async Task<CrearPacienteResponse> Handle(CrearPaciente request, CancellationToken cancellationToken)
     {
         var validar = await _context.Pacientes.
             AsNoTracking().
@@ -60,15 +60,6 @@ public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
         if (validar != null) {
             throw new BadRequestException("Ya existe un paciente con el numero telefonico ingresado");
         }
-
-        /*var fotoPerfil = "";
-
-        if (request.FotoPerfil == null)
-            fotoPerfil = "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png";
-        else 
-            fotoPerfil = _uploadFile.UploadImages(request.FotoPerfil, validar.PacienteId + ": Paciente");*/
-        
-        //var fotoPerfil = _uploadFile.UploadImages(request.FotoPerfil, ": Paciente");
         
         var paciente = new Paciente() {
             Nombre = request.Nombre,
@@ -80,10 +71,22 @@ public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
             Ocupacion = request.Ocupacion,
             Telefono = request.Telefono,
             EstadoCivilId = request.EstadoCivilId,
-            FotoPerfil = request.FotoPerfil
+            FotoPerfil = request.FotoPerfil == null ? "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png" : request.FotoPerfil
         };
 
         await _context.Pacientes.AddAsync(paciente);
         await _context.SaveChangesAsync();
+
+        var response = new CrearPacienteResponse()
+        {
+            PacienteId = paciente.PacienteId
+        };
+
+        return response;
     }
+}
+
+public record CrearPacienteResponse
+{
+    public int PacienteId { get; set; }
 }
