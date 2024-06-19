@@ -1,4 +1,5 @@
-﻿using Core.Domain.Services;
+﻿using Core.Domain.Exceptions;
+using Core.Domain.Services;
 using Core.Features.Pacientes.Command;
 using Core.Features.Pacientes.queries;
 using MediatR;
@@ -21,7 +22,7 @@ public class PacientesController: ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("Pacientes")]
+    [HttpGet()]
     public async Task<List<PacientesResponse>> getPacientes([FromQuery] int pagina)
     {
         return await _mediator.Send(new Pacientes() { Pagina = pagina });
@@ -33,13 +34,13 @@ public class PacientesController: ControllerBase
         return await _mediator.Send(new NumeroPaginas());
     }
     
-    [HttpGet("UltimosPacientes")]
+    [HttpGet("UltimosRegistrados")]
     public async Task<List<UltimosPacientesResponse>> getUltimosPacientes()
     {
         return await _mediator.Send(new UltimosPacientes());
     }
     
-    [HttpPost("CrearPaciente")]
+    [HttpPost("")]
     public async Task<IActionResult> PostPaciente([FromBody] CrearPaciente command)
     {
         await _mediator.Send(command);

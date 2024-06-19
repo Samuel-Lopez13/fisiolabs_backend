@@ -11,11 +11,11 @@ namespace Presentation.Controllers;
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 [ApiController]
 [Route("[controller]")]
-public class UserController : ControllerBase
+public class UsuarioController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public UserController(IMediator mediator)
+    public UsuarioController(IMediator mediator)
     {
         _mediator = mediator;
     }
@@ -35,7 +35,7 @@ public class UserController : ControllerBase
     }
 
     [AllowAnonymous]
-    [HttpPost("usuario")]
+    [HttpPost()]
     public async Task<IActionResult> PostUsuario([FromBody] CrearUsuario command)
     {
         await _mediator.Send(command);

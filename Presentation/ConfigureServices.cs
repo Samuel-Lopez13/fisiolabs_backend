@@ -1,8 +1,11 @@
+using System.Net;
 using System.Reflection;
 using Core.Domain.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Presentation.Filters;
-using Presentation.Services;
+using Presentation.Models;
+using Authorization = Presentation.Services.Authorization;
 
 namespace Presentation;
 
@@ -10,7 +13,23 @@ public static class ConfigureServices
 {
     public static IServiceCollection AddPresentationServices(this IServiceCollection services, IConfiguration config)
     {
-        services.AddEndpointsApiExplorer();
+        services.Configure<ApiBehaviorOptions>(options =>
+        {
+            options.InvalidModelStateResponseFactory = context =>
+            {
+                var errors = context.ModelState
+                    .Where(e => e.Value.Errors.Count > 0)
+                    .Select(e => new ErrorResponse
+                    {
+                        Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1",
+                        Title = "Los datos ingresados son incorrectos",
+                        Status = (int)HttpStatusCode.BadRequest,
+                        Detail = e.Value.Errors.First().ErrorMessage
+                    }).ToList();
+
+                return new BadRequestObjectResult(errors);
+            };
+        });
         
         services.AddSwaggerGen(c =>
         {

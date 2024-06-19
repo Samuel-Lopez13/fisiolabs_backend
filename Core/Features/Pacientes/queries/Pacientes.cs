@@ -1,4 +1,6 @@
-﻿using Core.Infraestructure.Persistance;
+﻿using System.Security.Cryptography;
+using Core.Domain.Services;
+using Core.Infraestructure.Persistance;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

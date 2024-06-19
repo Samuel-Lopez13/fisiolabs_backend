@@ -6,12 +6,12 @@ using Core.Infraestructure.Persistance;
 using dotenv.net;
 using Microsoft.EntityFrameworkCore;
 using Presentation;
+using Presentation.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddCors();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
@@ -46,11 +46,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
-app.UseCors("AllowSpecificOrigin");
-
 app.UseHttpsRedirection();
+
+//app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
 

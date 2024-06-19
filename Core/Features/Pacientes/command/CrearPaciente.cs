@@ -5,38 +5,41 @@ using Core.Domain.Services;
 using Core.Infraestructure.Persistance;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Core.Features.Pacientes.Command;
 
 public record CrearPaciente : IRequest
 {
-    [Required]
+    [Required(ErrorMessage = "El campo Nombre es obligatorio")]
     public string Nombre { get; set; }
     
-    [Required]
+    [Required(ErrorMessage = "El campo Edad es obligatorio")]
     public DateTime Edad { get; set; } 
 
     [Required]
     public bool Sexo { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "El campo Institución es obligatorio")]
     public string Institucion { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "El campo Domicilio es obligatorio")]
     public string Domicilio { get; set; }
     
-    [Required]
+    [Required(ErrorMessage = "El campo Codigo Postal es obligatorio")]
     public int CodigoPostal { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "El campo Ocupación es obligatorio")]
     public string Ocupacion { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "El campo Telefono es obligatorio")]
+    [RegularExpression(@"^\d{1,10}$", ErrorMessage = "El campo Telefono solo puede contener números")]
     [MaxLength(10)]
     public string Telefono { get; set; }
     
-    [Required]
+    [Required(ErrorMessage = "El campo Estado Civil es obligatorio")]
     public int EstadoCivilId { get; set; }
     
     public string? FotoPerfil { get; set; }
@@ -56,7 +59,7 @@ public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
         var validar = await _context.Pacientes.
             AsNoTracking().
             FirstOrDefaultAsync(x => x.Telefono == request.Telefono);
-
+        
         if (validar != null) {
             throw new BadRequestException("Ya existe un paciente con el numero telefonico ingresado");
         }

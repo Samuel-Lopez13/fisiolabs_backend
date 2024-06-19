@@ -40,7 +40,7 @@ public class VerifyUserHandler : IRequestHandler<VerifyUser, VerifyUserResponse>
     public bool ValidateToken(string token)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.UTF8.GetBytes("jWsHs48F2v5Pj9TzY3d7QgD6eM1qZyRvXoWnEgGw"); // Cambia esto por tu clave secreta
+        var key = Encoding.UTF8.GetBytes("jWsHs48F2v5Pj9TzY3d7QgD6eM1qZyRvXoWnEgGw"); 
         try
         {
             tokenHandler.ValidateToken(token, new TokenValidationParameters
