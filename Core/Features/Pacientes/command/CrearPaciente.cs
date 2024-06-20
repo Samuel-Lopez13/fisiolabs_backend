@@ -37,6 +37,7 @@ public record CrearPaciente : IRequest
     [Required(ErrorMessage = "El campo Telefono es obligatorio")]
     [RegularExpression(@"^\d{1,10}$", ErrorMessage = "El campo Telefono solo puede contener números")]
     [MaxLength(10)]
+    [MinLength(10)]
     public string Telefono { get; set; }
     
     [Required(ErrorMessage = "El campo Estado Civil es obligatorio")]
