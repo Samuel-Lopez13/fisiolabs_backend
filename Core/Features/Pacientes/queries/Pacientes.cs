@@ -31,13 +31,32 @@ public class PacientesHandler : IRequestHandler<Pacientes, List<PacientesRespons
             {
                 PacienteId = x.PacienteId,
                 Nombre = x.Nombre,
-                Edad = DateTime.Today.Year - x.Edad.Value.Year,
+                Edad = EdadPaciente(x.Edad.Value),
                 Sexo = x.Sexo == true ? "Hombre" : "Mujer",
                 Telefono = x.Telefono
                 
             }).ToListAsync();
 
         return pacientes;
+    }
+
+    public static int EdadPaciente(DateTime fecha){
+        int edad = DateTime.Today.Year - fecha.Year;
+        var restar = false;
+            
+        if(DateTime.Today.Month < fecha.Month){
+            restar = true;
+        } else if (DateTime.Today.Month == fecha.Month){
+            if(DateTime.Today.Day <= fecha.Day) {
+                restar = true;
+            }
+        }
+        
+        if(restar){
+            edad -= 1;
+        }
+            
+        return edad;
     }
 }
 

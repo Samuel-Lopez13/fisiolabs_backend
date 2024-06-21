@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Core.Features.Pacientes.Command;
 
-public record CrearPaciente : IRequest
+public record CrearPaciente : IRequest<CrearPacienteResponse>
 {
     [Required(ErrorMessage = "El campo Nombre es obligatorio")]
     public string Nombre { get; set; }
@@ -46,7 +46,7 @@ public record CrearPaciente : IRequest
     public string? FotoPerfil { get; set; }
 }
 
-public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
+public class CrearPacienteHandler : IRequestHandler<CrearPaciente, CrearPacienteResponse>
 {
     private readonly FisiolabsSofwaredbContext _context;
     
@@ -55,7 +55,7 @@ public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
         _context = context;
     }
     
-    public async Task Handle(CrearPaciente request, CancellationToken cancellationToken)
+    public async Task<CrearPacienteResponse> Handle(CrearPaciente request, CancellationToken cancellationToken)
     {
         var validar = await _context.Pacientes.
             AsNoTracking().
@@ -80,5 +80,17 @@ public class CrearPacienteHandler : IRequestHandler<CrearPaciente>
 
         await _context.Pacientes.AddAsync(paciente);
         await _context.SaveChangesAsync();
+
+        var response = new CrearPacienteResponse()
+        {
+            PacienteId = paciente.PacienteId
+        };
+
+        return response;
     }
+}
+
+public record CrearPacienteResponse
+{
+    public int PacienteId { get; set; }
 }
