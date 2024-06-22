@@ -1,0 +1,1 @@
+Porfavor no eliminar esta carpeta, no sirve para nada, pero si lo borras el programa crasheara

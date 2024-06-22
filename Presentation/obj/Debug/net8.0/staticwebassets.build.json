@@ -1,11 +1,39 @@
 {
   "Version": 1,
-  "Hash": "uA4PscVLrzDlBxDyFkUleeR9VGM/ZvO3tVpSht4hk3M=",
+  "Hash": "1z3C38uDERe3PjVy/zM4HRJkBU8fK1N95HWltT4HRmo=",
   "Source": "Presentation",
   "BasePath": "_content/Presentation",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "Presentation\\wwwroot",
+      "Source": "Presentation",
+      "ContentRoot": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\wwwroot\\",
+      "BasePath": "_content/Presentation",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\wwwroot\\Readme please.txt",
+      "SourceId": "Presentation",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\wwwroot\\",
+      "BasePath": "_content/Presentation",
+      "RelativePath": "Readme please.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Readme please.txt"
+    }
+  ]
 }
