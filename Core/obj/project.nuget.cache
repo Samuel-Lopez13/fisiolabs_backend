@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "t3vWLfqvlbP/+UorUJ6f+THmLmmTHq4UC7rWLCkVmfRDA9Iwl5g+t44uVmZmbyNE2It/Z65DDxUrkLtdktEKRg==",
+  "dgSpecHash": "52sDj8J2P0kgk4to9Y0SHYhGNjeNZohSHLs02Cl1kAaKYQVX4iLrgtd7DZmrd3k3deOHSG2EegXBwEjUWh4t3w==",
   "success": true,
-  "projectFilePath": "D:\\FisioLabs\\BackEnd\\fisiolabs_backend\\Core\\Core.csproj",
+  "projectFilePath": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Core\\Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lopez\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\lopez\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",

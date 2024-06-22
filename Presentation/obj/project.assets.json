@@ -7234,11 +7234,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\FisioLabs\\BackEnd\\fisiolabs_backend\\Presentation\\Presentation.csproj",
+      "projectUniqueName": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\Presentation.csproj",
       "projectName": "Presentation",
-      "projectPath": "D:\\FisioLabs\\BackEnd\\fisiolabs_backend\\Presentation\\Presentation.csproj",
+      "projectPath": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\Presentation.csproj",
       "packagesPath": "C:\\Users\\lopez\\.nuget\\packages\\",
-      "outputPath": "D:\\FisioLabs\\BackEnd\\fisiolabs_backend\\Presentation\\obj\\",
+      "outputPath": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lopez\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7249,14 +7249,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\FisioLabs\\BackEnd\\fisiolabs_backend\\Core\\Core.csproj": {
-              "projectPath": "D:\\FisioLabs\\BackEnd\\fisiolabs_backend\\Core\\Core.csproj"
+            "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Core\\Core.csproj": {
+              "projectPath": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Core\\Core.csproj"
             }
           }
         }
@@ -7265,6 +7266,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -7345,7 +7351,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
