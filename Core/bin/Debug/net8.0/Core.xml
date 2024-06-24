@@ -40,5 +40,17 @@
         <member name="M:Core.Infraestructure.Persistance.Migrations.imgpacienteyusuarioanull.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Core.Infraestructure.Persistance.Migrations.todorelacionadoaexpediente">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.todorelacionadoaexpediente.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.todorelacionadoaexpediente.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.todorelacionadoaexpediente.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

@@ -12,7 +12,7 @@ public class FlujoVaginal
     
     public int FlujoVaginalId { get; set; }
 
-    public string? FlujoVaginal1 { get; set; }
+    public string Flujo { get; set; } = null!;
 
     public virtual ICollection<GinecoObstetrico> GinecoObstetricos { get; set; } = new List<GinecoObstetrico>();
 }

@@ -46,7 +46,7 @@ public partial class FisiolabsSofwaredbContext : DbContext
                 .HasColumnType("date")
                 .HasColumnName("fecha");
             entity.Property(e => e.Motivo)
-                .HasMaxLength(100)
+                .HasMaxLength(255)
                 .HasColumnName("motivo");
             entity.Property(e => e.PacienteId).HasColumnName("paciente_id");
 
@@ -143,7 +143,7 @@ public partial class FisiolabsSofwaredbContext : DbContext
 
             entity.ToTable("expediente");
 
-            entity.HasIndex(e => e.PacienteId, "paciente_id");
+            entity.HasIndex(e => e.PacienteId, "paciente_id").IsUnique();
 
             entity.Property(e => e.ExpedienteId).HasColumnName("expediente_id");
             entity.Property(e => e.AntecedentesPatologicos)
@@ -157,6 +157,7 @@ public partial class FisiolabsSofwaredbContext : DbContext
 
             entity.HasOne(d => d.Paciente).WithMany(p => p.Expedientes)
                 .HasForeignKey(d => d.PacienteId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("expediente_ibfk_1");
         });
 
@@ -206,7 +207,7 @@ public partial class FisiolabsSofwaredbContext : DbContext
             entity.ToTable("flujo_vaginal");
 
             entity.Property(e => e.FlujoVaginalId).HasColumnName("flujo_vaginal_id");
-            entity.Property(e => e.FlujoVaginal1)
+            entity.Property(e => e.Flujo)
                 .HasMaxLength(50)
                 .HasColumnName("flujo_vaginal");
         });
@@ -217,7 +218,7 @@ public partial class FisiolabsSofwaredbContext : DbContext
 
             entity.ToTable("gineco_obstetrico");
 
-            entity.HasIndex(e => e.ExpededienteId, "expedediente_id");
+            entity.HasIndex(e => e.ExpedienteId, "expedediente_id").IsUnique();
 
             entity.HasIndex(e => e.FlujoVaginalId, "flujo_vaginal_id");
 
@@ -230,7 +231,7 @@ public partial class FisiolabsSofwaredbContext : DbContext
                 .HasMaxLength(100)
                 .HasColumnName("cirugias");
             entity.Property(e => e.EdadGestional).HasColumnName("edad_gestional");
-            entity.Property(e => e.ExpededienteId).HasColumnName("expedediente_id");
+            entity.Property(e => e.ExpedienteId).HasColumnName("expedediente_id");
             entity.Property(e => e.FlujoVaginalId).HasColumnName("flujo_vaginal_id");
             entity.Property(e => e.Fpp)
                 .HasMaxLength(50)
@@ -249,16 +250,19 @@ public partial class FisiolabsSofwaredbContext : DbContext
             entity.Property(e => e.Semanas).HasColumnName("semanas");
             entity.Property(e => e.TipoAnticonceptivoId).HasColumnName("tipo_anticonceptivo_id");
 
-            entity.HasOne(d => d.Expedediente).WithMany(p => p.GinecoObstetricos)
-                .HasForeignKey(d => d.ExpededienteId)
+            entity.HasOne(d => d.Expediente).WithMany(p => p.GinecoObstetricos)
+                .HasForeignKey(d => d.ExpedienteId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("gineco_obstetrico_ibfk_3");
 
             entity.HasOne(d => d.FlujoVaginal).WithMany(p => p.GinecoObstetricos)
                 .HasForeignKey(d => d.FlujoVaginalId)
+                .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("gineco_obstetrico_ibfk_1");
 
             entity.HasOne(d => d.TipoAnticonceptivo).WithMany(p => p.GinecoObstetricos)
                 .HasForeignKey(d => d.TipoAnticonceptivoId)
+                .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("gineco_obstetrico_ibfk_2");
         });
 
@@ -268,9 +272,10 @@ public partial class FisiolabsSofwaredbContext : DbContext
 
             entity.ToTable("heredo_familiar");
 
-            entity.HasIndex(e => e.ExpededienteId, "expedediente_id");
+            entity.HasIndex(e => e.ExpedienteId, "expedediente_id").IsUnique();
 
-            entity.Property(e => e.HeredoFamiliarId).HasColumnName("heredo_familiar_id");
+            entity.Property(e => e.HeredoFamiliarId)
+                .HasColumnName("heredo_familiar_id");
             entity.Property(e => e.Alcoholismo)
                 .HasMaxLength(100)
                 .HasColumnName("alcoholismo");
@@ -283,7 +288,7 @@ public partial class FisiolabsSofwaredbContext : DbContext
             entity.Property(e => e.Drogas)
                 .HasMaxLength(100)
                 .HasColumnName("drogas");
-            entity.Property(e => e.ExpededienteId).HasColumnName("expedediente_id");
+            entity.Property(e => e.ExpedienteId).HasColumnName("expedediente_id");
             entity.Property(e => e.Hermanos).HasColumnName("hermanos");
             entity.Property(e => e.HermanosCausaMuerte)
                 .HasMaxLength(300)
@@ -306,8 +311,9 @@ public partial class FisiolabsSofwaredbContext : DbContext
                 .HasMaxLength(100)
                 .HasColumnName("tabaquismo");
 
-            entity.HasOne(d => d.Expedediente).WithMany(p => p.HeredoFamiliars)
-                .HasForeignKey(d => d.ExpededienteId)
+            entity.HasOne(d => d.Expediente).WithMany(p => p.HeredoFamiliars)
+                .HasForeignKey(d => d.ExpedienteId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("heredo_familiar_ibfk_1");
         });
 
@@ -339,10 +345,10 @@ public partial class FisiolabsSofwaredbContext : DbContext
 
             entity.ToTable("no_patologico");
 
-            entity.HasIndex(e => e.ExpededienteId, "expedediente_id");
+            entity.HasIndex(e => e.ExpedienteId, "expedediente_id").IsUnique();
 
             entity.Property(e => e.NoPatologicoId).HasColumnName("no_patologico_id");
-            entity.Property(e => e.ExpededienteId).HasColumnName("expedediente_id");
+            entity.Property(e => e.ExpedienteId).HasColumnName("expedediente_id");
             entity.Property(e => e.MedioFisicoambiental)
                 .HasMaxLength(300)
                 .HasColumnName("medio_fisicoambiental");
@@ -353,8 +359,9 @@ public partial class FisiolabsSofwaredbContext : DbContext
                 .HasMaxLength(300)
                 .HasColumnName("medio_sociocultural");
 
-            entity.HasOne(d => d.Expedediente).WithMany(p => p.NoPatologicos)
-                .HasForeignKey(d => d.ExpededienteId)
+            entity.HasOne(d => d.Expediente).WithMany(p => p.NoPatologicos)
+                .HasForeignKey(d => d.ExpedienteId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("no_patologico_ibfk_1");
         });
 
@@ -389,6 +396,7 @@ public partial class FisiolabsSofwaredbContext : DbContext
 
             entity.HasOne(d => d.EstadoCivil).WithMany(p => p.Pacientes)
                 .HasForeignKey(d => d.EstadoCivilId)
+                .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("paciente_ibfk_1");
         });
 

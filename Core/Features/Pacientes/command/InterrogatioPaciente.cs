@@ -9,26 +9,26 @@ namespace Core.Features.Pacientes.Command;
 
 public record HeredoFamilia
 {
-    [Required]
+    [Required(ErrorMessage = "El campo Padres es obligatorio")]
     public int Padres { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "El campo PadresVivos es obligatorio")]
     public int PadresVivos { get; set; }
 
     public string? PadresCausaMuerte { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "El campo Hermanos es obligatorio")]
     public int Hermanos { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "El campo HermanosVivos es obligatorio")]
     public int HermanosVivos { get; set; }
 
     public string? HermanosCausaMuerte { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "El campo Hijos es obligatorio")]
     public int Hijos { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "El campo HijosVivos es obligatorio")]
     public int HijosVivos { get; set; }
 
     public string? HijosCausaMuerte { get; set; }
@@ -48,12 +48,16 @@ public record HeredoFamilia
 
 public record Antecedentes
 {
+    [Required(ErrorMessage = "El campo AntecedentesPatologicos es obligatorio")]
     public string AntecedentesPatologicos { get; set; }
 
+    [Required(ErrorMessage = "El campo MedioLaboral es obligatorio")]
     public string MedioLaboral { get; set; }
 
+    [Required(ErrorMessage = "El campo MedioSociocultural es obligatorio")]
     public string MedioSociocultural { get; set; }
 
+    [Required(ErrorMessage = "El campo MedioFisicoambiental es obligatorio")]
     public string MedioFisicoambiental { get; set; }
 }
 
@@ -83,15 +87,16 @@ public record Ginecobstetrico
 
     public int? FlujoVaginalId { get; set; }
 
-    public int? TipoAnticonceptivoId { get; set; }
+    [Required(ErrorMessage = "El campo TipoAnticonceptivoId es obligatorio")]
+    public int TipoAnticonceptivoId { get; set; }
 }
 
 public record InterrogatioPaciente : IRequest
 {
-    [Required]
+    [Required(ErrorMessage = "El campo PacienteId es obligatorio")]
     public int PacienteId { get; set; }
     
-    [Required]
+    [Required(ErrorMessage = "El campo TipoInterrogatorio es obligatorio")]
     public bool TipoInterrogatorio { get; set; }
     
     public string? Responsable { get; set; }
@@ -134,7 +139,7 @@ public class InterrogatioPacienteHandler : IRequestHandler<InterrogatioPaciente>
                     MedioLaboral = request.Antecedente.MedioLaboral,
                     MedioSociocultural = request.Antecedente.MedioSociocultural,
                     MedioFisicoambiental = request.Antecedente.MedioFisicoambiental,
-                    ExpededienteId = expediente.ExpedienteId,
+                    ExpedienteId = expediente.ExpedienteId,
                 };
 
                 await _context.NoPatologicos.AddAsync(noPatologico);
@@ -157,7 +162,7 @@ public class InterrogatioPacienteHandler : IRequestHandler<InterrogatioPaciente>
                     Alcoholismo = request.HeredoFamiliar.Alcoholismo,
                     Tabaquismo = request.HeredoFamiliar.Tabaquismo,
                     Drogas = request.HeredoFamiliar.Drogas,
-                    ExpededienteId = expediente.ExpedienteId
+                    ExpedienteId = expediente.ExpedienteId
                 };
                 
                 await _context.HeredoFamiliars.AddAsync(heredoFamiliar);
@@ -182,7 +187,7 @@ public class InterrogatioPacienteHandler : IRequestHandler<InterrogatioPaciente>
                         Cirugias = request.Ginecobstetricos.Cirugias,
                         FlujoVaginalId = request.Ginecobstetricos.FlujoVaginalId,
                         TipoAnticonceptivoId = request.Ginecobstetricos.TipoAnticonceptivoId,
-                        ExpededienteId = expediente.ExpedienteId
+                        ExpedienteId = expediente.ExpedienteId
                     };
                     
                     await _context.GinecoObstetricos.AddAsync(ginecobtetrico);

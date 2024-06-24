@@ -12,7 +12,7 @@ public class TipoAnticonceptivo
     
     public int TipoAnticonceptivoId { get; set; }
 
-    public string? Anticonceptivo { get; set; }
+    public string Anticonceptivo { get; set; } = null!;
 
     public virtual ICollection<GinecoObstetrico> GinecoObstetricos { get; set; } = new List<GinecoObstetrico>();
 }

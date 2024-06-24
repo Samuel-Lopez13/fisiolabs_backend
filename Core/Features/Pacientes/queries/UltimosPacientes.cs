@@ -24,7 +24,7 @@ public class UltimosPacientesHandler : IRequestHandler<UltimosPacientes, List<Ul
             .Select(x => new UltimosPacientesResponse()
             {
                 Nombre = x.Nombre,
-                Edad = EdadPaciente(x.Edad.Value),
+                Edad = EdadPaciente(x.Edad.Date),
                 Sexo = x.Sexo == true ? "Hombre" : "Mujer",
                 Telefono = x.Telefono
             }).ToListAsync();

@@ -31,11 +31,11 @@ public class GinecoObstetrico
 
     public int? FlujoVaginalId { get; set; }
 
-    public int? TipoAnticonceptivoId { get; set; }
+    public int TipoAnticonceptivoId { get; set; }
+    
+    public int ExpedienteId { get; set; }
 
-    public int? ExpededienteId { get; set; }
-
-    public virtual Expediente? Expedediente { get; set; }
+    public virtual Expediente? Expediente { get; set; }
     public virtual FlujoVaginal? FlujoVaginal { get; set; }
     public virtual TipoAnticonceptivo? TipoAnticonceptivo { get; set; }
 }

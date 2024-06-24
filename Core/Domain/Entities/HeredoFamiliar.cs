@@ -7,21 +7,21 @@ public class HeredoFamiliar
 {
     public int HeredoFamiliarId { get; set; }
 
-    public int? Padres { get; set; }
+    public int Padres { get; set; }
 
-    public int? PadresVivos { get; set; }
+    public int PadresVivos { get; set; }
 
     public string? PadresCausaMuerte { get; set; }
 
-    public int? Hermanos { get; set; }
+    public int Hermanos { get; set; }
 
-    public int? HermanosVivos { get; set; }
+    public int HermanosVivos { get; set; }
 
     public string? HermanosCausaMuerte { get; set; }
 
-    public int? Hijos { get; set; }
+    public int Hijos { get; set; }
 
-    public int? HijosVivos { get; set; }
+    public int HijosVivos { get; set; }
 
     public string? HijosCausaMuerte { get; set; }
 
@@ -37,7 +37,7 @@ public class HeredoFamiliar
 
     public string? Drogas { get; set; }
 
-    public int? ExpededienteId { get; set; }
+    public int ExpedienteId { get; set; }
 
-    public virtual Expediente? Expedediente { get; set; }
+    public virtual Expediente? Expediente { get; set; }
 }
