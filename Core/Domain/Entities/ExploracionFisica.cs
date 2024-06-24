@@ -25,7 +25,7 @@ public class ExploracionFisica
 
     public float? SaturacionOxigeno { get; set; }
 
-    public int? DiagnosticoId { get; set; }
+    public int DiagnosticoId { get; set; }
 
     public virtual Diagnostico? Diagnostico { get; set; }
 }

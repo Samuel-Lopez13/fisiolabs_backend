@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Core.Domain.Entities;
+﻿namespace Core.Domain.Entities;
 
 public class Diagnostico
 {
@@ -15,13 +12,13 @@ public class Diagnostico
     
     public int DiagnosticoId { get; set; }
 
-    public string? MotivoAlta { get; set; }
+    public string MotivoAlta { get; set; } = null!;
 
-    public DateTime? FechaInicio { get; set; }
+    public DateTime FechaInicio { get; set; }
 
     public DateTime? FechaAlta { get; set; }
 
-    public bool? Estatus { get; set; }
+    public bool Estatus { get; set; }
 
     public string? Categoria { get; set; }
 
@@ -53,7 +50,7 @@ public class Diagnostico
 
     public string? DiagnosticoNosologico { get; set; }
 
-    public int? ExpededienteId { get; set; }
+    public int ExpededienteId { get; set; }
 
     public virtual Expediente? Expedediente { get; set; }
 

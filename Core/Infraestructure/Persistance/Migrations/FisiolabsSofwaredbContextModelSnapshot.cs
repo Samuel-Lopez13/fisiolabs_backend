@@ -23,24 +23,19 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     b.Property<int>("CitasId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("citas_id");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Fecha")
-                        .HasColumnType("date")
-                        .HasColumnName("fecha");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Motivo")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
-                        .HasColumnName("motivo");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
-                    b.Property<int?>("PacienteId")
-                        .HasColumnType("int")
-                        .HasColumnName("paciente_id");
+                    b.Property<int>("PacienteId")
+                        .HasColumnType("int");
 
-                    b.HasKey("CitasId")
-                        .HasName("PRIMARY");
+                    b.HasKey("CitasId");
 
                     b.HasIndex(new[] { "PacienteId" }, "paciente_id");
 
@@ -51,108 +46,72 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     b.Property<int>("DiagnosticoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("diagnostico_id");
+                        .HasColumnType("int");
 
                     b.Property<string>("Categoria")
-                        .HasMaxLength(15)
-                        .HasColumnType("varchar(15)")
-                        .HasColumnName("categoria");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Diagnostico1")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("diagnostico");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("DiagnosticoFinal")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("diagnostico_final");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("DiagnosticoFuncional")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("diagnostico_funcional");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("DiagnosticoInicial")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("diagnostico_inicial");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("DiagnosticoNosologico")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("diagnostico_nosologico");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("DiagnosticoPrevio")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("diagnostico_previo");
+                        .HasColumnType("longtext");
 
-                    b.Property<bool?>("Estatus")
+                    b.Property<bool>("Estatus")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("EstudiosComplementarios")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("estudios_complementarios");
+                        .HasColumnType("longtext");
 
-                    b.Property<int?>("ExpededienteId")
-                        .HasColumnType("int")
-                        .HasColumnName("expedediente_id");
+                    b.Property<int>("ExpededienteId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("FechaAlta")
-                        .HasColumnType("date")
-                        .HasColumnName("fecha_alta");
+                        .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime?>("FechaInicio")
-                        .HasColumnType("date")
-                        .HasColumnName("fecha_inicio");
+                    b.Property<DateTime>("FechaInicio")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("FrecuenciaTratamiento")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("frecuencia_tratamiento");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Inspeccion")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("inspeccion");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("MotivoAlta")
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)")
-                        .HasColumnName("motivo_alta");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Movibilidad")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("movibilidad");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("PadecimientoActual")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("padecimiento_actual");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Palpitacion")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("palpitacion");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Refiere")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("refiere");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("TerapeuticaEmpleada")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("terapeutica_empleada");
+                        .HasColumnType("longtext");
 
-                    b.HasKey("DiagnosticoId")
-                        .HasName("PRIMARY");
+                    b.HasKey("DiagnosticoId");
 
-                    b.HasIndex(new[] { "ExpededienteId" }, "expedediente_id");
+                    b.HasIndex(new[] { "ExpededienteId" }, "expediente_id");
 
                     b.ToTable("diagnostico", (string)null);
                 });
@@ -161,17 +120,13 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     b.Property<int>("EstadoCivilId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("estado_civil_id");
+                        .HasColumnType("int");
 
                     b.Property<string>("EstadoCivil1")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("varchar(10)")
-                        .HasColumnName("estado_civil");
+                        .HasColumnType("longtext");
 
-                    b.HasKey("EstadoCivilId")
-                        .HasName("PRIMARY");
+                    b.HasKey("EstadoCivilId");
 
                     b.ToTable("estado_civil", (string)null);
                 });
@@ -180,31 +135,23 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     b.Property<int>("ExpedienteId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("expediente_id");
+                        .HasColumnType("int");
 
                     b.Property<string>("AntecedentesPatologicos")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("antecedentes_patologicos");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("PacienteId")
-                        .HasColumnType("int")
-                        .HasColumnName("paciente_id");
+                        .HasColumnType("int");
 
                     b.Property<string>("Responsable")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)")
-                        .HasColumnName("responsable");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("TipoInterrogatorio")
-                        .HasColumnType("tinyint(1)")
-                        .HasColumnName("tipo_interrogatorio");
+                        .HasColumnType("tinyint(1)");
 
-                    b.HasKey("ExpedienteId")
-                        .HasName("PRIMARY");
+                    b.HasKey("ExpedienteId");
 
                     b.HasIndex(new[] { "PacienteId" }, "paciente_id")
                         .IsUnique()
@@ -217,52 +164,39 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     b.Property<int>("ExploracionFisicaId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("exploracion_fisica_id");
+                        .HasColumnType("int");
 
-                    b.Property<int?>("DiagnosticoId")
-                        .HasColumnType("int")
-                        .HasColumnName("diagnostico_id");
+                    b.Property<int>("DiagnosticoId")
+                        .HasColumnType("int");
 
                     b.Property<float?>("Estatura")
-                        .HasColumnType("float")
-                        .HasColumnName("estatura");
+                        .HasColumnType("float");
 
                     b.Property<int?>("Fc")
-                        .HasColumnType("int")
-                        .HasColumnName("FC");
+                        .HasColumnType("int");
 
                     b.Property<int?>("Fr")
-                        .HasColumnType("int")
-                        .HasColumnName("FR");
+                        .HasColumnType("int");
 
                     b.Property<float?>("Imc")
-                        .HasColumnType("float")
-                        .HasColumnName("IMC");
+                        .HasColumnType("float");
 
                     b.Property<float?>("IndiceCinturaCadera")
-                        .HasColumnType("float")
-                        .HasColumnName("indice_cintura_cadera");
+                        .HasColumnType("float");
 
                     b.Property<float?>("Peso")
-                        .HasColumnType("float")
-                        .HasColumnName("peso");
+                        .HasColumnType("float");
 
                     b.Property<string>("PresionArterial")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("presion_arterial");
+                        .HasColumnType("longtext");
 
                     b.Property<float?>("SaturacionOxigeno")
-                        .HasColumnType("float")
-                        .HasColumnName("saturacion_oxigeno");
+                        .HasColumnType("float");
 
                     b.Property<float?>("Temperatura")
-                        .HasColumnType("float")
-                        .HasColumnName("temperatura");
+                        .HasColumnType("float");
 
-                    b.HasKey("ExploracionFisicaId")
-                        .HasName("PRIMARY");
+                    b.HasKey("ExploracionFisicaId");
 
                     b.HasIndex(new[] { "DiagnosticoId" }, "diagnostico_id");
 
@@ -273,16 +207,13 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     b.Property<int>("FisioterapeutaId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("fisioterapeuta_id");
+                        .HasColumnType("int");
 
                     b.Property<string>("Fisioterapeuta")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("fisioterapeuta");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
-                    b.HasKey("FisioterapeutaId")
-                        .HasName("PRIMARY");
+                    b.HasKey("FisioterapeutaId");
 
                     b.ToTable("fisioterapeuta", (string)null);
                 });
@@ -291,17 +222,13 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     b.Property<int>("FlujoVaginalId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("flujo_vaginal_id");
+                        .HasColumnType("int");
 
                     b.Property<string>("Flujo")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("flujo_vaginal");
+                        .HasColumnType("longtext");
 
-                    b.HasKey("FlujoVaginalId")
-                        .HasName("PRIMARY");
+                    b.HasKey("FlujoVaginalId");
 
                     b.ToTable("flujo_vaginal", (string)null);
                 });
@@ -310,76 +237,55 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     b.Property<int>("GinecoObstetricoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("gineco_obstetrico_id");
+                        .HasColumnType("int");
 
                     b.Property<int?>("Abortos")
-                        .HasColumnType("int")
-                        .HasColumnName("abortos");
+                        .HasColumnType("int");
 
                     b.Property<int?>("Cesareas")
-                        .HasColumnType("int")
-                        .HasColumnName("cesareas");
+                        .HasColumnType("int");
 
                     b.Property<string>("Cirugias")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("cirugias");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("EdadGestional")
-                        .HasColumnType("int")
-                        .HasColumnName("edad_gestional");
+                        .HasColumnType("int");
 
                     b.Property<int>("ExpedienteId")
-                        .HasColumnType("int")
-                        .HasColumnName("expedediente_id");
+                        .HasColumnType("int");
 
                     b.Property<int?>("FlujoVaginalId")
-                        .HasColumnType("int")
-                        .HasColumnName("flujo_vaginal_id");
+                        .HasColumnType("int");
 
                     b.Property<string>("Fpp")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("FPP");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Fum")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("FUM");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("Gestas")
-                        .HasColumnType("int")
-                        .HasColumnName("gestas");
+                        .HasColumnType("int");
 
                     b.Property<string>("Menarca")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("menarca");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("Partos")
-                        .HasColumnType("int")
-                        .HasColumnName("partos");
+                        .HasColumnType("int");
 
                     b.Property<string>("Ritmo")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("ritmo");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("Semanas")
-                        .HasColumnType("int")
-                        .HasColumnName("semanas");
+                        .HasColumnType("int");
 
-                    b.Property<int>("TipoAnticonceptivoId")
-                        .HasColumnType("int")
-                        .HasColumnName("tipo_anticonceptivo_id");
+                    b.Property<int?>("TipoAnticonceptivoId")
+                        .HasColumnType("int");
 
-                    b.HasKey("GinecoObstetricoId")
-                        .HasName("PRIMARY");
+                    b.HasKey("GinecoObstetricoId");
 
-                    b.HasIndex(new[] { "ExpedienteId" }, "expedediente_id")
+                    b.HasIndex(new[] { "ExpedienteId" }, "expediente_id")
                         .IsUnique()
-                        .HasDatabaseName("expedediente_id1");
+                        .HasDatabaseName("expediente_id1");
 
                     b.HasIndex(new[] { "FlujoVaginalId" }, "flujo_vaginal_id");
 
@@ -392,88 +298,61 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     b.Property<int>("HeredoFamiliarId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("heredo_familiar_id");
+                        .HasColumnType("int");
 
                     b.Property<string>("Alcoholismo")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("alcoholismo");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Cancer")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("cancer");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Dm")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("dm");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Drogas")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("drogas");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("ExpedienteId")
-                        .HasColumnType("int")
-                        .HasColumnName("expedediente_id");
+                        .HasColumnType("int");
 
                     b.Property<int>("Hermanos")
-                        .HasColumnType("int")
-                        .HasColumnName("hermanos");
+                        .HasColumnType("int");
 
                     b.Property<string>("HermanosCausaMuerte")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("hermanos_causa_muerte");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("HermanosVivos")
-                        .HasColumnType("int")
-                        .HasColumnName("hermanos_vivos");
+                        .HasColumnType("int");
 
                     b.Property<int>("Hijos")
-                        .HasColumnType("int")
-                        .HasColumnName("hijos");
+                        .HasColumnType("int");
 
                     b.Property<string>("HijosCausaMuerte")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("hijos_causa_muerte");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("HijosVivos")
-                        .HasColumnType("int")
-                        .HasColumnName("hijos_vivos");
+                        .HasColumnType("int");
 
                     b.Property<string>("Hta")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("hta");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Padres")
-                        .HasColumnType("int")
-                        .HasColumnName("padres");
+                        .HasColumnType("int");
 
                     b.Property<string>("PadresCausaMuerte")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("padres_causa_muerte");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("PadresVivos")
-                        .HasColumnType("int")
-                        .HasColumnName("padres_vivos");
+                        .HasColumnType("int");
 
                     b.Property<string>("Tabaquismo")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("tabaquismo");
+                        .HasColumnType("longtext");
 
-                    b.HasKey("HeredoFamiliarId")
-                        .HasName("PRIMARY");
+                    b.HasKey("HeredoFamiliarId");
 
-                    b.HasIndex(new[] { "ExpedienteId" }, "expedediente_id")
+                    b.HasIndex(new[] { "ExpedienteId" }, "expediente_id")
                         .IsUnique()
-                        .HasDatabaseName("expedediente_id2");
+                        .HasDatabaseName("expediente_id2");
 
                     b.ToTable("heredo_familiar", (string)null);
                 });
@@ -482,32 +361,25 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     b.Property<int>("MapaCorporalId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("mapa_corporal_id");
+                        .HasColumnType("int");
 
-                    b.Property<int?>("DiagnosticoId")
-                        .HasColumnType("int")
-                        .HasColumnName("diagnostico_id");
+                    b.Property<int>("DiagnosticoId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nota")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("nota");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
-                    b.Property<int?>("RangoDolor")
-                        .HasColumnType("int")
-                        .HasColumnName("rango_dolor");
+                    b.Property<int>("RangoDolor")
+                        .HasColumnType("int");
 
-                    b.Property<int?>("ValorX")
-                        .HasColumnType("int")
-                        .HasColumnName("valor_x");
+                    b.Property<int>("ValorX")
+                        .HasColumnType("int");
 
-                    b.Property<int?>("ValorY")
-                        .HasColumnType("int")
-                        .HasColumnName("valor_y");
+                    b.Property<int>("ValorY")
+                        .HasColumnType("int");
 
-                    b.HasKey("MapaCorporalId")
-                        .HasName("PRIMARY");
+                    b.HasKey("MapaCorporalId");
 
                     b.HasIndex(new[] { "DiagnosticoId" }, "diagnostico_id")
                         .HasDatabaseName("diagnostico_id1");
@@ -519,37 +391,28 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     b.Property<int>("NoPatologicoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("no_patologico_id");
+                        .HasColumnType("int");
 
                     b.Property<int>("ExpedienteId")
-                        .HasColumnType("int")
-                        .HasColumnName("expedediente_id");
+                        .HasColumnType("int");
 
                     b.Property<string>("MedioFisicoambiental")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("medio_fisicoambiental");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("MedioLaboral")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("medio_laboral");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("MedioSociocultural")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("medio_sociocultural");
+                        .HasColumnType("longtext");
 
-                    b.HasKey("NoPatologicoId")
-                        .HasName("PRIMARY");
+                    b.HasKey("NoPatologicoId");
 
-                    b.HasIndex(new[] { "ExpedienteId" }, "expedediente_id")
+                    b.HasIndex(new[] { "ExpedienteId" }, "expediente_id")
                         .IsUnique()
-                        .HasDatabaseName("expedediente_id3");
+                        .HasDatabaseName("expediente_id3");
 
                     b.ToTable("no_patologico", (string)null);
                 });
@@ -558,60 +421,47 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     b.Property<int>("PacienteId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("paciente_id");
+                        .HasColumnType("int");
 
                     b.Property<int>("CodigoPostal")
-                        .HasColumnType("int")
-                        .HasColumnName("codigo_postal");
+                        .HasColumnType("int");
 
                     b.Property<string>("Domicilio")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("domicilio");
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("Edad")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("edad");
+                        .HasColumnType("datetime(6)");
 
-                    b.Property<int>("EstadoCivilId")
-                        .HasColumnType("int")
-                        .HasColumnName("estado_civil_id");
+                    b.Property<int?>("EstadoCivilId")
+                        .HasColumnType("int");
 
                     b.Property<string>("FotoPerfil")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Institucion")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("institucion");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("nombre");
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Notas")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Ocupacion")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("ocupacion");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("Sexo")
-                        .HasColumnType("tinyint(1)")
-                        .HasColumnName("sexo");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Telefono")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("varchar(10)")
-                        .HasColumnName("telefono");
+                        .HasColumnType("longtext");
 
-                    b.HasKey("PacienteId")
-                        .HasName("PRIMARY");
+                    b.HasKey("PacienteId");
 
                     b.HasIndex(new[] { "EstadoCivilId" }, "estado_civil_id");
 
@@ -622,45 +472,36 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     b.Property<int>("ProgramaFisioterapeuticoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("programa_fisioterapeutico_id");
+                        .HasColumnType("int");
 
                     b.Property<string>("CortoPlazo")
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)")
-                        .HasColumnName("corto_plazo");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
-                    b.Property<int?>("DiagnosticoId")
-                        .HasColumnType("int")
-                        .HasColumnName("diagnostico_id");
+                    b.Property<int>("DiagnosticoId")
+                        .HasColumnType("int");
 
                     b.Property<string>("LargoPlazo")
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)")
-                        .HasColumnName("largo_plazo");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("MedianoPlazo")
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)")
-                        .HasColumnName("mediano_plazo");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Pronostico")
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)")
-                        .HasColumnName("pronostico");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Sugerencias")
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)")
-                        .HasColumnName("sugerencias");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("TratamientoFisioterapeutico")
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)")
-                        .HasColumnName("tratamiento_fisioterapeutico");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
-                    b.HasKey("ProgramaFisioterapeuticoId")
-                        .HasName("PRIMARY");
+                    b.HasKey("ProgramaFisioterapeuticoId");
 
                     b.HasIndex(new[] { "DiagnosticoId" }, "diagnostico_id")
                         .HasDatabaseName("diagnostico_id2");
@@ -672,28 +513,22 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     b.Property<int>("RevisionId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("revision_id");
+                        .HasColumnType("int");
 
-                    b.Property<int?>("DiagnosticoId")
-                        .HasColumnType("int")
-                        .HasColumnName("diagnostico_id");
+                    b.Property<int>("DiagnosticoId")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime?>("Fecha")
-                        .HasColumnType("date")
-                        .HasColumnName("fecha");
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("FisioterapeutaId")
-                        .HasColumnType("int")
-                        .HasColumnName("fisioterapeuta_id");
+                        .HasColumnType("int");
 
-                    b.Property<string>("Revision1")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)")
-                        .HasColumnName("revision");
+                    b.Property<string>("Notas")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
-                    b.HasKey("RevisionId")
-                        .HasName("PRIMARY");
+                    b.HasKey("RevisionId");
 
                     b.HasIndex(new[] { "DiagnosticoId" }, "diagnostico_id")
                         .HasDatabaseName("diagnostico_id3");
@@ -707,17 +542,13 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     b.Property<int>("TipoAnticonceptivoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("tipo_anticonceptivo_id");
+                        .HasColumnType("int");
 
                     b.Property<string>("Anticonceptivo")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("tipo_anticonceptivo");
+                        .HasColumnType("longtext");
 
-                    b.HasKey("TipoAnticonceptivoId")
-                        .HasName("PRIMARY");
+                    b.HasKey("TipoAnticonceptivoId");
 
                     b.ToTable("tipo_anticonceptivo", (string)null);
                 });
@@ -743,21 +574,16 @@ namespace Core.Infraestructure.Persistance.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
-                        .HasColumnName("password");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Telefono")
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
-                        .HasColumnName("username");
+                        .HasColumnType("varchar(255)");
 
-                    b.HasKey("UsuarioId")
-                        .HasName("PRIMARY");
+                    b.HasKey("UsuarioId");
 
                     b.HasIndex("Correo")
                         .IsUnique();
@@ -776,6 +602,8 @@ namespace Core.Infraestructure.Persistance.Migrations
                     b.HasOne("Core.Domain.Entities.Paciente", "Paciente")
                         .WithMany("Citas")
                         .HasForeignKey("PacienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("citas_ibfk_1");
 
                     b.Navigation("Paciente");
@@ -786,6 +614,8 @@ namespace Core.Infraestructure.Persistance.Migrations
                     b.HasOne("Core.Domain.Entities.Expediente", "Expedediente")
                         .WithMany("Diagnosticos")
                         .HasForeignKey("ExpededienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("diagnostico_ibfk_1");
 
                     b.Navigation("Expedediente");
@@ -808,6 +638,8 @@ namespace Core.Infraestructure.Persistance.Migrations
                     b.HasOne("Core.Domain.Entities.Diagnostico", "Diagnostico")
                         .WithMany("ExploracionFisicas")
                         .HasForeignKey("DiagnosticoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("exploracion_fisica_ibfk_1");
 
                     b.Navigation("Diagnostico");
@@ -832,7 +664,6 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .WithMany("GinecoObstetricos")
                         .HasForeignKey("TipoAnticonceptivoId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired()
                         .HasConstraintName("gineco_obstetrico_ibfk_2");
 
                     b.Navigation("Expediente");
@@ -859,6 +690,8 @@ namespace Core.Infraestructure.Persistance.Migrations
                     b.HasOne("Core.Domain.Entities.Diagnostico", "Diagnostico")
                         .WithMany("MapaCorporals")
                         .HasForeignKey("DiagnosticoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("mapa_corporal_ibfk_1");
 
                     b.Navigation("Diagnostico");
@@ -882,7 +715,6 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .WithMany("Pacientes")
                         .HasForeignKey("EstadoCivilId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired()
                         .HasConstraintName("paciente_ibfk_1");
 
                     b.Navigation("EstadoCivil");
@@ -893,6 +725,8 @@ namespace Core.Infraestructure.Persistance.Migrations
                     b.HasOne("Core.Domain.Entities.Diagnostico", "Diagnostico")
                         .WithMany("ProgramaFisioterapeuticos")
                         .HasForeignKey("DiagnosticoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("programa_fisioterapeutico_ibfk_1");
 
                     b.Navigation("Diagnostico");
@@ -903,11 +737,14 @@ namespace Core.Infraestructure.Persistance.Migrations
                     b.HasOne("Core.Domain.Entities.Diagnostico", "Diagnostico")
                         .WithMany("Revisions")
                         .HasForeignKey("DiagnosticoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("revision_ibfk_2");
 
                     b.HasOne("Core.Domain.Entities.Fisioterapeutum", "Fisioterapeuta")
                         .WithMany("Revisions")
                         .HasForeignKey("FisioterapeutaId")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("revision_ibfk_1");
 
                     b.Navigation("Diagnostico");

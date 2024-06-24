@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Core.Domain.Entities;
+﻿namespace Core.Domain.Entities;
 
 public class Cita
 {
@@ -9,9 +6,9 @@ public class Cita
 
     public DateTime Fecha { get; set; }
 
-    public string? Motivo { get; set; }
+    public string Motivo { get; set; } = null!;
 
-    public int? PacienteId { get; set; }
+    public int PacienteId { get; set; }
 
     public virtual Paciente? Paciente { get; set; }
 }

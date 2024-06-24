@@ -29,7 +29,9 @@ public class Paciente
 
     public string Telefono { get; set; } = null!;
 
-    public int EstadoCivilId { get; set; }
+    public int? EstadoCivilId { get; set; }
+    
+    public string? Notas { get; set; }
     
     public string? FotoPerfil {get; set;}
 

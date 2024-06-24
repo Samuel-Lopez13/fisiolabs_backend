@@ -31,7 +31,7 @@ public class GinecoObstetrico
 
     public int? FlujoVaginalId { get; set; }
 
-    public int TipoAnticonceptivoId { get; set; }
+    public int? TipoAnticonceptivoId { get; set; }
     
     public int ExpedienteId { get; set; }
 

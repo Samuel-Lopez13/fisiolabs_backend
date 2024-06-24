@@ -12,7 +12,7 @@ public class Fisioterapeutum
     
     public int FisioterapeutaId { get; set; }
 
-    public string? Fisioterapeuta { get; set; }
+    public string Fisioterapeuta { get; set; } = null!;
 
     public virtual ICollection<Revision> Revisions { get; set; } = new List<Revision>();
 }
