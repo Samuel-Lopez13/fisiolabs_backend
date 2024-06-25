@@ -27,6 +27,12 @@ public class PacientesController: ControllerBase
     {
         return await _mediator.Send(new Pacientes() { Pagina = pagina });
     }
+    
+    [HttpGet("Buscador")]
+    public async Task<BuscarPacienteResponse> getBuscador([FromQuery] int pagina, [FromQuery] string nombre)
+    {
+        return await _mediator.Send(new BuscarPaciente() { Pagina = pagina, Nombre = nombre});
+    }
 
     [HttpGet("Datos")]
     public async Task<DatosPacienteResponse> getDatos([FromQuery] int paciente)

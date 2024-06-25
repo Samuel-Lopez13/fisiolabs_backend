@@ -24,6 +24,7 @@ public class PacientesHandler : IRequestHandler<Pacientes, List<PacientesRespons
     {
         var pacientes = await _context.Pacientes
             .AsNoTracking()
+            .Include(x => x.Expedientes)
             .OrderBy(x => x.Nombre)
             .Skip((request.Pagina - 1) * 10)
             .Take(10)
@@ -33,8 +34,8 @@ public class PacientesHandler : IRequestHandler<Pacientes, List<PacientesRespons
                 Nombre = x.Nombre,
                 Edad = EdadPaciente(x.Edad.Date),
                 Sexo = x.Sexo == true ? "Hombre" : "Mujer",
-                Telefono = x.Telefono
-                
+                Telefono = x.Telefono,
+                Verificado = x.Expedientes.Any()
             }).ToListAsync();
 
         return pacientes;
@@ -67,4 +68,5 @@ public record PacientesResponse
     public int Edad { get; set; }
     public string Sexo { get; set; }
     public string Telefono { get; set; }
+    public bool Verificado { get; set; }
 }

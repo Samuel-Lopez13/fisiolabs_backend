@@ -23,21 +23,18 @@ public class DatosPacienteHandler : IRequestHandler<DatosPaciente, DatosPaciente
     {
         var paciente = await _context.Pacientes
             .AsNoTracking()
+            .Include(u => u.Expedientes)
             .FirstOrDefaultAsync(x => x.PacienteId == request.PacienteId);
 
         if (paciente == null)
             throw new NotFoundException("No se encontro el paciente");
-        
-        var expediente = await _context.Expedientes
-            .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.PacienteId == request.PacienteId);
         
         var response = new DatosPacienteResponse()
         {
             PacienteId = paciente.PacienteId,
             Nombre = paciente.Nombre,
             Sexo = paciente.Sexo == true ? "Hombre" : "Mujer",
-            verificado = expediente != null
+            verificado = paciente.Expedientes.Any()
         };
 
         return response;
