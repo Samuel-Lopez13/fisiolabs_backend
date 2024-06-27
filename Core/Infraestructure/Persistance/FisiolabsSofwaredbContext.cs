@@ -76,7 +76,7 @@ public partial class FisiolabsSofwaredbContext : DbContext
 
             entity.HasIndex(e => e.PacienteId, "paciente_id").IsUnique();
 
-            entity.HasOne(d => d.Paciente).WithMany(p => p.Expedientes)
+            entity.HasOne(d => d.paciente).WithMany(p => p.Expedientes)
                 .HasForeignKey(d => d.PacienteId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("expediente_ibfk_1");

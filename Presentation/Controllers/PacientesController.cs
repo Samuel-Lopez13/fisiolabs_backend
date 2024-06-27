@@ -46,6 +46,12 @@ public class PacientesController: ControllerBase
         return await _mediator.Send(new DatosPaciente() { PacienteId = paciente });
     }
     
+    [HttpGet("Expediente")]
+    public async Task<DatoExpedienteResponse> getExpediente([FromQuery] int paciente)
+    {
+        return await _mediator.Send(new DatoExpediente() { PacienteId = paciente });
+    }
+    
     [HttpGet("paginas")]
     public async Task<NumeroPaginasResponse> getPaginas()
     {
@@ -69,5 +75,12 @@ public class PacientesController: ControllerBase
     {
         await _mediator.Send(command);
         return Ok("Se agregaron los datos correctamente");
+    }
+    
+    [HttpDelete()]
+    public async Task<IActionResult> DeletePaciente([FromQuery] int id)
+    {
+        await _mediator.Send(new EliminarPaciente() { PacienteId = id });
+        return Ok("Se elimino el paciente correctamente");
     }
 }

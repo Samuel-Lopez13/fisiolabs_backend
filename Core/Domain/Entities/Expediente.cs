@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Core.Domain.Entities;
+﻿namespace Core.Domain.Entities;
 
 public class Expediente
 {
@@ -23,7 +20,7 @@ public class Expediente
 
     public int PacienteId { get; set; }
 
-    public virtual Paciente? Paciente { get; set; }
+    public virtual Paciente? paciente { get; set; }
     public virtual ICollection<Diagnostico> Diagnosticos { get; set; } = new List<Diagnostico>();
     public virtual ICollection<GinecoObstetrico> GinecoObstetricos { get; set; } = new List<GinecoObstetrico>();
     public virtual ICollection<HeredoFamiliar> HeredoFamiliars { get; set; } = new List<HeredoFamiliar>();

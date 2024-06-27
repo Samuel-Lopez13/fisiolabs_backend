@@ -12,8 +12,8 @@ public class NoPatologico
     public string MedioSociocultural { get; set; } = null!;
 
     public string MedioFisicoambiental { get; set; } = null!;
-
+    
     public int ExpedienteId { get; set; }
-
+    
     public virtual Expediente? Expediente { get; set; }
 }

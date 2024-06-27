@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Core.Features.Pacientes.Command;
 
-public record HeredoFamilia
+public record HeredoFamiliaI
 {
     [Required(ErrorMessage = "El campo Padres es obligatorio")]
     public int Padres { get; set; }
@@ -46,7 +46,7 @@ public record HeredoFamilia
     public string? Drogas { get; set; }
 }
 
-public record Antecedentes
+public record AntecedentesI
 {
     [Required(ErrorMessage = "El campo AntecedentesPatologicos es obligatorio")]
     public string AntecedentesPatologicos { get; set; }
@@ -61,7 +61,7 @@ public record Antecedentes
     public string MedioFisicoambiental { get; set; }
 }
 
-public record Ginecobstetrico
+public record GinecobstetricoI
 {
     public string? Fum { get; set; }
 
@@ -101,9 +101,9 @@ public record InterrogatioPaciente : IRequest
     
     public string? Responsable { get; set; }
     
-    public HeredoFamilia HeredoFamiliar { get; set; }
-    public Antecedentes Antecedente { get; set; }
-    public Ginecobstetrico? Ginecobstetricos { get; set; }
+    public HeredoFamiliaI HeredoFamiliar { get; set; }
+    public AntecedentesI Antecedente { get; set; }
+    public GinecobstetricoI? Ginecobstetricos { get; set; }
 };
 
 public class InterrogatioPacienteHandler : IRequestHandler<InterrogatioPaciente>

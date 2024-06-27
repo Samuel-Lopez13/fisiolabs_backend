@@ -36,8 +36,9 @@ public class HeredoFamiliar
     public string? Tabaquismo { get; set; }
 
     public string? Drogas { get; set; }
-
+    
     public int ExpedienteId { get; set; }
 
     public virtual Expediente? Expediente { get; set; }
+    
 }

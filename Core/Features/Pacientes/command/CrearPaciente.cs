@@ -16,6 +16,9 @@ public record CrearPaciente : IRequest<CrearPacienteResponse>
     [Required(ErrorMessage = "El campo Nombre es obligatorio")]
     public string Nombre { get; set; }
     
+    [Required(ErrorMessage = "El campo Apellido es obligatorio")]
+    public string Apellido { get; set; }
+    
     [Required(ErrorMessage = "El campo Edad es obligatorio")]
     public DateTime Edad { get; set; } 
 
@@ -67,6 +70,7 @@ public class CrearPacienteHandler : IRequestHandler<CrearPaciente, CrearPaciente
         
         var paciente = new Paciente() {
             Nombre = request.Nombre,
+            Apellido = request.Apellido,
             Edad = request.Edad,
             Sexo = request.Sexo,
             Institucion = request.Institucion,
