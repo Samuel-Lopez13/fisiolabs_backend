@@ -5,6 +5,7 @@ using Core.Infraestructure;
 using Core.Infraestructure.Persistance;
 using dotenv.net;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Presentation;
 using Presentation.Filters;
 
@@ -39,12 +40,16 @@ builder.Services.AddDbContext<FisiolabsSofwaredbContext>(options => options.UseM
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+
+app.UseDeveloperExceptionPage();
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+
+    // Incluir hoja de estilos personalizada
+    c.InjectStylesheet("/swagger-ui/custom.css");
+});
 
 app.UseHttpsRedirection();
 
@@ -52,6 +57,13 @@ app.UseHttpsRedirection();
 app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
+
+// Servir tu archivo CSS desde wwwroot
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "swagger-ui")),
+    RequestPath = "/swagger-ui"
+});
 
 app.UseAuthentication();
 

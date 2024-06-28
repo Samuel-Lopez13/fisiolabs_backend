@@ -4,5 +4,27 @@
         <name>Presentation</name>
     </assembly>
     <members>
+        <member name="M:Presentation.Controllers.PacientesController.getPacientes(System.Int32)">
+            <summary>
+            Obtener Pacientes
+            </summary>
+            <param name="pagina"></param>
+            <returns>Lista de Pacientes</returns>
+            <remarks>
+            Devuelve una lista de todos los pacientes, pasando como parametro la pagina
+            </remarks>
+            <response code="400">Error en la solicitud</response>
+        </member>
+        <member name="M:Presentation.Controllers.PacientesController.getBuscador(System.Int32,System.String)">
+            <summary>
+            Buscador Pacientes
+            </summary>
+            <param name="pagina">Pagina</param>
+            <param name="nombre"></param>
+            <returns>Buscador de Pacientes</returns>
+            <remarks>
+            Devuelve una lista de todos los pacientes que cumplan con el criterio de busqueda, pasando como parametro la pagina
+            </remarks>
+        </member>
     </members>
 </doc>

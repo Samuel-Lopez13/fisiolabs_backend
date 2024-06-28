@@ -441,3 +441,4 @@ D:\FisioNexus\Back-End\fisiolabs_backend\Presentation\obj\Debug\net8.0\Presentat
 D:\FisioNexus\Back-End\fisiolabs_backend\Presentation\obj\Debug\net8.0\Presentation.pdb
 D:\FisioNexus\Back-End\fisiolabs_backend\Presentation\obj\Debug\net8.0\Presentation.genruntimeconfig.cache
 D:\FisioNexus\Back-End\fisiolabs_backend\Presentation\obj\Debug\net8.0\ref\Presentation.dll
+D:\FisioNexus\Back-End\fisiolabs_backend\Presentation\bin\Debug\net8.0\Swashbuckle.AspNetCore.Annotations.dll
