@@ -32,7 +32,7 @@ public class DatosPacienteHandler : IRequestHandler<DatosPaciente, DatosPaciente
         var response = new DatosPacienteResponse()
         {
             PacienteId = paciente.PacienteId,
-            Nombre = paciente.Nombre + " " + paciente.Apellido,
+            Nombre = paciente.Nombre + " " + (paciente.Apellido ?? ""),
             Sexo = paciente.Sexo == true ? "Hombre" : "Mujer",
             verificado = paciente.Expedientes.Any()
         };

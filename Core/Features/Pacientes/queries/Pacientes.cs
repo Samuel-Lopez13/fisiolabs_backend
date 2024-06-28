@@ -31,7 +31,7 @@ public class PacientesHandler : IRequestHandler<Pacientes, List<PacientesRespons
             .Select(x => new PacientesResponse()
             {
                 PacienteId = x.PacienteId,
-                Nombre = x.Nombre + " " + x.Apellido,
+                Nombre = x.Nombre + " " + (x.Apellido ?? ""),
                 Edad = EdadPaciente(x.Edad.Date),
                 Sexo = x.Sexo == true ? "Hombre" : "Mujer",
                 Telefono = x.Telefono,

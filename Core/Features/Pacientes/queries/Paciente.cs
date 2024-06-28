@@ -26,7 +26,7 @@ public class PacienteHandler : IRequestHandler<Paciente, PacienteResponse>
 
         var response = new PacienteResponse()
         {
-            Nombre = paciente.Nombre + " " + paciente.Apellido,
+            Nombre = paciente.Nombre + " " + (paciente.Apellido ?? ""),
             Edad = paciente.Edad,
             Sexo = paciente.Sexo,
             Institucion = paciente.Institucion,
