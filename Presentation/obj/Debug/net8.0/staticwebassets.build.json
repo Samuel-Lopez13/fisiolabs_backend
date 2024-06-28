@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1z3C38uDERe3PjVy/zM4HRJkBU8fK1N95HWltT4HRmo=",
+  "Hash": "FMH2aVugB/OgbKslNY6nNH4OyJb5pMPVe9WoKlEbTFQ=",
   "Source": "Presentation",
   "BasePath": "_content/Presentation",
   "Mode": "Default",
@@ -34,6 +34,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Readme please.txt"
+    },
+    {
+      "Identity": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\wwwroot\\swagger-ui\\custom.css",
+      "SourceId": "Presentation",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\wwwroot\\",
+      "BasePath": "_content/Presentation",
+      "RelativePath": "swagger-ui/custom.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\swagger-ui\\custom.css"
     }
   ]
 }
