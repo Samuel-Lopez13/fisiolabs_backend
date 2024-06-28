@@ -40,7 +40,7 @@ public class BuscarPacientesHandler : IRequestHandler<BuscarPaciente, BuscarPaci
             .Select(x => new PacientesModel()
             {
                 PacienteId = x.PacienteId,
-                Nombre = x.Nombre,
+                Nombre = x.Nombre + " " + x.Apellido,
                 Edad = EdadPaciente(x.Edad.Date),
                 Sexo = x.Sexo == true ? "Hombre" : "Mujer",
                 Telefono = x.Telefono,

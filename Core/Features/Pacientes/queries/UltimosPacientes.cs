@@ -23,7 +23,7 @@ public class UltimosPacientesHandler : IRequestHandler<UltimosPacientes, List<Ul
             .Take(7)
             .Select(x => new UltimosPacientesResponse()
             {
-                Nombre = x.Nombre,
+                Nombre = x.Nombre + " " + x.Apellido,
                 Edad = EdadPaciente(x.Edad.Date),
                 Sexo = x.Sexo == true ? "Hombre" : "Mujer",
                 Telefono = x.Telefono
