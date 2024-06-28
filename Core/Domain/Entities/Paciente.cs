@@ -17,7 +17,7 @@ public class Paciente
     
     public DateTime Edad { get; set; }
     
-    public string Apellido { get; set; }
+    public string? Apellido { get; set; }
 
     public bool Sexo { get; set; }
 
