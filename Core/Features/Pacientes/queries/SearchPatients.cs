@@ -6,40 +6,40 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Core.Features.Pacientes.queries;
 
-public record BuscarPaciente : IRequest<BuscarPacienteResponse>
+public record SearchPatients : IRequest<SearchPatientResponse>
 {
     public int Pagina { get; set; }
     public string Nombre { get; set; }
 }
 
-public class BuscarPacientesHandler : IRequestHandler<BuscarPaciente, BuscarPacienteResponse>
+public class SearchPatientsHandler : IRequestHandler<SearchPatients, SearchPatientResponse>
 {
     private readonly FisiolabsSofwaredbContext _context;
 
-    public BuscarPacientesHandler(FisiolabsSofwaredbContext context)
+    public SearchPatientsHandler(FisiolabsSofwaredbContext context)
     {
         _context = context;
     }
 
-    public async Task<BuscarPacienteResponse> Handle(BuscarPaciente request, CancellationToken cancellationToken)
+    public async Task<SearchPatientResponse> Handle(SearchPatients request, CancellationToken cancellationToken)
     {
         // Obtener el número total de pacientes que cumplen con el criterio de búsqueda
-        var totalPacientes = await _context.Pacientes
+        var totalPatients = await _context.Pacientes
             .AsNoTracking()
             .Where(x => x.Nombre.Contains(request.Nombre))
             .ToListAsync();
 
         // Calcular el número de páginas
-        int numPaginas = (int)Math.Ceiling((double)totalPacientes.Count / 10);
+        int numPages = (int)Math.Ceiling((double)totalPatients.Count / 10);
         
-        var pacientesList = await _context.Pacientes
+        var patientsList = await _context.Pacientes
             .AsNoTracking()
             .Where(x => x.Nombre.Contains(request.Nombre))
             .Include(x => x.Expedientes)
             .ToListAsync();
 
         // Ordenar los pacientes según cada letra en la cadena de búsqueda
-        pacientesList = pacientesList
+        patientsList = patientsList
             .OrderBy(p => 
             {
                 //Convertimos el nombre a minuscular
@@ -65,10 +65,10 @@ public class BuscarPacientesHandler : IRequestHandler<BuscarPaciente, BuscarPaci
             .ToList();
 
         // Aplicar paginación
-        var pacientes = pacientesList
+        var patients = patientsList
             .Skip((request.Pagina - 1) * 10)
             .Take(10)
-            .Select(x => new PacientesModel()
+            .Select(x => new PatientModelSearch()
             {
                 PacienteId = x.PacienteId,
                 Nombre = x.Nombre + " " + (x.Apellido ?? ""),
@@ -80,25 +80,25 @@ public class BuscarPacientesHandler : IRequestHandler<BuscarPaciente, BuscarPaci
             .ToList();
         
         // Response
-        var response = new BuscarPacienteResponse()
+        var response = new SearchPatientResponse()
         {
-            numPaginas = numPaginas,
-            total = totalPacientes.Count,
-            pacientes = pacientes
+            numPaginas = numPages,
+            total = totalPatients.Count,
+            pacientes = patients
         };
 
         return response;
     }
 }
 
-public record BuscarPacienteResponse
+public record SearchPatientResponse
 {
     public int numPaginas { get; set; }
     public int total { get; set; }
-    public List<PacientesModel> pacientes { get; set; }
+    public List<PatientModelSearch> pacientes { get; set; }
 }
 
-public record PacientesModel
+public record PatientModelSearch
 {
     public int PacienteId { get; set; }
     public string Nombre { get; set; }

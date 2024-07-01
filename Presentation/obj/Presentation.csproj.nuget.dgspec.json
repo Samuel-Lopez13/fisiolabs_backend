@@ -1,28 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\Presentation.csproj": {}
+    "C:\\Users\\ferna\\Music\\Fisio Software\\fisiolabs_backend\\Presentation\\Presentation.csproj": {}
   },
   "projects": {
-    "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Core\\Core.csproj": {
+    "C:\\Users\\ferna\\Music\\Fisio Software\\fisiolabs_backend\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\ferna\\Music\\Fisio Software\\fisiolabs_backend\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Core\\Core.csproj",
-        "packagesPath": "C:\\Users\\lopez\\.nuget\\packages\\",
-        "outputPath": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Core\\obj\\",
+        "projectPath": "C:\\Users\\ferna\\Music\\Fisio Software\\fisiolabs_backend\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\ferna\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ferna\\Music\\Fisio Software\\fisiolabs_backend\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\lopez\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\ferna\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -35,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -105,37 +97,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\ferna\\.dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\Presentation.csproj": {
+    "C:\\Users\\ferna\\Music\\Fisio Software\\fisiolabs_backend\\Presentation\\Presentation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\Presentation.csproj",
+        "projectUniqueName": "C:\\Users\\ferna\\Music\\Fisio Software\\fisiolabs_backend\\Presentation\\Presentation.csproj",
         "projectName": "Presentation",
-        "projectPath": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\Presentation.csproj",
-        "packagesPath": "C:\\Users\\lopez\\.nuget\\packages\\",
-        "outputPath": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\obj\\",
+        "projectPath": "C:\\Users\\ferna\\Music\\Fisio Software\\fisiolabs_backend\\Presentation\\Presentation.csproj",
+        "packagesPath": "C:\\Users\\ferna\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ferna\\Music\\Fisio Software\\fisiolabs_backend\\Presentation\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\lopez\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\ferna\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Core\\Core.csproj": {
-                "projectPath": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Core\\Core.csproj"
+              "C:\\Users\\ferna\\Music\\Fisio Software\\fisiolabs_backend\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\ferna\\Music\\Fisio Software\\fisiolabs_backend\\Core\\Core.csproj"
               }
             }
           }
@@ -144,11 +133,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -229,7 +213,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\ferna\\.dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

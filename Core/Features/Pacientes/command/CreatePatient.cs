@@ -1,17 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Core.Domain.Entities;
 using Core.Domain.Exceptions;
-using Core.Domain.Services;
 using Core.Infraestructure.Persistance;
 using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Core.Features.Pacientes.Command;
 
-public record CrearPaciente : IRequest<CrearPacienteResponse>
+public record CreatePatient : IRequest<CreatePatientResponse>
 {
     [Required(ErrorMessage = "El campo Nombre es obligatorio")]
     public string Nombre { get; set; }
@@ -49,26 +45,26 @@ public record CrearPaciente : IRequest<CrearPacienteResponse>
     public string? FotoPerfil { get; set; }
 }
 
-public class CrearPacienteHandler : IRequestHandler<CrearPaciente, CrearPacienteResponse>
+public class CreatePatientHandler : IRequestHandler<CreatePatient, CreatePatientResponse>
 {
     private readonly FisiolabsSofwaredbContext _context;
     
-    public CrearPacienteHandler(FisiolabsSofwaredbContext context)
+    public CreatePatientHandler(FisiolabsSofwaredbContext context)
     {
         _context = context;
     }
     
-    public async Task<CrearPacienteResponse> Handle(CrearPaciente request, CancellationToken cancellationToken)
+    public async Task<CreatePatientResponse> Handle(CreatePatient request, CancellationToken cancellationToken)
     {
-        var validar = await _context.Pacientes.
+        var validate = await _context.Pacientes.
             AsNoTracking().
             FirstOrDefaultAsync(x => x.Telefono == request.Telefono);
         
-        if (validar != null) {
+        if (validate != null) {
             throw new BadRequestException("Ya existe un paciente con el numero telefonico ingresado");
         }
         
-        var paciente = new Paciente() {
+        var patient = new Paciente() {
             Nombre = request.Nombre,
             Apellido = request.Apellido,
             Edad = request.Edad,
@@ -82,19 +78,19 @@ public class CrearPacienteHandler : IRequestHandler<CrearPaciente, CrearPaciente
             FotoPerfil = request.FotoPerfil == null ? "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png" : request.FotoPerfil
         };
 
-        await _context.Pacientes.AddAsync(paciente);
+        await _context.Pacientes.AddAsync(patient);
         await _context.SaveChangesAsync();
 
-        var response = new CrearPacienteResponse()
+        var response = new CreatePatientResponse()
         {
-            PacienteId = paciente.PacienteId
+            PacienteId = patient.PacienteId
         };
 
         return response;
     }
 }
 
-public record CrearPacienteResponse
+public record CreatePatientResponse
 {
     public int PacienteId { get; set; }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FMH2aVugB/OgbKslNY6nNH4OyJb5pMPVe9WoKlEbTFQ=",
+  "Hash": "3BMwS3eAUcDyWEy/2JHW3DRufqLZEGtnYW9n6pux94Q=",
   "Source": "Presentation",
   "BasePath": "_content/Presentation",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "Presentation\\wwwroot",
       "Source": "Presentation",
-      "ContentRoot": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ferna\\Music\\Fisio Software\\fisiolabs_backend\\Presentation\\wwwroot\\",
       "BasePath": "_content/Presentation",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\wwwroot\\Readme please.txt",
+      "Identity": "C:\\Users\\ferna\\Music\\Fisio Software\\fisiolabs_backend\\Presentation\\wwwroot\\Readme please.txt",
       "SourceId": "Presentation",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ferna\\Music\\Fisio Software\\fisiolabs_backend\\Presentation\\wwwroot\\",
       "BasePath": "_content/Presentation",
       "RelativePath": "Readme please.txt",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\Readme please.txt"
     },
     {
-      "Identity": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\wwwroot\\swagger-ui\\custom.css",
+      "Identity": "C:\\Users\\ferna\\Music\\Fisio Software\\fisiolabs_backend\\Presentation\\wwwroot\\swagger-ui\\custom.css",
       "SourceId": "Presentation",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\FisioNexus\\Back-End\\fisiolabs_backend\\Presentation\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ferna\\Music\\Fisio Software\\fisiolabs_backend\\Presentation\\wwwroot\\",
       "BasePath": "_content/Presentation",
       "RelativePath": "swagger-ui/custom.css",
       "AssetKind": "All",

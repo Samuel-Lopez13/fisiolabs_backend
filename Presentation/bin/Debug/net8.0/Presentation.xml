@@ -4,27 +4,148 @@
         <name>Presentation</name>
     </assembly>
     <members>
-        <member name="M:Presentation.Controllers.PacientesController.getPacientes(System.Int32)">
+        <member name="M:Presentation.Controllers.ExpedienteController.getExpedient(System.Int32)">
+            <summary>
+            Expediente de paciente
+            </summary>
+            <remarks>
+            Devuelve un expediente con todos los datos del paciente
+            </remarks>
+            <param name="paciente">Id del paciente</param>
+            <response code="200"><b>Ok:</b>
+            <remarks>Expediente</remarks>
+            </response>
+            <response code="404"><b>Not Found:</b>
+            <remarks>No existe un paciente con el Id Proporcionado</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.ExpedienteController.PostExpedient(Core.Features.Pacientes.Command.PostExpedient)">
+            <summary>
+            Crea un expediente de usuario
+            </summary>
+            <remarks>
+            Crea un expediente de un usuario
+            </remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Se creo exitosamente el expediente</remarks>
+            </response>
+            <response code="400"><b>Bad Request:</b>
+            <remarks>El Id que se proporciono no es valido</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.PacientesController.getPatients(System.Int32)">
             <summary>
             Obtener Pacientes
             </summary>
             <param name="pagina"></param>
-            <returns>Lista de Pacientes</returns>
             <remarks>
             Devuelve una lista de todos los pacientes, pasando como parametro la pagina
             </remarks>
-            <response code="400">Error en la solicitud</response>
+            <response code="200"><b>Ok:</b>
+            <remarks>Pacientes</remarks>
+            </response>
         </member>
-        <member name="M:Presentation.Controllers.PacientesController.getBuscador(System.Int32,System.String)">
+        <member name="M:Presentation.Controllers.PacientesController.getPatient(System.Int32)">
+            <summary>
+            Obtiene la Data de un paciente en especifico
+            </summary>
+            <param name="id">Id del paciente</param>
+            <remarks>
+            Devuelve todos los datos de un paciente.
+            </remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Paciente</remarks>
+            </response>
+            <response code="404"><b>Not Found:</b>
+            <remarks>El Id que se proporciono no es valido</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.PacientesController.getSearch(System.Int32,System.String)">
             <summary>
             Buscador Pacientes
             </summary>
-            <param name="pagina">Pagina</param>
-            <param name="nombre"></param>
-            <returns>Buscador de Pacientes</returns>
+            <param name="página">N° Página</param>
+            <param name="nombre">Buscar</param>
             <remarks>
             Devuelve una lista de todos los pacientes que cumplan con el criterio de busqueda, pasando como parametro la pagina
             </remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Pacientes</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.PacientesController.getLastPatients">
+            <summary>
+            Ultimos Pacientes
+            </summary>
+            <remarks>
+            Devuelve los ultimos 7 pacientes que fueron registrados
+            </remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Ultimos pacientes</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.PacientesController.PostPatient(Core.Features.Pacientes.Command.CreatePatient)">
+            <summary>
+            Crear Paciente
+            </summary>
+            <param name="command">Formulario de pacientes</param>
+            <remarks>Devuelve el Id del paciente creado</remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Creado Exitosamente</remarks>
+            </response>
+            <response code="400"><b>Bad Request:</b>
+            <remarks>El usuario no ingreso los datos correctamente ó El número telefonico ya existe</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.PacientesController.DeletePatient(System.Int32)">
+            <summary>
+            Eliminar Paciente
+            </summary>
+            <param name="id">Id del paciente</param>
+            <remarks>Elimina al paciente</remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Eliminado Correctamente</remarks>
+            </response>
+            <response code="404"><b>Not Found:</b>
+            <remarks>El Id que se proporciono no es valido</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.UsuarioController.getVeryfyUser(System.String)">
+            <summary>
+            Verifica si el token del usuario es verdadero
+            </summary>
+            <remarks>Verifica si el token del usuario es verdadero</remarks>
+            <param name="token">Token JWT</param>
+            <response code="200"><b>Ok:</b>
+            <remarks>Verificacion del usuario</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.UsuarioController.Login(Core.Features.Usuario.command.Login)">
+            <summary>
+            Login
+            </summary>
+            <remarks>Logearse para obtener el token de acceso</remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Logeo Exitoso</remarks>
+            </response>
+            <response code="400"><b>Bad Request:</b>
+            <remarks>El Nombre de Usario y la Contraseña son obligatorios</remarks>
+            </response>
+            <response code="404"><b>Not Found:</b>
+            <remarks>No existe ningun usuario con esas credenciales</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.UsuarioController.PostUser(Core.Features.Usuario.command.CreateUser)">
+            <summary>
+            Crea un usuario
+            </summary>
+            <remarks>Crea un usuario</remarks>
+            <response code="200">><b>Ok:</b>
+            <remarks>Se registro el usuario correctamente</remarks>
+            </response>
+            <response code="400">><b>Bad Request:</b>
+            <remarks>El nombre de usuario no puede estar registrado previamente</remarks>
+            </response>
         </member>
     </members>
 </doc>

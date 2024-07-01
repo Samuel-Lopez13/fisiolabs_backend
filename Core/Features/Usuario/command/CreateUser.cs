@@ -3,12 +3,10 @@ using Core.Domain.Exceptions;
 using Core.Infraestructure.Persistance;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Core.Domain.Entities;
-using Core.Domain.Services;
 
 namespace Core.Features.Usuario.command;
 
-public record CrearUsuario : IRequest
+public record CreateUser : IRequest
 {
     [Required]
     public string Username { get; set; }
@@ -17,23 +15,23 @@ public record CrearUsuario : IRequest
     public string Contraseña { get; set; }
 };
 
-public class CrearUsuarioHandler : IRequestHandler<CrearUsuario>
+public class CreateUserHandler : IRequestHandler<CreateUser>
 {
     private readonly FisiolabsSofwaredbContext _context;
     
-    public CrearUsuarioHandler(FisiolabsSofwaredbContext context)
+    public CreateUserHandler(FisiolabsSofwaredbContext context)
     {
         _context = context;
     }
 
-    public async Task Handle(CrearUsuario request, CancellationToken cancellationToken)
+    public async Task Handle(CreateUser request, CancellationToken cancellationToken)
     {
         //Se busca si no existe algun usuario con la cuenta
-        var validar = await _context.Usuarios
+        var validate = await _context.Usuarios
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.Username == request.Username);
 
-        if (validar != null)
+        if (validate != null)
             throw new BadRequestException("Error ya existe un usuario con el mismo nombre");
         
         var usuario = new Domain.Entities.Usuario()

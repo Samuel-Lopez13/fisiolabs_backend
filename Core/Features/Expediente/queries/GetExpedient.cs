@@ -5,71 +5,73 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Features.Pacientes.queries;
 
-public record DatoExpediente : IRequest<DatoExpedienteResponse>
+public record GetExpedient : IRequest<GetExpedientResponse>
 {
     public int PacienteId { get; set; }
 }
 
-public class DatosExpedienteHandler : IRequestHandler<DatoExpediente, DatoExpedienteResponse>
+public class GetExpedientHandler : IRequestHandler<GetExpedient, GetExpedientResponse>
 {
     private readonly FisiolabsSofwaredbContext _context;
 
-    public DatosExpedienteHandler(FisiolabsSofwaredbContext context)
+    public GetExpedientHandler(FisiolabsSofwaredbContext context)
     {
         _context = context;
     }
     
-    public async Task<DatoExpedienteResponse> Handle(DatoExpediente request, CancellationToken cancellationToken)
+    public async Task<GetExpedientResponse> Handle(GetExpedient request, CancellationToken cancellationToken)
     {
-        var expediente = await _context.Expedientes
+        //Buscamos si el usuario cuenta ya con un expediente
+        var expedient = await _context.Expedientes
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.PacienteId == request.PacienteId);
         
-        if(expediente == null)
+        if(expedient == null)
             throw new NotFoundException("No se encontro el expediente");
 
-        var antecendetes = await _context.NoPatologicos
+        //Buscamos sus datos
+        var antecedents = await _context.NoPatologicos
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.ExpedienteId == expediente.ExpedienteId);
+            .FirstOrDefaultAsync(x => x.ExpedienteId == expedient.ExpedienteId);
         
-        var heredo = await _context.HeredoFamiliars
+        var familyHistory = await _context.HeredoFamiliars
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.ExpedienteId == expediente.ExpedienteId);
+            .FirstOrDefaultAsync(x => x.ExpedienteId == expedient.ExpedienteId);
         
         var gineco = await _context.GinecoObstetricos
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.ExpedienteId == expediente.ExpedienteId);
+            .FirstOrDefaultAsync(x => x.ExpedienteId == expedient.ExpedienteId);
         
-        var response = new DatoExpedienteResponse()
+        var response = new GetExpedientResponse()
         {
-            TipoInterrogatorio = expediente.TipoInterrogatorio,
-            Responsable = expediente.Responsable,
-            HeredoFamiliar = new HeredoFamiliaE()
+            TipoInterrogatorio = expedient.TipoInterrogatorio,
+            Responsable = expedient.Responsable,
+            HeredoFamiliar = new FamilyHistoryGet()
             {
-                Padres = heredo.Padres,
-                PadresVivos = heredo.PadresVivos,
-                PadresCausaMuerte = heredo?.PadresCausaMuerte ?? "Sin registro",
-                Hermanos = heredo.Hermanos,
-                HermanosVivos = heredo.HermanosVivos,
-                HermanosCausaMuerte = heredo.HermanosCausaMuerte ?? "Sin registro",
-                Hijos = heredo.Hijos,
-                HijosVivos = heredo.HijosVivos,
-                HijosCausaMuerte = heredo.HijosCausaMuerte ?? "Sin registro",
-                Dm = heredo.Dm ?? "Sin registro",
-                Hta = heredo.Hta ?? "Sin registro",
-                Cancer = heredo.Cancer ?? "Sin registro",
-                Alcoholismo = heredo.Alcoholismo ?? "Sin registro",
-                Tabaquismo = heredo.Tabaquismo ?? "Sin registro",
-                Drogas = heredo.Drogas ?? "Sin registro"
+                Padres = familyHistory.Padres,
+                PadresVivos = familyHistory.PadresVivos,
+                PadresCausaMuerte = familyHistory?.PadresCausaMuerte ?? "Sin registro",
+                Hermanos = familyHistory.Hermanos,
+                HermanosVivos = familyHistory.HermanosVivos,
+                HermanosCausaMuerte = familyHistory.HermanosCausaMuerte ?? "Sin registro",
+                Hijos = familyHistory.Hijos,
+                HijosVivos = familyHistory.HijosVivos,
+                HijosCausaMuerte = familyHistory.HijosCausaMuerte ?? "Sin registro",
+                Dm = familyHistory.Dm ?? "Sin registro",
+                Hta = familyHistory.Hta ?? "Sin registro",
+                Cancer = familyHistory.Cancer ?? "Sin registro",
+                Alcoholismo = familyHistory.Alcoholismo ?? "Sin registro",
+                Tabaquismo = familyHistory.Tabaquismo ?? "Sin registro",
+                Drogas = familyHistory.Drogas ?? "Sin registro"
             },
-            Antecedente = new AntecedentesE()
+            Antecedente = new AntecedentsGet()
             {
-                AntecedentesPatologicos = expediente.AntecedentesPatologicos,
-                MedioLaboral = antecendetes.MedioLaboral,
-                MedioSociocultural = antecendetes.MedioSociocultural,
-                MedioFisicoambiental = antecendetes.MedioFisicoambiental
+                AntecedentesPatologicos = expedient.AntecedentesPatologicos,
+                MedioLaboral = antecedents.MedioLaboral,
+                MedioSociocultural = antecedents.MedioSociocultural,
+                MedioFisicoambiental = antecedents.MedioFisicoambiental
             },
-            Ginecobstetricos = new GinecobstetricoE()
+            Ginecobstetricos = new GinecobstetricoGet()
             {
                 Fum = gineco?.Fum ?? "Sin registro",
                 Fpp = gineco.Fpp ?? "Sin registro",
@@ -91,18 +93,18 @@ public class DatosExpedienteHandler : IRequestHandler<DatoExpediente, DatoExpedi
     }
 }
 
-public record DatoExpedienteResponse
+public record GetExpedientResponse
 {
     public bool TipoInterrogatorio { get; set; }
     
     public string Responsable { get; set; }
     
-    public HeredoFamiliaE HeredoFamiliar { get; set; }
-    public AntecedentesE Antecedente { get; set; }
-    public GinecobstetricoE Ginecobstetricos { get; set; }
+    public FamilyHistoryGet HeredoFamiliar { get; set; }
+    public AntecedentsGet Antecedente { get; set; }
+    public GinecobstetricoGet Ginecobstetricos { get; set; }
 };
 
-public record HeredoFamiliaE
+public record FamilyHistoryGet
 {
     public int Padres { get; set; }
 
@@ -135,7 +137,7 @@ public record HeredoFamiliaE
     public string Drogas { get; set; }
 }
 
-public record AntecedentesE
+public record AntecedentsGet
 {
     public string AntecedentesPatologicos { get; set; }
 
@@ -146,7 +148,7 @@ public record AntecedentesE
     public string MedioFisicoambiental { get; set; }
 }
 
-public record GinecobstetricoE
+public record GinecobstetricoGet
 {
     public string? Fum { get; set; }
 

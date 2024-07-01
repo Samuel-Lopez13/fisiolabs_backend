@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Core.Features.Pacientes.Command;
 
-public record HeredoFamiliaI
+public record FamilyHistoryPost
 {
     [Required(ErrorMessage = "El campo Padres es obligatorio")]
     public int Padres { get; set; }
@@ -46,7 +46,7 @@ public record HeredoFamiliaI
     public string? Drogas { get; set; }
 }
 
-public record AntecedentesI
+public record AntecedentsPost
 {
     [Required(ErrorMessage = "El campo AntecedentesPatologicos es obligatorio")]
     public string AntecedentesPatologicos { get; set; }
@@ -61,7 +61,7 @@ public record AntecedentesI
     public string MedioFisicoambiental { get; set; }
 }
 
-public record GinecobstetricoI
+public record GinecobstetricoPost
 {
     public string? Fum { get; set; }
 
@@ -91,7 +91,7 @@ public record GinecobstetricoI
     public int TipoAnticonceptivoId { get; set; }
 }
 
-public record InterrogatioPaciente : IRequest
+public record PostExpedient : IRequest
 {
     [Required(ErrorMessage = "El campo PacienteId es obligatorio")]
     public int PacienteId { get; set; }
@@ -101,28 +101,28 @@ public record InterrogatioPaciente : IRequest
     
     public string? Responsable { get; set; }
     
-    public HeredoFamiliaI HeredoFamiliar { get; set; }
-    public AntecedentesI Antecedente { get; set; }
-    public GinecobstetricoI? Ginecobstetricos { get; set; }
+    public FamilyHistoryPost HeredoFamiliar { get; set; }
+    public AntecedentsPost Antecedente { get; set; }
+    public GinecobstetricoPost? Ginecobstetricos { get; set; }
 };
 
-public class InterrogatioPacienteHandler : IRequestHandler<InterrogatioPaciente>
+public class PostExpedientHandler : IRequestHandler<PostExpedient>
 {
     private readonly FisiolabsSofwaredbContext _context;
 
-    public InterrogatioPacienteHandler(FisiolabsSofwaredbContext context)
+    public PostExpedientHandler(FisiolabsSofwaredbContext context)
     {
         _context = context;
     }
 
-    public async Task Handle(InterrogatioPaciente request, CancellationToken cancellationToken)
+    public async Task Handle(PostExpedient request, CancellationToken cancellationToken)
     {
         using (var transaction = _context.Database.BeginTransaction())
         {
             try
             {
                 /* Creamos primero el expediente */
-                var expediente = new Expediente()
+                var expedient = new Expediente()
                 {
                     TipoInterrogatorio = request.TipoInterrogatorio,
                     Responsable = request.Responsable,
@@ -130,7 +130,7 @@ public class InterrogatioPacienteHandler : IRequestHandler<InterrogatioPaciente>
                     PacienteId = request.PacienteId
                 };
 
-                await _context.Expedientes.AddAsync(expediente);
+                await _context.Expedientes.AddAsync(expedient);
                 await _context.SaveChangesAsync();
 
                 /* Creamos los datos no Patologicos */
@@ -139,7 +139,7 @@ public class InterrogatioPacienteHandler : IRequestHandler<InterrogatioPaciente>
                     MedioLaboral = request.Antecedente.MedioLaboral,
                     MedioSociocultural = request.Antecedente.MedioSociocultural,
                     MedioFisicoambiental = request.Antecedente.MedioFisicoambiental,
-                    ExpedienteId = expediente.ExpedienteId,
+                    ExpedienteId = expedient.ExpedienteId,
                 };
 
                 await _context.NoPatologicos.AddAsync(noPatologico);
@@ -162,7 +162,7 @@ public class InterrogatioPacienteHandler : IRequestHandler<InterrogatioPaciente>
                     Alcoholismo = request.HeredoFamiliar.Alcoholismo,
                     Tabaquismo = request.HeredoFamiliar.Tabaquismo,
                     Drogas = request.HeredoFamiliar.Drogas,
-                    ExpedienteId = expediente.ExpedienteId
+                    ExpedienteId = expedient.ExpedienteId
                 };
                 
                 await _context.HeredoFamiliars.AddAsync(heredoFamiliar);
@@ -187,7 +187,7 @@ public class InterrogatioPacienteHandler : IRequestHandler<InterrogatioPaciente>
                         Cirugias = request.Ginecobstetricos.Cirugias,
                         FlujoVaginalId = request.Ginecobstetricos.FlujoVaginalId,
                         TipoAnticonceptivoId = request.Ginecobstetricos.TipoAnticonceptivoId,
-                        ExpedienteId = expediente.ExpedienteId
+                        ExpedienteId = expedient.ExpedienteId
                     };
                     
                     await _context.GinecoObstetricos.AddAsync(ginecobtetrico);

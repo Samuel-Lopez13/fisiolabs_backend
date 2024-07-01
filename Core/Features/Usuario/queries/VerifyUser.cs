@@ -48,8 +48,8 @@ public class VerifyUserHandler : IRequestHandler<VerifyUser, VerifyUserResponse>
                 ValidateIssuer = false,
                 ValidateAudience = false,
                 ValidateIssuerSigningKey = true,
-                ValidIssuer = "https://localhost:5054/", // Cambia esto por tu emisor válido
-                ValidAudience = "localhost", // Cambia esto por tu audiencia válida
+                ValidIssuer = "https://localhost:5054/",
+                ValidAudience = "localhost",
                 IssuerSigningKey = new SymmetricSecurityKey(key)
             }, out SecurityToken validatedToken);
 

@@ -4,28 +4,28 @@ using MediatR;
 
 namespace Core.Features.Pacientes.queries;
 
-public record EliminarPaciente : IRequest
+public record RemovePatient : IRequest
 {
     public int PacienteId { get; set; }
 }
 
-public class EliminarPacienteHandle : IRequestHandler<EliminarPaciente>
+public class RemovePatientHandle : IRequestHandler<RemovePatient>
 {
     private readonly FisiolabsSofwaredbContext _context;
     
-    public EliminarPacienteHandle(FisiolabsSofwaredbContext context)
+    public RemovePatientHandle(FisiolabsSofwaredbContext context)
     {
         _context = context;
     }
     
-    public async Task Handle(EliminarPaciente request, CancellationToken cancellationToken)
+    public async Task Handle(RemovePatient request, CancellationToken cancellationToken)
     {
-        var paciente = _context.Pacientes.Find(request.PacienteId);
+        var patient = _context.Pacientes.Find(request.PacienteId);
         
-        if(paciente == null)
+        if(patient == null)
             throw new NotFoundException("No se encontro el paciente");
         
-        _context.Pacientes.Remove(paciente);
+        _context.Pacientes.Remove(patient);
         await _context.SaveChangesAsync();
     }
 }

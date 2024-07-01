@@ -5,32 +5,32 @@ using Core.Domain.Helpers;
 
 namespace Core.Features.Pacientes.queries;
 
-public record GetPacientes : IRequest<GetPacientesResponse>
+public record GetPatients : IRequest<GetPatientsResponse>
 {
     public int Pagina { get; set; }
 };
 
-public class GetPacientesHandler : IRequestHandler<GetPacientes, GetPacientesResponse>
+public class GetPatientsHandler : IRequestHandler<GetPatients, GetPatientsResponse>
 {
     private readonly FisiolabsSofwaredbContext _context;
 
-    public GetPacientesHandler(FisiolabsSofwaredbContext context)
+    public GetPatientsHandler(FisiolabsSofwaredbContext context)
     {
         _context = context;
     }
 
-    public async Task<GetPacientesResponse> Handle(GetPacientes request, CancellationToken cancellationToken)
+    public async Task<GetPatientsResponse> Handle(GetPatients request, CancellationToken cancellationToken)
     {
         // Obtener el número total de paginas
-        var totalPacientes = await _context.Pacientes
+        var totalPatients = await _context.Pacientes
             .AsNoTracking()
             .ToListAsync();
         
         // Calculamos el número de páginas
-        int numPaginas = (int)Math.Ceiling((double)totalPacientes.Count / 10);
+        int numPage = (int)Math.Ceiling((double)totalPatients.Count / 10);
         
         //Devuelve una lista de 10 pacientes
-        var pacientes = await _context.Pacientes
+        var patients = await _context.Pacientes
             .AsNoTracking()
             .Include(x => x.Expedientes)
             .OrderBy(x => x.Nombre)
@@ -47,18 +47,18 @@ public class GetPacientesHandler : IRequestHandler<GetPacientes, GetPacientesRes
             }).ToListAsync();
 
         // Response
-        var response = new GetPacientesResponse()
+        var response = new GetPatientsResponse()
         {
-            numPaginas = numPaginas,
-            total = totalPacientes.Count,
-            pacientes = pacientes
+            numPaginas = numPage,
+            total = totalPatients.Count,
+            pacientes = patients
         };
         
         return response;
     }
 }
 
-public record GetPacientesResponse
+public record GetPatientsResponse
 {
     public int numPaginas { get; set; }
     public int total { get; set; }
