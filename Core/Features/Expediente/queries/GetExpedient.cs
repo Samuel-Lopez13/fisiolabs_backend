@@ -73,19 +73,19 @@ public class GetExpedientHandler : IRequestHandler<GetExpedient, GetExpedientRes
             },
             Ginecobstetricos = new GinecobstetricoGet()
             {
-                Fum = gineco?.Fum ?? "Sin registro",
-                Fpp = gineco.Fpp ?? "Sin registro",
-                EdadGestional = gineco.EdadGestional.ToString() ?? "Sin registro",
-                Semanas = gineco.Semanas.ToString() ?? "Sin registro",
-                Menarca = gineco.Menarca ?? "Sin registro",
-                Ritmo = gineco.Ritmo ?? "Sin registro",
-                Gestas = gineco.Gestas.ToString() ?? "Sin registro",
-                Partos = gineco.Partos.ToString() ?? "Sin registro",
-                Cesareas = gineco.Cesareas.ToString() ?? "Sin registro",
-                Abortos = gineco.Abortos.ToString() ?? "Sin registro",
-                Cirugias = gineco.Cirugias ?? "Sin registro",
-                FlujoVaginalId = gineco.FlujoVaginalId,
-                TipoAnticonceptivoId = gineco.TipoAnticonceptivoId
+                Fum = gineco == null ? "" : gineco?.Fum ?? "Sin registro",
+                Fpp = gineco == null ? "" : gineco.Fpp ?? "Sin registro",
+                EdadGestional = gineco == null ? "" : gineco.EdadGestional.ToString() ?? "Sin registro",
+                Semanas = gineco == null ? "" : gineco.Semanas.ToString() ?? "Sin registro",
+                Menarca = gineco == null ? "" : gineco.Menarca ?? "Sin registro",
+                Ritmo = gineco == null ? "" : gineco.Ritmo ?? "Sin registro",
+                Gestas = gineco == null ? "" : gineco.Gestas.ToString() ?? "Sin registro",
+                Partos = gineco == null ? "" : gineco.Partos.ToString() ?? "Sin registro",
+                Cesareas = gineco == null ? "" : gineco.Cesareas.ToString() ?? "Sin registro",
+                Abortos = gineco == null ? "" : gineco.Abortos.ToString() ?? "Sin registro",
+                Cirugias = gineco == null ? "" : gineco.Cirugias ?? "Sin registro",
+                FlujoVaginalId = gineco == null ? 0 : gineco.FlujoVaginalId,
+                TipoAnticonceptivoId = gineco == null ? 0 : gineco.TipoAnticonceptivoId
             }
         };
 
