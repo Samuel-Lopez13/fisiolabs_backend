@@ -4,5 +4,17 @@
         <name>Core</name>
     </assembly>
     <members>
+        <member name="T:Core.Infraestructure.Persistance.Migrations.Cambiosencitas">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.Cambiosencitas.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.Cambiosencitas.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.Cambiosencitas.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

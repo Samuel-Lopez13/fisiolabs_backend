@@ -28,11 +28,17 @@ namespace Core.Infraestructure.Persistance.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<TimeSpan>("Hora")
+                        .HasColumnType("time(6)");
+
                     b.Property<string>("Motivo")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("PacienteId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("CitasId");
@@ -423,8 +429,7 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("ApellidoCompleto")
-                        .IsRequired()
+                    b.Property<string>("Apellido")
                         .HasColumnType("longtext");
 
                     b.Property<int>("CodigoPostal")

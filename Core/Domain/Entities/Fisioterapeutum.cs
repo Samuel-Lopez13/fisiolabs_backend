@@ -14,8 +14,13 @@ public class Fisioterapeutum
 
     public string Fisioterapeuta { get; set; } = null!;
     
-    //Especialidad 
-    //Foto
+    public string Correo { get; set; }
+    
+    public string Telefono { get; set; }
+    
+    public string Especialidad { get; set; }
+    
+    public string Foto { get; set; }
 
     public virtual ICollection<Revision> Revisions { get; set; } = new List<Revision>();
 }
