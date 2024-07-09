@@ -37,7 +37,7 @@ public class GetDailyDateHandler : IRequestHandler<GetDailyDate, List<GetDailyDa
                 Telefono = x.Paciente.Telefono,
                 Fecha = x.Fecha,
                 Hora = x.Hora,
-                prueba = DateTime.Now
+                prueba = DateTime.UtcNow
             }).ToListAsync();
 
         return dates;
