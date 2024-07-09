@@ -41,7 +41,8 @@ public class PostDateHandler : IRequestHandler<PostDate>
             PacienteId = request.PacienteId,
             //Fecha = request.Fecha,
             Fecha = DateTime.UtcNow,
-            Hora = request.Hora,
+            //Hora = request.Hora,
+            Hora = DateTime.UtcNow.TimeOfDay,
             Motivo = request.Motivo,
             Status = 1
         };
