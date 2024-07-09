@@ -28,7 +28,8 @@ public class Date : IDate
         DateTime utcNow = DateTime.UtcNow;
         
         // Obtener la hora local en Campeche (Central Standard Time)
-        TimeZoneInfo campecheTimeZone = TimeZoneInfo.FindSystemTimeZoneById("America/Mexico_City");
+        //TimeZoneInfo campecheTimeZone = TimeZoneInfo.FindSystemTimeZoneById("America/Mexico_City");
+        TimeZoneInfo campecheTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time");
         DateTime campecheTime = TimeZoneInfo.ConvertTimeFromUtc(utcNow, campecheTimeZone);
         
         foreach (var cita in citas)
@@ -41,7 +42,7 @@ public class Date : IDate
                     await _context.SaveChangesAsync();
                 }
                 
-                if(cita.Fecha.Date < campecheTime){
+                if(cita.Fecha.Date < campecheTime.Date){
                     cita.Status = 2;
                     await _context.SaveChangesAsync();
                 }
