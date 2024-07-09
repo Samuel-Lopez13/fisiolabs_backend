@@ -26,6 +26,7 @@ public class Date : IDate
         
         foreach (var cita in citas)
         {
+            Console.WriteLine(DateTime.Now);
             if (cita.Fecha.Date <= DateTime.Now)
             {
                 if (cita.Hora <= DateTime.Now.TimeOfDay)
