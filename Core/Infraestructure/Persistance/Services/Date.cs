@@ -24,17 +24,20 @@ public class Date : IDate
             .Where(x => x.Status == 1)
             .ToListAsync();
         
+        // Obtener la fecha actual en UTC
+        DateTime utcToday = DateTime.UtcNow.Date;
+        
         foreach (var cita in citas)
         {
-            if (cita.Fecha.Date <= DateTime.Now)
+            if (cita.Fecha.Date <= DateTime.UtcNow)
             {
-                if (cita.Hora <= DateTime.Now.TimeOfDay)
+                if (cita.Hora <= DateTime.UtcNow.TimeOfDay)
                 {
                     cita.Status = 2;
                     await _context.SaveChangesAsync();
                 }
                 
-                if(cita.Fecha.Date < DateTime.Today){
+                if(cita.Fecha.Date < DateTime.UtcNow){
                     cita.Status = 2;
                     await _context.SaveChangesAsync();
                 }
