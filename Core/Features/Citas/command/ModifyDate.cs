@@ -7,7 +7,7 @@ namespace Core.Features.Citas.command;
 public record ModifyDate : IRequest
 {
     public int CitaId { get; set; }
-    public int? Status { get; set; }
+    public bool? Cancelar { get; set; }
     public DateTime? Fecha { get; set; }
     public TimeSpan? Hora { get; set; }
     public string? Motivo { get; set; }
@@ -30,7 +30,7 @@ public class ModifyDateHandler : IRequestHandler<ModifyDate>
             throw new NotFoundException("Cita no encontrada");
 
         // Actualizaremos solo los datos no nulos
-        if (request.Status != null)
+        if (request.Cancelar == true)
             date.Status = 3;
 
         if (request.Fecha.HasValue)
@@ -39,8 +39,7 @@ public class ModifyDateHandler : IRequestHandler<ModifyDate>
         if (request.Hora.HasValue)
             date.Hora = request.Hora.Value;
 
-        if (request.Motivo != null)
-            date.Motivo = request.Motivo;
+        date.Motivo = request.Motivo == null ? date.Motivo : request.Motivo;
         
         _context.Citas.Update(date);
         await _context.SaveChangesAsync(cancellationToken);
