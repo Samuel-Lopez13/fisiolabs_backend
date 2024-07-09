@@ -36,8 +36,7 @@ public class GetDailyDateHandler : IRequestHandler<GetDailyDate, List<GetDailyDa
                 Foto = x.Paciente.FotoPerfil,
                 Telefono = x.Paciente.Telefono,
                 Fecha = x.Fecha,
-                Hora = x.Hora,
-                prueba = DateTime.UtcNow
+                Hora = x.Hora
             }).ToListAsync();
 
         return dates;
