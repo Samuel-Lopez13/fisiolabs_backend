@@ -37,6 +37,7 @@ public class GetDailyDateHandler : IRequestHandler<GetDailyDate, List<GetDailyDa
                 Telefono = x.Paciente.Telefono,
                 Fecha = x.Fecha,
                 Hora = x.Hora,
+                prueba = DateTime.Now
             }).ToListAsync();
 
         return dates;
@@ -51,6 +52,7 @@ public record GetDailyDateResponse
     public string Motivo { get; set; }
     public string Foto { get; set; }
     public string Telefono { get; set; }
+    public DateTime prueba { get; set; }
     public DateTime Fecha { get; set; }
     public TimeSpan Hora { get; set; }
 }
