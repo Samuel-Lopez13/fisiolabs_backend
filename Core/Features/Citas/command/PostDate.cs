@@ -39,7 +39,8 @@ public class PostDateHandler : IRequestHandler<PostDate>
         var date = new Cita()
         {
             PacienteId = request.PacienteId,
-            Fecha = request.Fecha,
+            //Fecha = request.Fecha,
+            Fecha = DateTime.UtcNow,
             Hora = request.Hora,
             Motivo = request.Motivo,
             Status = 1
