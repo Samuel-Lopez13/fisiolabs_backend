@@ -35,24 +35,12 @@ public class PostDateHandler : IRequestHandler<PostDate>
 
         if (patient == null)
             throw new NotFoundException("No se encontro el paciente");
-
-        // Obtener la hora actual en UTC
-        DateTime utcNow = DateTime.UtcNow;
-        
-        // Obtener la hora local en Campeche (Central Standard Time)
-        TimeZoneInfo campecheTimeZone = TimeZoneInfo.FindSystemTimeZoneById("America/Mexico_City");
-        DateTime campecheTime = TimeZoneInfo.ConvertTimeFromUtc(utcNow, campecheTimeZone);
-        
-        // Calcular la diferencia horaria
-        TimeSpan difference = campecheTime - utcNow;
         
         var date = new Cita()
         {
             PacienteId = request.PacienteId,
-            //Fecha = request.Fecha,
-            Fecha = campecheTime,
-            //Hora = request.Hora,
-            Hora = campecheTime.TimeOfDay,
+            Fecha = request.Fecha,
+            Hora = request.Hora,
             Motivo = request.Motivo,
             Status = 1
         };

@@ -24,20 +24,24 @@ public class Date : IDate
             .Where(x => x.Status == 1)
             .ToListAsync();
         
-        // Obtener la fecha actual en UTC
-        DateTime utcToday = DateTime.UtcNow.Date;
+        // Obtener la hora actual en UTC
+        DateTime utcNow = DateTime.UtcNow;
+        
+        // Obtener la hora local en Campeche (Central Standard Time)
+        TimeZoneInfo campecheTimeZone = TimeZoneInfo.FindSystemTimeZoneById("America/Mexico_City");
+        DateTime campecheTime = TimeZoneInfo.ConvertTimeFromUtc(utcNow, campecheTimeZone);
         
         foreach (var cita in citas)
         {
-            if (cita.Fecha.Date <= DateTime.UtcNow)
+            if (cita.Fecha.Date <= campecheTime)
             {
-                if (cita.Hora <= DateTime.UtcNow.TimeOfDay)
+                if (cita.Hora <= campecheTime.TimeOfDay)
                 {
                     cita.Status = 2;
                     await _context.SaveChangesAsync();
                 }
                 
-                if(cita.Fecha.Date < DateTime.UtcNow){
+                if(cita.Fecha.Date < campecheTime){
                     cita.Status = 2;
                     await _context.SaveChangesAsync();
                 }
