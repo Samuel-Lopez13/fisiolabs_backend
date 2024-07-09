@@ -28,8 +28,8 @@ public class Date : IDate
         DateTime utcNow = DateTime.UtcNow;
         
         // Obtener la hora local en Campeche (Central Standard Time)
-        //TimeZoneInfo campecheTimeZone = TimeZoneInfo.FindSystemTimeZoneById("America/Mexico_City");
-        TimeZoneInfo campecheTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time");
+        TimeZoneInfo campecheTimeZone = TimeZoneInfo.FindSystemTimeZoneById("America/Mexico_City");
+        //TimeZoneInfo campecheTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time");
         DateTime campecheTime = TimeZoneInfo.ConvertTimeFromUtc(utcNow, campecheTimeZone);
         
         foreach (var cita in citas)
