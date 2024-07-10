@@ -38,7 +38,7 @@ public class DataPatientHandler : IRequestHandler<PatientData, PatientDataRespon
             PacienteId = patient.PacienteId,
             Nombre = patient.Nombre,
             Apellido = patient.Apellido ?? "",
-            Edad = ConvertDate.DateToYear(patient.Edad.Date),
+            Edad = FormatDate.DateToYear(patient.Edad.Date),
             FechaNacimiento = patient.Edad,
             Sexo = patient.Sexo,
             Verificado = patient.Expedientes.Any(),

@@ -1,4 +1,5 @@
-﻿using Core.Domain.Services;
+﻿using Core.Domain.Helpers;
+using Core.Domain.Services;
 using Core.Infraestructure.Persistance;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +26,7 @@ public class GetDailyDateHandler : IRequestHandler<GetDailyDate, List<GetDailyDa
         var dates = await _context.Citas
             .AsNoTracking()
             .Include(x => x.Paciente)
-            .Where(x => x.Fecha.Date == DateTime.Today && x.Status == 1)
+            .Where(x => x.Fecha.Date == FormatDate.DateLocal().Date && x.Status == 1)
             .OrderBy(x => x.Hora)
             .Select(x => new GetDailyDateResponse()
             {

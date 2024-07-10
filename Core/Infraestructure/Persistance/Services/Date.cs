@@ -1,4 +1,5 @@
-﻿using Core.Domain.Services;
+﻿using Core.Domain.Helpers;
+using Core.Domain.Services;
 using Core.Infraestructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,25 +25,18 @@ public class Date : IDate
             .Where(x => x.Status == 1)
             .ToListAsync();
         
-        // Obtener la hora actual en UTC
-        DateTime utcNow = DateTime.UtcNow;
-        
-        // Obtener la hora local en Campeche (Central Standard Time)
-        TimeZoneInfo campecheTimeZone = TimeZoneInfo.FindSystemTimeZoneById("America/Mexico_City");
-        //TimeZoneInfo campecheTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time");
-        DateTime campecheTime = TimeZoneInfo.ConvertTimeFromUtc(utcNow, campecheTimeZone);
-        
+        //Recorre todas las citas en busca de las que ya pasaron
         foreach (var cita in citas)
         {
-            if (cita.Fecha.Date <= campecheTime)
+            if (cita.Fecha.Date <= FormatDate.DateLocal().Date)
             {
-                if (cita.Hora <= campecheTime.TimeOfDay)
+                if (cita.Hora <= FormatDate.DateLocal().TimeOfDay)
                 {
                     cita.Status = 2;
                     await _context.SaveChangesAsync();
                 }
                 
-                if(cita.Fecha.Date < campecheTime.Date){
+                if(cita.Fecha.Date < FormatDate.DateLocal().Date){
                     cita.Status = 2;
                     await _context.SaveChangesAsync();
                 }

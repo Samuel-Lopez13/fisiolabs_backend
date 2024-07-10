@@ -25,7 +25,7 @@ public class LastPatientsHandler : IRequestHandler<LastPatients, List<LastPatien
             .Select(x => new LastPatientsResponse()
             {
                 Nombre = x.Nombre + " " + (x.Apellido ?? ""),
-                Edad = ConvertDate.DateToYear(x.Edad.Date),
+                Edad = FormatDate.DateToYear(x.Edad.Date),
                 Sexo = x.Sexo == true ? "Hombre" : "Mujer",
                 Telefono = x.Telefono
             }).ToListAsync();

@@ -72,7 +72,7 @@ public class SearchPatientsHandler : IRequestHandler<SearchPatients, SearchPatie
             {
                 PacienteId = x.PacienteId,
                 Nombre = x.Nombre + " " + (x.Apellido ?? ""),
-                Edad = ConvertDate.DateToYear(x.Edad.Date),
+                Edad = FormatDate.DateToYear(x.Edad.Date),
                 Sexo = x.Sexo == true ? "Hombre" : "Mujer",
                 Telefono = x.Telefono,
                 Verificado = x.Expedientes.Any()
