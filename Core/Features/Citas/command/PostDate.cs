@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Core.Domain.Entities;
 using Core.Domain.Exceptions;
+using Core.Domain.Helpers;
 using Core.Infraestructure.Persistance;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Features.Citas.command;
 
@@ -32,9 +34,19 @@ public class PostDateHandler : IRequestHandler<PostDate>
     public async Task Handle(PostDate request, CancellationToken cancellationToken)
     {
         var patient = await _context.Pacientes.FindAsync(request.PacienteId);
-
+        
         if (patient == null)
             throw new NotFoundException("No se encontro el paciente");
+
+        var dateValidation = await _context.Citas
+            .AsNoTracking()
+            .FirstOrDefaultAsync(x => x.PacienteId == request.PacienteId && x.Fecha.Date == request.Fecha.Date && x.Hora < FormatHour.MoreHours(request.Hora) && x.Hora > FormatHour.LessHour(request.Hora));
+
+        Console.WriteLine(FormatHour.MoreHours(request.Hora));
+        Console.WriteLine(FormatHour.LessHour(request.Hora));
+        
+        if (dateValidation != null)
+            throw new BadRequestException("No se puede agendar la cita");
         
         var date = new Cita()
         {

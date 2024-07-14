@@ -30,7 +30,7 @@ public class Date : IDate
         {
             if (cita.Fecha.Date <= FormatDate.DateLocal().Date)
             {
-                if (cita.Hora <= FormatDate.DateLocal().TimeOfDay)
+                if (FormatHour.More10Minutes(cita.Hora) <= FormatDate.DateLocal().TimeOfDay)
                 {
                     cita.Status = 2;
                     await _context.SaveChangesAsync();
