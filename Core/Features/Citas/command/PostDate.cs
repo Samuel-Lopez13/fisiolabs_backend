@@ -33,7 +33,7 @@ public class PostDateHandler : IRequestHandler<PostDate>
     
     public async Task Handle(PostDate request, CancellationToken cancellationToken)
     {
-        var patient = await _context.Pacientes.FindAsync(request.PacienteId);
+        var patient = await _context.Pacientes.FindAsync(request.PacienteId.HashIdInt());
         
         if (patient == null)
             throw new NotFoundException("No se encontro el paciente");
