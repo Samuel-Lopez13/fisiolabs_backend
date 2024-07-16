@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Text;
+using Core.Domain.Helpers;
 using Core.Domain.Services;
 using Core.Features.Usuario.Command;
 using Core.Infraestructure.Persistance;
@@ -16,6 +17,8 @@ public static class ConfigureServices
 {
     public static IServiceCollection AddSecurity(this IServiceCollection services, IConfiguration config)
     {
+        HashConvert.Configure(config);
+        
         //Inyeccion de la Intefaz con su implementacion
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IDate, Date>();

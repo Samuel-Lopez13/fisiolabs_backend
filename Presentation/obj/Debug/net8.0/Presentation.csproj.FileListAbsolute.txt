@@ -592,3 +592,4 @@ C:\Users\ferna\Music\Fisio Software\fisiolabs_backend\Presentation\obj\Debug\net
 C:\Users\ferna\Music\Fisio Software\fisiolabs_backend\Presentation\obj\Debug\net8.0\Presentation.pdb
 C:\Users\ferna\Music\Fisio Software\fisiolabs_backend\Presentation\obj\Debug\net8.0\Presentation.genruntimeconfig.cache
 C:\Users\ferna\Music\Fisio Software\fisiolabs_backend\Presentation\obj\Debug\net8.0\ref\Presentation.dll
+C:\Users\ferna\Music\Fisio Software\fisiolabs_backend\Presentation\bin\Debug\net8.0\Hashids.net.dll

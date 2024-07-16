@@ -44,7 +44,7 @@
             <remarks>El Paciente con el Id proporcionado no existe</remarks>
             </response>
         </member>
-        <member name="M:Presentation.Controllers.ExpedienteController.getExpedient(System.Int32)">
+        <member name="M:Presentation.Controllers.ExpedienteController.getExpedient(System.String)">
             <summary>
             Expediente de paciente
             </summary>

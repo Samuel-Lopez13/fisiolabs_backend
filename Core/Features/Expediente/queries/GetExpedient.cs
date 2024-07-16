@@ -25,7 +25,7 @@ public class GetExpedientHandler : IRequestHandler<GetExpedient, GetExpedientRes
         //Buscamos si el usuario cuenta ya con un expediente
         var expedient = await _context.Expedientes
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.PacienteId == HashConvert.FromHashId(request.PacienteId)); //
+            .FirstOrDefaultAsync(x => x.PacienteId == request.PacienteId.FromHashId()); //
         
         if(expedient == null)
             throw new NotFoundException("No se encontro el expediente");
