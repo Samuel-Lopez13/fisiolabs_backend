@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Core.Domain.Entities;
 using Core.Domain.Exceptions;
+using Core.Domain.Helpers;
 using Core.Infraestructure.Persistance;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -94,7 +95,7 @@ public record GinecobstetricoPost
 public record PostExpedient : IRequest
 {
     [Required(ErrorMessage = "El campo PacienteId es obligatorio")]
-    public int PacienteId { get; set; }
+    public string PacienteId { get; set; }
     
     [Required(ErrorMessage = "El campo TipoInterrogatorio es obligatorio")]
     public bool TipoInterrogatorio { get; set; }
@@ -127,7 +128,7 @@ public class PostExpedientHandler : IRequestHandler<PostExpedient>
                     TipoInterrogatorio = request.TipoInterrogatorio,
                     Responsable = request.Responsable,
                     AntecedentesPatologicos = request.Antecedente.AntecedentesPatologicos,
-                    PacienteId = request.PacienteId
+                    PacienteId = request.PacienteId.HashIdInt()
                 };
 
                 await _context.Expedientes.AddAsync(expedient);
@@ -168,7 +169,8 @@ public class PostExpedientHandler : IRequestHandler<PostExpedient>
                 await _context.HeredoFamiliars.AddAsync(heredoFamiliar);
                 await _context.SaveChangesAsync();
                 
-                var paciente = await _context.Pacientes.FindAsync(request.PacienteId);
+                //Buscamos si el paciente es hombre o mujer
+                var paciente = await _context.Pacientes.FindAsync(request.PacienteId.HashIdInt());
 
                 if (paciente.Sexo == false)
                 {

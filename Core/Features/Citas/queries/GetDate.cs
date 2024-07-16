@@ -1,4 +1,5 @@
-﻿using Core.Domain.Services;
+﻿using Core.Domain.Helpers;
+using Core.Domain.Services;
 using Core.Infraestructure.Persistance;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ namespace Core.Features.Citas.queries;
 
 public record GetDate : IRequest<List<GetDateResponse>>
 {
-    public int PacienteId { get; set; }
+    public string PacienteId { get; set; }
 }
 
 public class GetDateHandler : IRequestHandler<GetDate, List<GetDateResponse>>
@@ -28,11 +29,12 @@ public class GetDateHandler : IRequestHandler<GetDate, List<GetDateResponse>>
         var dates = await _context.Citas
             .AsNoTracking()
             .Include(x => x.Paciente)
-            .Where(x => x.PacienteId == request.PacienteId && x.Status == 1)
+            .Where(x => x.PacienteId == request.PacienteId.HashIdInt() && x.Status == 1)
             .OrderBy(x => x.Fecha)
             .ThenBy(x => x.Hora)
             .Select(x => new GetDateResponse()
             {
+                CitaId = x.CitasId.HashId(),
                 Nombre = x.Paciente.Nombre + " " + x.Paciente.Apellido,
                 Fecha = x.Fecha,
                 Hora = x.Hora,
@@ -45,6 +47,7 @@ public class GetDateHandler : IRequestHandler<GetDate, List<GetDateResponse>>
 
 public record GetDateResponse
 {
+    public string CitaId { get; set; }
     public string Nombre { get; set; }
     public DateTime Fecha { get; set; }
     public TimeSpan Hora { get; set; }

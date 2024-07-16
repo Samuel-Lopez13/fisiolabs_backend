@@ -10,7 +10,7 @@ namespace Core.Features.Citas.command;
 
 public record PostDate : IRequest
 {
-    public int PacienteId { get; set; }
+    public string PacienteId { get; set; }
     
     [Required(ErrorMessage = "El campo fecha es obligatorio")]
     public DateTime Fecha { get; set; }
@@ -40,17 +40,14 @@ public class PostDateHandler : IRequestHandler<PostDate>
 
         var dateValidation = await _context.Citas
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.PacienteId == request.PacienteId && x.Fecha.Date == request.Fecha.Date && x.Hora < FormatHour.MoreHours(request.Hora) && x.Hora > FormatHour.LessHour(request.Hora));
-
-        Console.WriteLine(FormatHour.MoreHours(request.Hora));
-        Console.WriteLine(FormatHour.LessHour(request.Hora));
+            .FirstOrDefaultAsync(x => x.PacienteId == request.PacienteId.HashIdInt() && x.Fecha.Date == request.Fecha.Date && x.Hora < FormatHour.MoreHours(request.Hora) && x.Hora > FormatHour.LessHour(request.Hora));
         
         if (dateValidation != null)
             throw new BadRequestException("No se puede agendar la cita");
         
         var date = new Cita()
         {
-            PacienteId = request.PacienteId,
+            PacienteId = request.PacienteId.HashIdInt(),
             Fecha = request.Fecha,
             Hora = request.Hora,
             Motivo = request.Motivo,

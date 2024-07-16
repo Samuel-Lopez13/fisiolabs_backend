@@ -49,7 +49,7 @@ public class DateController : ControllerBase
     /// </response>
     [SwaggerResponse(StatusCodes.Status200OK)]
     [HttpGet("Paciente")]
-    public async Task<List<GetDateResponse>> getDate([FromQuery] int id)
+    public async Task<List<GetDateResponse>> getDate([FromQuery] string id)
     {
         return await _mediator.Send(new GetDate(){ PacienteId = id});
     }
@@ -80,6 +80,20 @@ public class DateController : ControllerBase
         return Ok("Se creo la cita correctamente");
     }
     
+    /// <summary>
+    /// Modifica una cita
+    /// </summary>
+    /// <remarks>
+    /// Modifica la parte de la cita que necesite
+    /// </remarks>
+    /// <response code="200"><b>Ok:</b>
+    /// <remarks>Se creo modifico correctamente la cita</remarks>
+    /// </response>
+    /// <response code="404"><b>Not Found:</b>
+    /// <remarks>La cita con el Id proporcionado no existe</remarks>
+    /// </response>
+    [SwaggerResponse(StatusCodes.Status200OK)]
+    [SwaggerResponse(StatusCodes.Status404NotFound, "No se encontro la cita", typeof(ErrorResponse))]
     [HttpPatch()]
     public async Task<IActionResult> PatchDate([FromBody] ModifyDate command)
     {

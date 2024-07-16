@@ -11,10 +11,10 @@ public static class HashConvert
         _config = config;
     }
     
-    public static string ToHashId(this int number) =>
+    public static string HashId(this int number) =>
         GetHasher().Encode(number);
 
-    public static int FromHashId(this string encoded) =>
+    public static int HashIdInt(this string encoded) =>
         GetHasher().Decode(encoded).FirstOrDefault();
     
     private static Hashids GetHasher() => new(_config["HashIdSalt"], 16);

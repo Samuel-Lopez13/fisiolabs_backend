@@ -70,7 +70,7 @@ public class SearchPatientsHandler : IRequestHandler<SearchPatients, SearchPatie
             .Take(10)
             .Select(x => new PatientModelSearch()
             {
-                PacienteId = x.PacienteId,
+                PacienteId = x.PacienteId.HashId(),
                 Nombre = x.Nombre + " " + (x.Apellido ?? ""),
                 Edad = FormatDate.DateToYear(x.Edad.Date),
                 Sexo = x.Sexo == true ? "Hombre" : "Mujer",
@@ -100,7 +100,7 @@ public record SearchPatientResponse
 
 public record PatientModelSearch
 {
-    public int PacienteId { get; set; }
+    public string PacienteId { get; set; }
     public string Nombre { get; set; }
     public int Edad { get; set; }
     public string Sexo { get; set; }

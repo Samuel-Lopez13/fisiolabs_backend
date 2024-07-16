@@ -8,7 +8,7 @@ namespace Core.Features.Pacientes.queries;
 
 public record PatientData : IRequest<PatientDataResponse>
 {
-    public int PacienteId { get; set; }
+    public string PacienteId { get; set; }
 }
 
 public class DataPatientHandler : IRequestHandler<PatientData, PatientDataResponse>
@@ -26,7 +26,7 @@ public class DataPatientHandler : IRequestHandler<PatientData, PatientDataRespon
         var patient = await _context.Pacientes
             .AsNoTracking()
             .Include(u => u.Expedientes)
-            .FirstOrDefaultAsync(x => x.PacienteId == request.PacienteId);
+            .FirstOrDefaultAsync(x => x.PacienteId == request.PacienteId.HashIdInt());
 
         //Si no se encuentra, mandar un 404 (Not Found)
         if (patient == null)
@@ -35,7 +35,7 @@ public class DataPatientHandler : IRequestHandler<PatientData, PatientDataRespon
         //Response
         var response = new PatientDataResponse()
         {
-            PacienteId = patient.PacienteId,
+            PacienteId = patient.PacienteId.HashId(),
             Nombre = patient.Nombre,
             Apellido = patient.Apellido ?? "",
             Edad = FormatDate.DateToYear(patient.Edad.Date),
@@ -57,7 +57,7 @@ public class DataPatientHandler : IRequestHandler<PatientData, PatientDataRespon
 
 public record PatientDataResponse
 {
-    public int PacienteId { get; set; }
+    public string PacienteId { get; set; }
     public string Nombre { get; set; }
     public string Apellido { get; set; }
     public int Edad { get; set; }

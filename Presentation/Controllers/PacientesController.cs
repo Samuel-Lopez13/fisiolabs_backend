@@ -53,7 +53,7 @@ public class PacientesController: ControllerBase
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound, "El paciente no existe", typeof(ErrorResponse))]
     [HttpGet("Paciente")]
-    public async Task<PatientDataResponse> getPatient([FromQuery] int id)
+    public async Task<PatientDataResponse> getPatient([FromQuery] string id)
     {
         return await _mediator.Send(new PatientData(){ PacienteId = id});
     }
@@ -123,7 +123,7 @@ public class PacientesController: ControllerBase
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound, "El paciente no existe", typeof(ErrorResponse))]
     [HttpDelete()]
-    public async Task<IActionResult> DeletePatient([FromQuery] int id)
+    public async Task<IActionResult> DeletePatient([FromQuery] string id)
     {
         await _mediator.Send(new RemovePatient() { PacienteId = id });
         return Ok("Se elimino el paciente correctamente");

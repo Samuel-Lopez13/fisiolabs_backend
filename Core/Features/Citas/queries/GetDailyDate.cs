@@ -30,8 +30,8 @@ public class GetDailyDateHandler : IRequestHandler<GetDailyDate, List<GetDailyDa
             .OrderBy(x => x.Hora)
             .Select(x => new GetDailyDateResponse()
             {
-                CitasId = x.CitasId,
-                PacienteId = x.Paciente.PacienteId,
+                CitasId = x.CitasId.HashId(),
+                PacienteId = x.Paciente.PacienteId.HashId(),
                 Nombre = x.Paciente.Nombre + " " + x.Paciente.Apellido,
                 Motivo = x.Motivo,
                 Foto = x.Paciente.FotoPerfil,
@@ -46,8 +46,8 @@ public class GetDailyDateHandler : IRequestHandler<GetDailyDate, List<GetDailyDa
 
 public record GetDailyDateResponse
 {
-    public int CitasId { get; set; }
-    public int PacienteId { get; set; }
+    public string CitasId { get; set; }
+    public string PacienteId { get; set; }
     public string Nombre { get; set; }
     public string Motivo { get; set; }
     public string Foto { get; set; }

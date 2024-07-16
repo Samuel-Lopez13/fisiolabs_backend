@@ -8,7 +8,7 @@ namespace Core.Features.Pacientes.queries;
 
 public record GetExpedient : IRequest<GetExpedientResponse>
 {
-    public string PacienteId { get; set; } //
+    public string PacienteId { get; set; }
 }
 
 public class GetExpedientHandler : IRequestHandler<GetExpedient, GetExpedientResponse>
@@ -25,7 +25,7 @@ public class GetExpedientHandler : IRequestHandler<GetExpedient, GetExpedientRes
         //Buscamos si el usuario cuenta ya con un expediente
         var expedient = await _context.Expedientes
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.PacienteId == request.PacienteId.FromHashId()); //
+            .FirstOrDefaultAsync(x => x.PacienteId == request.PacienteId.HashIdInt());
         
         if(expedient == null)
             throw new NotFoundException("No se encontro el expediente");

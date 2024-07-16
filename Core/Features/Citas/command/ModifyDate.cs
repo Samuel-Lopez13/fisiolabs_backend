@@ -1,4 +1,5 @@
 ﻿using Core.Domain.Exceptions;
+using Core.Domain.Helpers;
 using Core.Infraestructure.Persistance;
 using MediatR;
 
@@ -6,7 +7,7 @@ namespace Core.Features.Citas.command;
 
 public record ModifyDate : IRequest
 {
-    public int CitaId { get; set; }
+    public string CitaId { get; set; }
     public bool? Cancelar { get; set; }
     public DateTime? Fecha { get; set; }
     public TimeSpan? Hora { get; set; }
@@ -24,7 +25,7 @@ public class ModifyDateHandler : IRequestHandler<ModifyDate>
     
     public async Task Handle(ModifyDate request, CancellationToken cancellationToken)
     {
-        var date = await _context.Citas.FindAsync(request.CitaId);
+        var date = await _context.Citas.FindAsync(request.CitaId.HashIdInt());
 
         if (date == null)
             throw new NotFoundException("Cita no encontrada");

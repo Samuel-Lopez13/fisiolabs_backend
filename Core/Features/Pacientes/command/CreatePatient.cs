@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Core.Domain.Entities;
 using Core.Domain.Exceptions;
+using Core.Domain.Helpers;
 using Core.Infraestructure.Persistance;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -83,7 +84,7 @@ public class CreatePatientHandler : IRequestHandler<CreatePatient, CreatePatient
 
         var response = new CreatePatientResponse()
         {
-            PacienteId = patient.PacienteId
+            PacienteId = patient.PacienteId.HashId()
         };
 
         return response;
@@ -92,5 +93,5 @@ public class CreatePatientHandler : IRequestHandler<CreatePatient, CreatePatient
 
 public record CreatePatientResponse
 {
-    public int PacienteId { get; set; }
+    public string PacienteId { get; set; }
 }
