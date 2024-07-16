@@ -46,6 +46,10 @@
               "target": "Package",
               "version": "[1.26.2, )"
             },
+            "Hashids.net": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[12.2.0, )"

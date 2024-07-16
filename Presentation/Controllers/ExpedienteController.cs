@@ -37,7 +37,7 @@ public class ExpedienteController : ControllerBase
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status404NotFound, "No se encontro un paciente con el Id Proporcionado", typeof(ErrorResponse))]
     [HttpGet()]
-    public async Task<GetExpedientResponse> getExpedient([FromQuery] int paciente)
+    public async Task<GetExpedientResponse> getExpedient([FromQuery] string paciente) //
     {
         return await _mediator.Send(new GetExpedient() { PacienteId = paciente });
     }

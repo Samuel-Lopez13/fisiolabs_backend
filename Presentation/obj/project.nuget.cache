@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2EPRnDqiQAle6i3aicui2qY7n1fthpcp2oCbBRHnMc3w2WjQwr6x5QeANnqUfyy2IR/2Tn18DMSatyuD/TzsZw==",
+  "dgSpecHash": "lOCtFyeTnC66u9v+K9DrOiVrgEYs9V7ajFFifWu/Lehy4OxgoBzCKw8Blftcsoba3C3cpsOULMsrFd95XU9E4g==",
   "success": true,
   "projectFilePath": "C:\\Users\\ferna\\Music\\Fisio Software\\fisiolabs_backend\\Presentation\\Presentation.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\ferna\\.nuget\\packages\\cloudinarydotnet\\1.26.2\\cloudinarydotnet.1.26.2.nupkg.sha512",
     "C:\\Users\\ferna\\.nuget\\packages\\dotenv.net\\3.1.3\\dotenv.net.3.1.3.nupkg.sha512",
     "C:\\Users\\ferna\\.nuget\\packages\\google.protobuf\\3.25.1\\google.protobuf.3.25.1.nupkg.sha512",
+    "C:\\Users\\ferna\\.nuget\\packages\\hashids.net\\1.7.0\\hashids.net.1.7.0.nupkg.sha512",
     "C:\\Users\\ferna\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\ferna\\.nuget\\packages\\k4os.compression.lz4\\1.3.5\\k4os.compression.lz4.1.3.5.nupkg.sha512",
     "C:\\Users\\ferna\\.nuget\\packages\\k4os.compression.lz4.streams\\1.3.5\\k4os.compression.lz4.streams.1.3.5.nupkg.sha512",

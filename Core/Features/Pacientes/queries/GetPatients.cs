@@ -38,7 +38,7 @@ public class GetPatientsHandler : IRequestHandler<GetPatients, GetPatientsRespon
             .Take(10)
             .Select(x => new GetPacientesModel()
             {
-                PacienteId = x.PacienteId,
+                PacienteId = HashConvert.ToHashId(x.PacienteId), //
                 Nombre = x.Nombre + " " + (x.Apellido ?? ""),
                 Edad = FormatDate.DateToYear(x.Edad.Date),
                 Sexo = x.Sexo == true ? "Hombre" : "Mujer",
@@ -67,7 +67,7 @@ public record GetPatientsResponse
 
 public record GetPacientesModel
 {
-    public int PacienteId { get; set; }
+    public string PacienteId { get; set; } //
     public string Nombre { get; set; }
     public int Edad { get; set; }
     public string Sexo { get; set; }
