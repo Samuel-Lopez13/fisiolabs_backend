@@ -5,6 +5,7 @@ using Core.Domain.Helpers;
 using Core.Infraestructure.Persistance;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Core.Features.Citas.command;
 

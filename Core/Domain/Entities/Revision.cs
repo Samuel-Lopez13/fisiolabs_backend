@@ -10,6 +10,8 @@ public class Revision
     public string Notas { get; set; } = null!;
 
     public DateTime Fecha { get; set; }
+    
+    public TimeSpan Hora { get; set; }
 
     public int? FisioterapeutaId { get; set; }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Core.Infraestructure.Persistance;
 
@@ -160,6 +161,18 @@ public partial class FisiolabsSofwaredbContext : DbContext
 
             entity.HasIndex(e => e.DiagnosticoId, "diagnostico_id");
 
+            entity.Property(e => e.ValorX)
+                .HasConversion(
+                    v => JsonConvert.SerializeObject(v),
+                    v => JsonConvert.DeserializeObject<List<int>>(v)
+                );
+            
+            entity.Property(e => e.RangoDolor)
+                .HasConversion(
+                    x => JsonConvert.SerializeObject(x),
+                    x => JsonConvert.DeserializeObject<List<int>>(x)
+                );
+            
             entity.HasOne(d => d.Diagnostico).WithMany(p => p.MapaCorporals)
                 .HasForeignKey(d => d.DiagnosticoId)
                 .OnDelete(DeleteBehavior.Cascade)

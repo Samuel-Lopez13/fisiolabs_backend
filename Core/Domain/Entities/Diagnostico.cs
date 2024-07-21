@@ -12,19 +12,19 @@ public class Diagnostico
     
     public int DiagnosticoId { get; set; }
 
-    public string MotivoAlta { get; set; } = null!;
+    public string? MotivoAlta { get; set; } //Se llena al finalizar el tratamiento
 
     public DateTime FechaInicio { get; set; }
 
-    public DateTime? FechaAlta { get; set; }
+    public DateTime? FechaAlta { get; set; } //Se llena al finalizar el tratamiento
 
-    public bool Estatus { get; set; }
+    public bool Estatus { get; set; } // 1 Activo 0 Inactivo
 
     public string? Categoria { get; set; }
 
-    public string? DiagnosticoInicial { get; set; }
+    public string? DiagnosticoInicial { get; set; } //Se llena al finalizar el tratamiento
 
-    public string? DiagnosticoFinal { get; set; }
+    public string? DiagnosticoFinal { get; set; } //Se llena al finalizar el tratamiento
 
     public string? DiagnosticoPrevio { get; set; }
 
@@ -32,7 +32,7 @@ public class Diagnostico
 
     public string? Diagnostico1 { get; set; }
 
-    public string? FrecuenciaTratamiento { get; set; }
+    public string? FrecuenciaTratamiento { get; set; } //Se llena al finalizar el tratamiento
 
     public string? PadecimientoActual { get; set; }
 

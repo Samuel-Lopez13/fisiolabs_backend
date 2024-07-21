@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Core.Domain.Entities;
 
@@ -7,11 +8,11 @@ public class MapaCorporal
 {
     public int MapaCorporalId { get; set; }
 
-    public int ValorX { get; set; }
+    [JsonProperty("valorx")]
+    public List<int> ValorX { get; set; }
 
-    public int ValorY { get; set; }
-
-    public int RangoDolor { get; set; }
+    [JsonProperty("rangodolor")]
+    public List<int> RangoDolor { get; set; }
 
     public string Nota { get; set; } = null!;
 

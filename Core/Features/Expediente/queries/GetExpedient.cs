@@ -25,6 +25,7 @@ public class GetExpedientHandler : IRequestHandler<GetExpedient, GetExpedientRes
         //Buscamos si el usuario cuenta ya con un expediente
         var expedient = await _context.Expedientes
             .AsNoTracking()
+            .Include(x => x.Diagnosticos)
             .FirstOrDefaultAsync(x => x.PacienteId == request.PacienteId.HashIdInt());
         
         if(expedient == null)
@@ -45,8 +46,14 @@ public class GetExpedientHandler : IRequestHandler<GetExpedient, GetExpedientRes
         
         var response = new GetExpedientResponse()
         {
+            ExpedienteId = expedient.ExpedienteId.HashId(),
             TipoInterrogatorio = expedient.TipoInterrogatorio,
             Responsable = expedient.Responsable,
+            Diagnosticos = expedient.Diagnosticos.Select(x => new DiagnosticGet()
+            {
+                Diagnostico = x.Diagnostico1,
+                Status = x.Estatus
+            }).ToList(),
             HeredoFamiliar = new FamilyHistoryGet()
             {
                 Padres = familyHistory.Padres,
@@ -96,6 +103,8 @@ public class GetExpedientHandler : IRequestHandler<GetExpedient, GetExpedientRes
 
 public record GetExpedientResponse
 {
+    public string ExpedienteId { get; set; }
+    
     public bool TipoInterrogatorio { get; set; }
     
     public string Responsable { get; set; }
@@ -103,6 +112,8 @@ public record GetExpedientResponse
     public FamilyHistoryGet HeredoFamiliar { get; set; }
     public AntecedentsGet Antecedente { get; set; }
     public GinecobstetricoGet Ginecobstetricos { get; set; }
+    
+    public List<DiagnosticGet> Diagnosticos { get; set; }
 };
 
 public record FamilyHistoryGet
@@ -176,4 +187,11 @@ public record GinecobstetricoGet
     public int? FlujoVaginalId { get; set; }
     
     public int? TipoAnticonceptivoId { get; set; }
+}
+
+public record DiagnosticGet
+{
+    public string Diagnostico { get; set; }
+    
+    public bool Status { get; set; }
 }

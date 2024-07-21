@@ -1,4 +1,5 @@
-﻿using Core.Features.Citas.queries;
+﻿using Core.Domain.Helpers;
+using Core.Features.Citas.queries;
 using Core.Infraestructure.Persistance;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ public class GetFisioterapeutaHandler : IRequestHandler<GetFisioterapeutas, List
             .AsNoTracking()
             .Select(x => new GetFisioterapeutaResponse()
             {
+                FisioterapeutaId = x.FisioterapeutaId.HashId(),
                 Nombre = x.Fisioterapeuta,
                 Correo = x.Correo,
                 Telefono = x.Telefono,
@@ -34,6 +36,7 @@ public class GetFisioterapeutaHandler : IRequestHandler<GetFisioterapeutas, List
 }
 
 public record GetFisioterapeutaResponse{
+    public string FisioterapeutaId { get; set; }
     public string Nombre { get; set; }
     
     public string Correo { get; set; }
