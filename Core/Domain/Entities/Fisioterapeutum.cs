@@ -22,5 +22,7 @@ public class Fisioterapeutum
     
     public string Foto { get; set; }
 
+    public string CedulaProfesional { get; set; } = null!;
+
     public virtual ICollection<Revision> Revisions { get; set; } = new List<Revision>();
 }

@@ -15,7 +15,7 @@
             <remarks>Citas del dia</remarks>
             </response>
         </member>
-        <member name="M:Presentation.Controllers.DateController.getDate(System.Int32)">
+        <member name="M:Presentation.Controllers.DateController.getDate(System.String)">
             <summary>
             Obtiene las citas del paciente
             </summary>
@@ -42,6 +42,20 @@
             </response>
             <response code="404"><b>Not Found:</b>
             <remarks>El Paciente con el Id proporcionado no existe</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.DateController.PatchDate(Core.Features.Citas.command.ModifyDate)">
+            <summary>
+            Modifica una cita
+            </summary>
+            <remarks>
+            Modifica la parte de la cita que necesite
+            </remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Se creo modifico correctamente la cita</remarks>
+            </response>
+            <response code="404"><b>Not Found:</b>
+            <remarks>La cita con el Id proporcionado no existe</remarks>
             </response>
         </member>
         <member name="M:Presentation.Controllers.ExpedienteController.getExpedient(System.String)">
@@ -110,7 +124,7 @@
             <remarks>Pacientes</remarks>
             </response>
         </member>
-        <member name="M:Presentation.Controllers.PacientesController.getPatient(System.Int32)">
+        <member name="M:Presentation.Controllers.PacientesController.getPatient(System.String)">
             <summary>
             Obtiene la Data de un paciente en especifico
             </summary>
@@ -162,7 +176,7 @@
             <remarks>El usuario no ingreso los datos correctamente ó El número telefonico ya existe</remarks>
             </response>
         </member>
-        <member name="M:Presentation.Controllers.PacientesController.DeletePatient(System.Int32)">
+        <member name="M:Presentation.Controllers.PacientesController.DeletePatient(System.String)">
             <summary>
             Eliminar Paciente
             </summary>

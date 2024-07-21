@@ -14,6 +14,8 @@ public record PostFisioterapeutas : IRequest
     
     public string Especialidad { get; set; }
     
+    public string Cedula { get; set; }
+    
     public string? Foto { get; set; }
 }
 
@@ -34,6 +36,7 @@ public class PostFisioterapeutasHandler : IRequestHandler<PostFisioterapeutas>
             Correo = request.Correo,
             Telefono = request.Telefono,
             Especialidad = request.Especialidad,
+            CedulaProfesional = request.Cedula,
             Foto = request.Foto == null ? "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png" : request.Foto
         };
 
