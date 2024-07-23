@@ -51,7 +51,7 @@ public class DiagnosticoController : ControllerBase
         return Ok("Se creo la revision correctamente");
     }
     
-    [HttpPatch()]
+    [HttpPut()]
     public async Task<IActionResult> PatchDiagnotico([FromBody] FinalizarDiagnostico command)
     {
         await _mediator.Send(command);
