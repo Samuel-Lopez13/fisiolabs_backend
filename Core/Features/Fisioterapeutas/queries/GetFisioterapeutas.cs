@@ -25,6 +25,7 @@ public class GetFisioterapeutaHandler : IRequestHandler<GetFisioterapeutas, List
             {
                 FisioterapeutaId = x.FisioterapeutaId.HashId(),
                 Nombre = x.Fisioterapeuta,
+                CedulaProfesional = x.CedulaProfesional,
                 Correo = x.Correo,
                 Telefono = x.Telefono,
                 Especialidad = x.Especialidad,
@@ -38,6 +39,8 @@ public class GetFisioterapeutaHandler : IRequestHandler<GetFisioterapeutas, List
 public record GetFisioterapeutaResponse{
     public string FisioterapeutaId { get; set; }
     public string Nombre { get; set; }
+    
+    public string CedulaProfesional { get; set; }
     
     public string Correo { get; set; }
     

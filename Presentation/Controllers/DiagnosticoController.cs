@@ -31,10 +31,23 @@ public class DiagnosticoController : ControllerBase
         return await _mediator.Send(new DiagnosticActive() { ExpedienteId = expediente });
     }
     
+    [HttpGet("Revision")]
+    public async Task<List<GetRevisionesResponse>> GetReview([FromQuery] string diagnostico)
+    {
+        return await _mediator.Send(new GetRevisiones() { DiagnosticoId = diagnostico });
+    }
+    
     [HttpPost()]
     public async Task<IActionResult> PostDiagnostic([FromBody] GeneralDiagnosticPost command)
     {
         await _mediator.Send(command);
         return Ok("Se creo el diagnostico correctamente");
+    }
+    
+    [HttpPost("Revision")]
+    public async Task<IActionResult> PostReview([FromBody] PostRevisiones command)
+    {
+        await _mediator.Send(command);
+        return Ok("Se creo la revision correctamente");
     }
 }

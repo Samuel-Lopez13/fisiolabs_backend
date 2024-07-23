@@ -1,0 +1,40 @@
+﻿using Core.Domain.Entities;
+using Core.Domain.Helpers;
+using Core.Infraestructure.Persistance;
+using MediatR;
+
+namespace Core.Features.Diagnostico.command;
+
+public record PostRevisiones() : IRequest
+{
+    public string DiagnosticoId { get; set; }
+    public string FisioterapeutaId { get; set; }
+    public string Notas { get; set; }
+    public string ComprobantePago { get; set; }
+}
+
+public class PostRevisionHandler : IRequestHandler<PostRevisiones>
+{
+    private readonly FisiolabsSofwaredbContext _context;
+    
+    public PostRevisionHandler(FisiolabsSofwaredbContext context)
+    {
+        _context = context;
+    }
+    
+    public async Task Handle(PostRevisiones request, CancellationToken cancellationToken)
+    {
+        var revision = new Revision
+        {
+            DiagnosticoId = request.DiagnosticoId.HashIdInt(),
+            FisioterapeutaId = request.FisioterapeutaId.HashIdInt(),
+            Notas = request.Notas,
+            ComprobantePago = request.ComprobantePago,
+            Fecha = FormatDate.DateLocal(),
+            Hora = new TimeSpan(FormatDate.DateLocal().Hour, FormatDate.DateLocal().Minute, 0)
+        };
+        
+        await _context.Revisions.AddAsync(revision);
+        await _context.SaveChangesAsync();
+    }
+}
