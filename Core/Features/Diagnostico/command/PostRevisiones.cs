@@ -1,4 +1,5 @@
-﻿using Core.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using Core.Domain.Entities;
 using Core.Domain.Helpers;
 using Core.Infraestructure.Persistance;
 using MediatR;
@@ -7,9 +8,13 @@ namespace Core.Features.Diagnostico.command;
 
 public record PostRevisiones() : IRequest
 {
+    [Required(ErrorMessage = "El campo DiagnosticoId es obligatorio")]
     public string DiagnosticoId { get; set; }
+    [Required(ErrorMessage = "El campo FisioterapeutaId es obligatorio")]
     public string FisioterapeutaId { get; set; }
+    [Required(ErrorMessage = "El campo Notas es obligatorio")]
     public string Notas { get; set; }
+    [Required(ErrorMessage = "El campo ComprobantePago es obligatorio")]
     public string ComprobantePago { get; set; }
 }
 
