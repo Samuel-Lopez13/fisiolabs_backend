@@ -1,4 +1,5 @@
 ﻿using Core.Features.Diagnostico.command;
+using Core.Features.Diagnostico.queries;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -16,6 +17,12 @@ public class DiagnosticoController : ControllerBase
     public DiagnosticoController(IMediator mediator)
     {
         _mediator = mediator;
+    }
+    
+    [HttpGet("Activo")]
+    public async Task<DiagnosticActiveResponse> ActiveDiagnostic([FromQuery] string expediente)
+    {
+        return await _mediator.Send(new DiagnosticActive() { ExpedienteId = expediente });
     }
     
     [HttpPost()]
