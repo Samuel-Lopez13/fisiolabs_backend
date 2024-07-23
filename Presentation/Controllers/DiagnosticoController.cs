@@ -19,6 +19,12 @@ public class DiagnosticoController : ControllerBase
         _mediator = mediator;
     }
     
+    [HttpGet()]
+    public async Task<GeneralDiagnosticResponse> DiagnosticGet([FromQuery] string diagnostico)
+    {
+        return await _mediator.Send(new DiagnosticGet() { DiagnosticoId = diagnostico });
+    }
+    
     [HttpGet("Activo")]
     public async Task<DiagnosticActiveResponse> ActiveDiagnostic([FromQuery] string expediente)
     {
