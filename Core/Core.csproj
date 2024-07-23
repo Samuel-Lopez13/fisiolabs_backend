@@ -8,7 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Features\Diagnostico\queries\" />
       <Folder Include="Infraestructure\Persistance\Migrations\" />
     </ItemGroup>
 

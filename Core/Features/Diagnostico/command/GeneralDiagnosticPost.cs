@@ -113,6 +113,9 @@ public record ReviewPost()
 {
     [Required(ErrorMessage = "El campo FisioterapeutaId es obligatorio")]
     public string FisioterapeutaId { get; set; }
+    
+    [Required(ErrorMessage = "El campo ComprobantePago es obligatorio")]
+    public string ComprobantePago { get; set; }
 }
 
 public record GeneralDiagnosticPost() : IRequest
@@ -209,6 +212,7 @@ public class PostDiagnosticHanlder : IRequestHandler<GeneralDiagnosticPost>
                 var revision = new Revision()
                 {
                     Notas = request.Map.Nota,
+                    ComprobantePago = request.Review.ComprobantePago,
                     Fecha = FormatDate.DateLocal(),
                     Hora =  new TimeSpan(FormatDate.DateLocal().Hour, FormatDate.DateLocal().Minute, 0),
                     FisioterapeutaId = request.Review.FisioterapeutaId.HashIdInt(),

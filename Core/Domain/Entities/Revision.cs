@@ -12,6 +12,8 @@ public class Revision
     public DateTime Fecha { get; set; }
     
     public TimeSpan Hora { get; set; }
+    
+    public string ComprobantePago { get; set; }
 
     public int? FisioterapeutaId { get; set; }
 

@@ -52,6 +52,7 @@ public class GetExpedientHandler : IRequestHandler<GetExpedient, GetExpedientRes
             Diagnosticos = expedient.Diagnosticos.Select(x => new DiagnosticGet()
             {
                 Diagnostico = x.Diagnostico1,
+                DiagnosticoId = x.DiagnosticoId.HashId(),
                 Status = x.Estatus
             }).ToList(),
             HeredoFamiliar = new FamilyHistoryGet()
@@ -192,6 +193,6 @@ public record GinecobstetricoGet
 public record DiagnosticGet
 {
     public string Diagnostico { get; set; }
-    
     public bool Status { get; set; }
+    public string? DiagnosticoId { get; set; } 
 }
