@@ -11,9 +11,11 @@ public record PostFisioterapeutas : IRequest
     [Required(ErrorMessage = "El campo Nombre es obligatorio")]
     public string Nombre { get; set; }
     
+    [EmailAddress(ErrorMessage = "El campo Correo no es un correo valido")]
     [Required(ErrorMessage = "El campo Correo es obligatorio")]
     public string Correo { get; set; }
     
+    [Phone(ErrorMessage = "El campo Telefono no es un telefono valido")]
     [Required(ErrorMessage = "El campo Telefono es obligatorio")]
     public string Telefono { get; set; }
     
