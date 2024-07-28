@@ -40,15 +40,18 @@ public class PostFisioterapeutasHandler : IRequestHandler<PostFisioterapeutas>
         var fisioterapeuta = _context.Fisioterapeuta.FirstOrDefault(x => x.Correo == request.Correo 
                                                                          || x.CedulaProfesional == request.Cedula
                                                                          || x.Telefono == request.Telefono);
-        
-        if(request.Correo == fisioterapeuta.Correo)
-            throw new BadRequestException("El correo ya esta registrado");
 
-        if (request.Cedula == fisioterapeuta.CedulaProfesional)
-            throw new BadRequestException("La cedula ya esta registrada");
+        if (fisioterapeuta != null)
+        {
+            if(request.Correo == fisioterapeuta.Correo)
+                throw new BadRequestException("El correo ya esta registrado");
+
+            if (request.Cedula == fisioterapeuta.CedulaProfesional)
+                throw new BadRequestException("La cedula ya esta registrada");
         
-        if (request.Telefono == fisioterapeuta.Telefono)
-            throw new BadRequestException("El telefono ya esta registrado");
+            if (request.Telefono == fisioterapeuta.Telefono)
+                throw new BadRequestException("El telefono ya esta registrado");
+        }
         
         var fisio = new Fisioterapeutum()
         {
