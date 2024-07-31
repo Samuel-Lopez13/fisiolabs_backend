@@ -20,10 +20,9 @@ public record PostFisioterapeutas : IRequest
     public string Telefono { get; set; }
     
     [Required(ErrorMessage = "El campo Especialidad es obligatorio")]
-    public string Especialidad { get; set; }
+    public int Especialidad { get; set; }
     
-    [Required(ErrorMessage = "El campo Cedula es obligatorio")]
-    public string Cedula { get; set; }
+    public string? Cedula { get; set; }
     
     public string? Foto { get; set; }
 }
@@ -48,7 +47,7 @@ public class PostFisioterapeutasHandler : IRequestHandler<PostFisioterapeutas>
             if(request.Correo == fisioterapeuta.Correo)
                 throw new BadRequestException("El correo ya esta registrado");
 
-            if (request.Cedula == fisioterapeuta.CedulaProfesional)
+            if (request.Cedula == fisioterapeuta.CedulaProfesional && fisioterapeuta.CedulaProfesional != null)
                 throw new BadRequestException("La cedula ya esta registrada");
         
             if (request.Telefono == fisioterapeuta.Telefono)

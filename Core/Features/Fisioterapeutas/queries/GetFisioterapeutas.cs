@@ -46,7 +46,7 @@ public record GetFisioterapeutaResponse{
     
     public string Telefono { get; set; }
     
-    public string Especialidad { get; set; }
+    public int Especialidad { get; set; }
     
     public string Foto { get; set; }
 }
