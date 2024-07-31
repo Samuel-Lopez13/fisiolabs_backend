@@ -22,7 +22,7 @@ public record PostFisioterapeutas : IRequest
     [Required(ErrorMessage = "El campo Especialidad es obligatorio")]
     public int Especialidad { get; set; }
     
-    public string? CedulaProfesional { get; set; }
+    public string? Cedula { get; set; }
     
     public string? Foto { get; set; }
 }
@@ -39,7 +39,7 @@ public class PostFisioterapeutasHandler : IRequestHandler<PostFisioterapeutas>
     public async Task Handle(PostFisioterapeutas request, CancellationToken cancellationToken)
     {
         var fisioterapeuta = _context.Fisioterapeuta.FirstOrDefault(x => x.Correo == request.Correo 
-                                                                         || x.CedulaProfesional == request.CedulaProfesional
+                                                                         || x.CedulaProfesional == request.Cedula
                                                                          || x.Telefono == request.Telefono);
 
         if (fisioterapeuta != null)
@@ -47,7 +47,7 @@ public class PostFisioterapeutasHandler : IRequestHandler<PostFisioterapeutas>
             if(request.Correo == fisioterapeuta.Correo)
                 throw new BadRequestException("El correo ya esta registrado");
 
-            if (request.CedulaProfesional == fisioterapeuta.CedulaProfesional && fisioterapeuta.CedulaProfesional != null)
+            if (request.Cedula == fisioterapeuta.CedulaProfesional && fisioterapeuta.CedulaProfesional != null)
                 throw new BadRequestException("La cedula ya esta registrada");
         
             if (request.Telefono == fisioterapeuta.Telefono)
@@ -60,7 +60,7 @@ public class PostFisioterapeutasHandler : IRequestHandler<PostFisioterapeutas>
             Correo = request.Correo,
             Telefono = request.Telefono,
             Especialidad = request.Especialidad,
-            CedulaProfesional = request.CedulaProfesional,
+            CedulaProfesional = request.Cedula,
             Foto = request.Foto == null ? "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png" : request.Foto
         };
 

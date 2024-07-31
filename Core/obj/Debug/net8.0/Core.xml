@@ -4,5 +4,17 @@
         <name>Core</name>
     </assembly>
     <members>
+        <member name="T:Core.Infraestructure.Persistance.Migrations.Addfisioterapeuta">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.Addfisioterapeuta.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.Addfisioterapeuta.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Infraestructure.Persistance.Migrations.Addfisioterapeuta.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>
