@@ -12,9 +12,9 @@ public record RemovePatient : IRequest
 
 public class RemovePatientHandle : IRequestHandler<RemovePatient>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
     
-    public RemovePatientHandle(FisiolabsSofwaredbContext context)
+    public RemovePatientHandle(FisioContext context)
     {
         _context = context;
     }

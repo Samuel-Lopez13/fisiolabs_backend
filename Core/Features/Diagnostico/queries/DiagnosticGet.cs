@@ -13,9 +13,9 @@ public record DiagnosticGet : IRequest<GeneralDiagnosticResponse>
 
 public record DiagnosticGetHandler : IRequestHandler<DiagnosticGet, GeneralDiagnosticResponse>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
     
-    public DiagnosticGetHandler(FisiolabsSofwaredbContext context)
+    public DiagnosticGetHandler(FisioContext context)
     {
         _context = context;
     }
@@ -24,30 +24,32 @@ public record DiagnosticGetHandler : IRequestHandler<DiagnosticGet, GeneralDiagn
     {
         var diagnostic = await _context.Diagnosticos
             .AsNoTracking()
+            .Include(x => x.ProgramaFisioterapeutico) //Agregado
+            .Include(x => x.MapaCorporal) //Agregado
             .FirstOrDefaultAsync(x => x.DiagnosticoId == request.DiagnosticoId.HashIdInt());
         
         if(diagnostic == null)
             throw new NotFoundException("No se encontro el diagnostico");
         
         //Buscamos sus datos
-        var programa = await _context.ProgramaFisioterapeuticos
+        /*var programa = await _context.ProgramaFisioterapeuticos
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.DiagnosticoId == diagnostic.DiagnosticoId);
+            .FirstOrDefaultAsync(x => x.DiagnosticoId == diagnostic.DiagnosticoId);*/
         
-        var mapa = await _context.MapaCorporals
+        /*var mapa = await _context.MapaCorporals
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.DiagnosticoId == diagnostic.DiagnosticoId);
-        
-        var exploracion = await _context.ExploracionFisicas
+            .FirstOrDefaultAsync(x => x.DiagnosticoId == diagnostic.DiagnosticoId);*/
+
+        /*var exploracion = await _context.ExploracionFisicas
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.DiagnosticoId == diagnostic.DiagnosticoId);
+            .FirstOrDefaultAsync(x => x.DiagnosticoId == diagnostic.DiagnosticoId);*/
         
         return await Task.FromResult(new GeneralDiagnosticResponse
         {
-            Diagnostico = diagnostic.Diagnostico1,
+            Diagnostico = diagnostic.Descripcion,
             diagnostic = new GetDiagnostic
             {
-                Diagnostico = diagnostic.Diagnostico1,
+                Diagnostico = diagnostic.Descripcion,
                 Refiere = diagnostic.Refiere,
                 Categoria = diagnostic.Categoria,
                 DiagnosticoPrevio = diagnostic.DiagnosticoPrevio,
@@ -61,27 +63,27 @@ public record DiagnosticGetHandler : IRequestHandler<DiagnosticGet, GeneralDiagn
                 DiagnosticoNosologico = diagnostic.DiagnosticoNosologico,
                 FechaInicio = diagnostic.FechaInicio,
                 FechaAlta = diagnostic.FechaAlta,
-                MotivoAlta = diagnostic.MotivoAlta,
+                MotivoAlta = diagnostic.MotivoAltaId,
                 DiagnosticoInicial = diagnostic.DiagnosticoInicial,
                 DiagnosticoFinal = diagnostic.DiagnosticoFinal,
                 FrecuenciaTratamiento = diagnostic.FrecuenciaTratamiento
             },
             program = new ProgramGet
             {
-                CortoPlazo = programa.CortoPlazo,
-                MedianoPlazo = programa.MedianoPlazo,
-                LargoPlazo = programa.LargoPlazo,
-                TratamientoFisioterapeutico = programa.TratamientoFisioterapeutico,
-                Sugerencias = programa.Sugerencias,
-                Pronostico = programa.Pronostico
+                CortoPlazo = diagnostic.ProgramaFisioterapeutico.CortoPlazo,
+                MedianoPlazo = diagnostic.ProgramaFisioterapeutico.MedianoPlazo,
+                LargoPlazo = diagnostic.ProgramaFisioterapeutico.LargoPlazo,
+                TratamientoFisioterapeutico = diagnostic.ProgramaFisioterapeutico.TratamientoFisioterapeutico,
+                Sugerencias = diagnostic.ProgramaFisioterapeutico.Sugerencias,
+                Pronostico = diagnostic.ProgramaFisioterapeutico.Pronostico
             },
             map = new MapGet
             {
-                valores = mapa.ValorX,
-                RangoDolor = mapa.RangoDolor,
-                Nota = mapa.Nota
+                valores = diagnostic.MapaCorporal.Valor,
+                RangoDolor = diagnostic.MapaCorporal.RangoDolor,
+                Nota = diagnostic.MapaCorporal.Nota
             },
-            exploration = new ExplorationGet
+            /*exploration = new ExplorationGet
             {
                 Temperatura = exploracion.Temperatura,
                 Fr = exploracion.Fr,
@@ -92,7 +94,7 @@ public record DiagnosticGetHandler : IRequestHandler<DiagnosticGet, GeneralDiagn
                 Imc = exploracion.Imc,
                 IndiceCinturaCadera = exploracion.IndiceCinturaCadera,
                 SaturacionOxigeno = exploracion.SaturacionOxigeno
-            }
+            }*/
         });
     }
 }
@@ -104,7 +106,7 @@ public record GeneralDiagnosticResponse
     public GetDiagnostic diagnostic { get; set; }
     public ProgramGet program { get; set; }
     public MapGet map { get; set; }
-    public ExplorationGet exploration { get; set; }
+    /*public ExplorationGet exploration { get; set; }*/
 }
 
 public record GetDiagnostic()
@@ -137,7 +139,7 @@ public record GetDiagnostic()
 
     public DateTime? FechaAlta { get; set; }
 
-    public string? MotivoAlta { get; set; }
+    public int? MotivoAlta { get; set; }
     
     public string? DiagnosticoInicial { get; set; }
 

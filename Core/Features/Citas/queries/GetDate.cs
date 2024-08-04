@@ -13,10 +13,10 @@ public record GetDate : IRequest<List<GetDateResponse>>
 
 public class GetDateHandler : IRequestHandler<GetDate, List<GetDateResponse>>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
     private readonly IDate _date;
 
-    public GetDateHandler(FisiolabsSofwaredbContext context, IDate date)
+    public GetDateHandler(FisioContext context, IDate date)
     {
         _context = context;
         _date = date;

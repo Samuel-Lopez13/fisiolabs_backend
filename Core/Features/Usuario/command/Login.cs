@@ -18,10 +18,10 @@ public record Login : IRequest<LoginResponse>
 
 public class LoginHandler : IRequestHandler<Login, LoginResponse>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
     private readonly IAuthService _authService;
 
-    public LoginHandler(FisiolabsSofwaredbContext context, IAuthService authService)
+    public LoginHandler(FisioContext context, IAuthService authService)
     {
         _context = context;
         _authService = authService;

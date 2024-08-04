@@ -48,9 +48,9 @@ public record CreatePatient : IRequest<CreatePatientResponse>
 
 public class CreatePatientHandler : IRequestHandler<CreatePatient, CreatePatientResponse>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
     
-    public CreatePatientHandler(FisiolabsSofwaredbContext context)
+    public CreatePatientHandler(FisioContext context)
     {
         _context = context;
     }

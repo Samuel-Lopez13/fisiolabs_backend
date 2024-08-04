@@ -16,10 +16,10 @@ public record VerifyUser : IRequest<VerifyUserResponse>
 
 public class VerifyUserHandler : IRequestHandler<VerifyUser, VerifyUserResponse>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
     private readonly IAuthorization _authorization;
 
-    public VerifyUserHandler(FisiolabsSofwaredbContext context, IAuthorization authorization)
+    public VerifyUserHandler(FisioContext context, IAuthorization authorization)
     {
         _context = context;
         _authorization = authorization;

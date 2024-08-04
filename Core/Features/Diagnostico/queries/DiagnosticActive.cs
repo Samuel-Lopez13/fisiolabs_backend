@@ -12,9 +12,9 @@ public record DiagnosticActive : IRequest<DiagnosticActiveResponse>
 
 public class DiagnosticoActiveHandler : IRequestHandler<DiagnosticActive, DiagnosticActiveResponse>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
     
-    public DiagnosticoActiveHandler(FisiolabsSofwaredbContext context)
+    public DiagnosticoActiveHandler(FisioContext context)
     {
         _context = context;
     }
@@ -23,7 +23,7 @@ public class DiagnosticoActiveHandler : IRequestHandler<DiagnosticActive, Diagno
     {
         var diagnostic = await _context.Diagnosticos
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.ExpededienteId == request.ExpedienteId.HashIdInt() && x.Estatus == true);
+            .FirstOrDefaultAsync(x => x.ExpedienteId == request.ExpedienteId.HashIdInt() && x.Estatus == true);
 
         var response = new DiagnosticActiveResponse();
         

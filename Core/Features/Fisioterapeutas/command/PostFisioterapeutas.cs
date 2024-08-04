@@ -29,9 +29,9 @@ public record PostFisioterapeutas : IRequest
 
 public class PostFisioterapeutasHandler : IRequestHandler<PostFisioterapeutas>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
 
-    public PostFisioterapeutasHandler(FisiolabsSofwaredbContext context)
+    public PostFisioterapeutasHandler(FisioContext context)
     {
         _context = context;
     }
@@ -54,12 +54,12 @@ public class PostFisioterapeutasHandler : IRequestHandler<PostFisioterapeutas>
                 throw new BadRequestException("El telefono ya esta registrado");
         }
         
-        var fisio = new Fisioterapeutum()
+        var fisio = new Domain.Entities.Fisioterapeuta()
         {
-            Fisioterapeuta = request.Nombre,
+            Nombre = request.Nombre,
             Correo = request.Correo,
             Telefono = request.Telefono,
-            Especialidad = request.Especialidad,
+            EspecialidadId = request.Especialidad,
             CedulaProfesional = request.Cedula,
             Foto = request.Foto == null ? "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png" : request.Foto
         };

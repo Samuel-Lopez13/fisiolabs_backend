@@ -25,9 +25,9 @@ public record PostDate : IRequest
 
 public class PostDateHandler : IRequestHandler<PostDate>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
     
-    public PostDateHandler(FisiolabsSofwaredbContext context)
+    public PostDateHandler(FisioContext context)
     {
         _context = context;
     }
@@ -38,7 +38,7 @@ public class PostDateHandler : IRequestHandler<PostDate>
         
         if (patient == null)
             throw new NotFoundException("No se encontro el paciente");
-
+        
         var dateValidation = await _context.Citas
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.PacienteId == request.PacienteId.HashIdInt() && x.Fecha.Date == request.Fecha.Date && x.Hora < FormatHour.MoreHours(request.Hora) && x.Hora > FormatHour.LessHour(request.Hora));
@@ -55,6 +55,7 @@ public class PostDateHandler : IRequestHandler<PostDate>
             Status = 1
         };
 
+        
         await _context.Citas.AddAsync(date);
         await _context.SaveChangesAsync();
     }

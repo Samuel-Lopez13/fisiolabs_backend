@@ -11,7 +11,7 @@ public record FinalizarDiagnostico : IRequest
     [Required(ErrorMessage = "El campo DiagnosticId es obligatorio")]
     public string DiagnosticId { get; set; }
     [Required(ErrorMessage = "El campo MotivoAlta es obligatorio")]
-    public string MotivoAlta { get; set; }
+    public int MotivoAlta { get; set; }
     [Required(ErrorMessage = "El campo DiagnosticoInicial es obligatorio")]
     public string DiagnosticoInicial { get; set; }
     [Required(ErrorMessage = "El campo DiagnosticoFinal es obligatorio")]
@@ -22,9 +22,9 @@ public record FinalizarDiagnostico : IRequest
 
 public class FinalizarDiagnosticoHandler : IRequestHandler<FinalizarDiagnostico>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
     
-    public FinalizarDiagnosticoHandler(FisiolabsSofwaredbContext context)
+    public FinalizarDiagnosticoHandler(FisioContext context)
     {
         _context = context;
     }
@@ -36,7 +36,7 @@ public class FinalizarDiagnosticoHandler : IRequestHandler<FinalizarDiagnostico>
         if (diagnostic == null)
             throw new NotFoundException("diagnostico no encontrado");
         
-        diagnostic.MotivoAlta = request.MotivoAlta;
+        diagnostic.MotivoAltaId = request.MotivoAlta;
         diagnostic.DiagnosticoInicial = request.DiagnosticoInicial;
         diagnostic.DiagnosticoFinal = request.DiagnosticoFinal;
         diagnostic.FrecuenciaTratamiento = request.FrecuenciaTratamiento;

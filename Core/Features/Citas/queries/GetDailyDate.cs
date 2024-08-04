@@ -10,10 +10,10 @@ public record GetDailyDate : IRequest<List<GetDailyDateResponse>>;
 
 public class GetDailyDateHandler : IRequestHandler<GetDailyDate, List<GetDailyDateResponse>>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
     private readonly IDate _date;
 
-    public GetDailyDateHandler(FisiolabsSofwaredbContext context, IDate date)
+    public GetDailyDateHandler(FisioContext context, IDate date)
     {
         _context = context;
         _date = date;

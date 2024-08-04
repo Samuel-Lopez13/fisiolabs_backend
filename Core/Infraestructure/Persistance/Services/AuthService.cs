@@ -12,10 +12,10 @@ namespace Core.Features.Usuario.Command;
 
 public class AuthService : IAuthService
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
     private readonly IConfiguration _configuration;
     
-    public AuthService(FisiolabsSofwaredbContext context, IConfiguration configuration)
+    public AuthService(FisioContext context, IConfiguration configuration)
     {
         _context = context;
         _configuration = configuration;

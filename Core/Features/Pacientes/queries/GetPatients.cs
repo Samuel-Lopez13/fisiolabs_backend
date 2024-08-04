@@ -12,9 +12,9 @@ public record GetPatients : IRequest<GetPatientsResponse>
 
 public class GetPatientsHandler : IRequestHandler<GetPatients, GetPatientsResponse>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
 
-    public GetPatientsHandler(FisiolabsSofwaredbContext context)
+    public GetPatientsHandler(FisioContext context)
     {
         _context = context;
     }
@@ -32,7 +32,7 @@ public class GetPatientsHandler : IRequestHandler<GetPatients, GetPatientsRespon
         //Devuelve una lista de 10 pacientes
         var patients = await _context.Pacientes
             .AsNoTracking()
-            .Include(x => x.Expedientes)
+            .Include(x => x.Expediente)
             .OrderBy(x => x.Nombre)
             .Skip((request.Pagina - 1) * 10)
             .Take(10)
@@ -43,7 +43,7 @@ public class GetPatientsHandler : IRequestHandler<GetPatients, GetPatientsRespon
                 Edad = FormatDate.DateToYear(x.Edad.Date),
                 Sexo = x.Sexo == true ? "Hombre" : "Mujer",
                 Telefono = x.Telefono,
-                Verificado = x.Expedientes.Any()
+                Verificado = x.Expediente != null
             }).ToListAsync();
 
         // Response

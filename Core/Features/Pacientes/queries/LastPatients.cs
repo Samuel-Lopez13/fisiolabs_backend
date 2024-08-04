@@ -9,9 +9,9 @@ public record LastPatients : IRequest<List<LastPatientsResponse>>;
 
 public class LastPatientsHandler : IRequestHandler<LastPatients, List<LastPatientsResponse>>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
 
-    public LastPatientsHandler(FisiolabsSofwaredbContext context)
+    public LastPatientsHandler(FisioContext context)
     {
         _context = context;
     }

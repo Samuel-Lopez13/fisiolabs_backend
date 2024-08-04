@@ -14,9 +14,9 @@ public record SearchPatients : IRequest<SearchPatientResponse>
 
 public class SearchPatientsHandler : IRequestHandler<SearchPatients, SearchPatientResponse>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
 
-    public SearchPatientsHandler(FisiolabsSofwaredbContext context)
+    public SearchPatientsHandler(FisioContext context)
     {
         _context = context;
     }
@@ -35,7 +35,7 @@ public class SearchPatientsHandler : IRequestHandler<SearchPatients, SearchPatie
         var patientsList = await _context.Pacientes
             .AsNoTracking()
             .Where(x => x.Nombre.Contains(request.Nombre))
-            .Include(x => x.Expedientes)
+            .Include(x => x.Expediente)
             .ToListAsync();
 
         // Ordenar los pacientes según cada letra en la cadena de búsqueda
@@ -75,7 +75,7 @@ public class SearchPatientsHandler : IRequestHandler<SearchPatients, SearchPatie
                 Edad = FormatDate.DateToYear(x.Edad.Date),
                 Sexo = x.Sexo == true ? "Hombre" : "Mujer",
                 Telefono = x.Telefono,
-                Verificado = x.Expedientes.Any()
+                Verificado = x.Expediente != null
             })
             .ToList();
         
