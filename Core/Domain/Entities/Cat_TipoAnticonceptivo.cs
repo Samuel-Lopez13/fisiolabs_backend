@@ -17,6 +17,8 @@ public class Cat_TipoAnticonceptivo
     public int TipoAnticonceptivoId { get; set; }
 
     public string Descripcion { get; set; } = null!;
+    
+    public bool Status { get; set; }
 
     // Configuración de relación uno a muchos
     public virtual ICollection<GinecoObstetrico> GinecoObstetricos { get; set; } = new List<GinecoObstetrico>();

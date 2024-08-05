@@ -16,6 +16,8 @@ public class Cat_Especialidades
 
     public string Descripcion { get; set; } = null!;
     
+    public bool Status { get; set; }
+    
     // Configuración de relación uno a muchos
     public virtual ICollection<Fisioterapeuta> Fisioterapeutas { get; set; } = new List<Fisioterapeuta>();
 }

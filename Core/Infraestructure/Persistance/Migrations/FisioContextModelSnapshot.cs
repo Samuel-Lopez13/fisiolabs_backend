@@ -27,9 +27,15 @@ namespace Core.Infraestructure.Persistance.Migrations
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("EspecialidadesId");
+
+                    b.HasIndex("Descripcion")
+                        .IsUnique();
 
                     b.ToTable("cat_especialidad", (string)null);
                 });
@@ -42,9 +48,15 @@ namespace Core.Infraestructure.Persistance.Migrations
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("EstadoCivilId");
+
+                    b.HasIndex("Descripcion")
+                        .IsUnique();
 
                     b.ToTable("cat_estado_civil", (string)null);
                 });
@@ -57,9 +69,15 @@ namespace Core.Infraestructure.Persistance.Migrations
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("FlujoVaginalId");
+
+                    b.HasIndex("Descripcion")
+                        .IsUnique();
 
                     b.ToTable("cat_flujo_vaginal", (string)null);
                 });
@@ -72,9 +90,15 @@ namespace Core.Infraestructure.Persistance.Migrations
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("MotivoAltaId");
+
+                    b.HasIndex("Descripcion")
+                        .IsUnique();
 
                     b.ToTable("cat_motivo_alta", (string)null);
                 });
@@ -87,9 +111,15 @@ namespace Core.Infraestructure.Persistance.Migrations
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("ServiciosId");
+
+                    b.HasIndex("Descripcion")
+                        .IsUnique();
 
                     b.ToTable("cat_servicios", (string)null);
                 });
@@ -102,9 +132,15 @@ namespace Core.Infraestructure.Persistance.Migrations
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("TipoAnticonceptivoId");
+
+                    b.HasIndex("Descripcion")
+                        .IsUnique();
 
                     b.ToTable("cat_tipo_anticonceptivo", (string)null);
                 });

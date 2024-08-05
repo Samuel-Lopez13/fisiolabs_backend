@@ -37,6 +37,9 @@ public partial class FisioContext : DbContext
             entity.HasKey(e => e.EspecialidadesId);
 
             entity.ToTable("cat_especialidad");
+            
+            // Configuración de las propiedades de la entidad Cat_Especialidades
+            entity.HasIndex(e => e.Descripcion).IsUnique();
         });
         
         modelBuilder.Entity<Cat_EstadoCivil>(entity =>
@@ -44,6 +47,9 @@ public partial class FisioContext : DbContext
             entity.HasKey(e => e.EstadoCivilId);
 
             entity.ToTable("cat_estado_civil");
+            
+            // Configuración de las propiedades de la entidad Cat_EstadoCivil
+            entity.HasIndex(e => e.Descripcion).IsUnique();
         });
         
         modelBuilder.Entity<Cat_FlujoVaginal>(entity =>
@@ -51,6 +57,9 @@ public partial class FisioContext : DbContext
             entity.HasKey(e => e.FlujoVaginalId);
 
             entity.ToTable("cat_flujo_vaginal");
+            
+            // Configuración de las propiedades de la entidad Cat_FlujoVaginal
+            entity.HasIndex(e => e.Descripcion).IsUnique();
         });
         
         modelBuilder.Entity<Cat_MotivoAlta>(entity =>
@@ -58,6 +67,9 @@ public partial class FisioContext : DbContext
             entity.HasKey(e => e.MotivoAltaId);
 
             entity.ToTable("cat_motivo_alta");
+            
+            // Configuración de las propiedades de la entidad Cat_MotivoAlta
+            entity.HasIndex(e => e.Descripcion).IsUnique();
         });
         
         modelBuilder.Entity<Cat_Servicios>(entity =>
@@ -65,6 +77,9 @@ public partial class FisioContext : DbContext
             entity.HasKey(e => e.ServiciosId);
 
             entity.ToTable("cat_servicios");
+            
+            // Configuración de las propiedades de la entidad Cat_Servicios
+            entity.HasIndex(e => e.Descripcion).IsUnique();
         });
         
         modelBuilder.Entity<Cat_TipoAnticonceptivo>(entity =>
@@ -72,6 +87,9 @@ public partial class FisioContext : DbContext
             entity.HasKey(e => e.TipoAnticonceptivoId);
 
             entity.ToTable("cat_tipo_anticonceptivo");
+            
+            // Configuración de las propiedades de la entidad Cat_TipoAnticonceptivo
+            entity.HasIndex(e => e.Descripcion).IsUnique();
         });
         
         modelBuilder.Entity<Cita>(entity =>

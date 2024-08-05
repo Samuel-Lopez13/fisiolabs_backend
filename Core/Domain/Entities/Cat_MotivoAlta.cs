@@ -16,6 +16,8 @@ public class Cat_MotivoAlta
 
     public string Descripcion { get; set; } = null!;
     
+    public bool Status { get; set; }
+    
     // Configuración de relación uno a muchos
     public virtual ICollection<Diagnostico> Diagnosticos { get; set; } = new List<Diagnostico>();
 }
