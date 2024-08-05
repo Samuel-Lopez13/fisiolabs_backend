@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Core.Infraestructure.Persistance.Migrations
 {
-    [DbContext(typeof(FisiolabsSofwaredbContext))]
-    partial class FisiolabsSofwaredbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(FisioContext))]
+    partial class FisioContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -19,6 +19,96 @@ namespace Core.Infraestructure.Persistance.Migrations
                 .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("Core.Domain.Entities.Cat_Especialidades", b =>
+                {
+                    b.Property<int>("EspecialidadesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("EspecialidadesId");
+
+                    b.ToTable("cat_especialidad", (string)null);
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.Cat_EstadoCivil", b =>
+                {
+                    b.Property<int>("EstadoCivilId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("EstadoCivilId");
+
+                    b.ToTable("cat_estado_civil", (string)null);
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.Cat_FlujoVaginal", b =>
+                {
+                    b.Property<int>("FlujoVaginalId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("FlujoVaginalId");
+
+                    b.ToTable("cat_flujo_vaginal", (string)null);
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.Cat_MotivoAlta", b =>
+                {
+                    b.Property<int>("MotivoAltaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("MotivoAltaId");
+
+                    b.ToTable("cat_motivo_alta", (string)null);
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.Cat_Servicios", b =>
+                {
+                    b.Property<int>("ServiciosId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("ServiciosId");
+
+                    b.ToTable("cat_servicios", (string)null);
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.Cat_TipoAnticonceptivo", b =>
+                {
+                    b.Property<int>("TipoAnticonceptivoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("TipoAnticonceptivoId");
+
+                    b.ToTable("cat_tipo_anticonceptivo", (string)null);
+                });
+
             modelBuilder.Entity("Core.Domain.Entities.Cita", b =>
                 {
                     b.Property<int>("CitasId")
@@ -26,10 +116,10 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Fecha")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("date");
 
                     b.Property<TimeSpan>("Hora")
-                        .HasColumnType("time(6)");
+                        .HasColumnType("time");
 
                     b.Property<string>("Motivo")
                         .IsRequired()
@@ -55,97 +145,123 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Categoria")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Diagnostico1")
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("DiagnosticoFinal")
                         .HasColumnType("longtext");
 
                     b.Property<string>("DiagnosticoFuncional")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("DiagnosticoInicial")
                         .HasColumnType("longtext");
 
                     b.Property<string>("DiagnosticoNosologico")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("DiagnosticoPrevio")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<bool>("Estatus")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("EstudiosComplementarios")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("ExpededienteId")
+                    b.Property<int>("ExpedienteId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("FechaAlta")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("date");
 
                     b.Property<DateTime>("FechaInicio")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("date");
 
                     b.Property<string>("FrecuenciaTratamiento")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Inspeccion")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("MotivoAlta")
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("MapaCorporalId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MotivoAltaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Movibilidad")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("PadecimientoActual")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Palpitacion")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("ProgramaFisioterapeuticoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Refiere")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("TerapeuticaEmpleada")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("DiagnosticoId");
 
-                    b.HasIndex(new[] { "ExpededienteId" }, "expediente_id");
+                    b.HasIndex("MapaCorporalId")
+                        .IsUnique();
+
+                    b.HasIndex("ProgramaFisioterapeuticoId")
+                        .IsUnique();
+
+                    b.HasIndex(new[] { "ExpedienteId" }, "expediente_id");
+
+                    b.HasIndex(new[] { "MapaCorporalId" }, "mapacorporal_id");
+
+                    b.HasIndex(new[] { "MotivoAltaId" }, "motivoalta_id");
+
+                    b.HasIndex(new[] { "ProgramaFisioterapeuticoId" }, "programafisioterapeutico_id");
 
                     b.ToTable("diagnostico", (string)null);
-                });
-
-            modelBuilder.Entity("Core.Domain.Entities.EstadoCivil", b =>
-                {
-                    b.Property<int>("EstadoCivilId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("EstadoCivil1")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("EstadoCivilId");
-
-                    b.ToTable("estado_civil", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.Expediente", b =>
                 {
                     b.Property<int>("ExpedienteId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("AntecedentesPatologicos")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("GinecoObstetricoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HeredoFamiliarId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NoPatologicoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nomenclatura")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int>("PacienteId")
                         .HasColumnType("int");
@@ -159,8 +275,28 @@ namespace Core.Infraestructure.Persistance.Migrations
 
                     b.HasKey("ExpedienteId");
 
+                    b.HasIndex("GinecoObstetricoId")
+                        .IsUnique();
+
+                    b.HasIndex("HeredoFamiliarId")
+                        .IsUnique();
+
+                    b.HasIndex("NoPatologicoId")
+                        .IsUnique();
+
+                    b.HasIndex("Nomenclatura")
+                        .IsUnique();
+
+                    b.HasIndex("PacienteId")
+                        .IsUnique();
+
+                    b.HasIndex(new[] { "GinecoObstetricoId" }, "ginecoobstetrico_id");
+
+                    b.HasIndex(new[] { "HeredoFamiliarId" }, "heredofamiliar_id");
+
+                    b.HasIndex(new[] { "NoPatologicoId" }, "nopatologico_id");
+
                     b.HasIndex(new[] { "PacienteId" }, "paciente_id")
-                        .IsUnique()
                         .HasDatabaseName("paciente_id1");
 
                     b.ToTable("expediente", (string)null);
@@ -172,71 +308,85 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("DiagnosticoId")
-                        .HasColumnType("int");
-
-                    b.Property<float?>("Estatura")
+                    b.Property<float>("Estatura")
                         .HasColumnType("float");
 
-                    b.Property<int?>("Fc")
+                    b.Property<int>("Fc")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Fr")
+                    b.Property<int>("Fr")
                         .HasColumnType("int");
 
-                    b.Property<float?>("Imc")
+                    b.Property<float>("Imc")
                         .HasColumnType("float");
 
-                    b.Property<float?>("IndiceCinturaCadera")
+                    b.Property<float>("IndiceCinturaCadera")
                         .HasColumnType("float");
 
-                    b.Property<float?>("Peso")
+                    b.Property<float>("Peso")
                         .HasColumnType("float");
 
                     b.Property<string>("PresionArterial")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<float?>("SaturacionOxigeno")
+                    b.Property<float>("SaturacionOxigeno")
                         .HasColumnType("float");
 
-                    b.Property<float?>("Temperatura")
+                    b.Property<float>("Temperatura")
                         .HasColumnType("float");
 
                     b.HasKey("ExploracionFisicaId");
 
-                    b.HasIndex(new[] { "DiagnosticoId" }, "diagnostico_id");
-
                     b.ToTable("exploracion_fisica", (string)null);
                 });
 
-            modelBuilder.Entity("Core.Domain.Entities.Fisioterapeutum", b =>
+            modelBuilder.Entity("Core.Domain.Entities.Fisioterapeuta", b =>
                 {
                     b.Property<int>("FisioterapeutaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Fisioterapeuta")
+                    b.Property<string>("CedulaProfesional")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Correo")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int?>("EspecialidadId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Foto")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Telefono")
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("FisioterapeutaId");
 
+                    b.HasIndex("CedulaProfesional")
+                        .IsUnique();
+
+                    b.HasIndex("Correo")
+                        .IsUnique();
+
+                    b.HasIndex("Nombre")
+                        .IsUnique();
+
+                    b.HasIndex("Telefono")
+                        .IsUnique();
+
+                    b.HasIndex(new[] { "EspecialidadId" }, "especialidad_id");
+
                     b.ToTable("fisioterapeuta", (string)null);
-                });
-
-            modelBuilder.Entity("Core.Domain.Entities.FlujoVaginal", b =>
-                {
-                    b.Property<int>("FlujoVaginalId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Flujo")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("FlujoVaginalId");
-
-                    b.ToTable("flujo_vaginal", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.GinecoObstetrico", b =>
@@ -245,53 +395,51 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("Abortos")
+                    b.Property<int>("Abortos")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Cesareas")
+                    b.Property<int>("Cesareas")
                         .HasColumnType("int");
 
                     b.Property<string>("Cirugias")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("EdadGestional")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ExpedienteId")
+                    b.Property<int>("EdadGestional")
                         .HasColumnType("int");
 
                     b.Property<int?>("FlujoVaginalId")
                         .HasColumnType("int");
 
                     b.Property<string>("Fpp")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Fum")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("Gestas")
+                    b.Property<int>("Gestas")
                         .HasColumnType("int");
 
                     b.Property<string>("Menarca")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("Partos")
+                    b.Property<int>("Partos")
                         .HasColumnType("int");
 
                     b.Property<string>("Ritmo")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("Semanas")
+                    b.Property<int>("Semanas")
                         .HasColumnType("int");
 
                     b.Property<int?>("TipoAnticonceptivoId")
                         .HasColumnType("int");
 
                     b.HasKey("GinecoObstetricoId");
-
-                    b.HasIndex(new[] { "ExpedienteId" }, "expediente_id")
-                        .IsUnique()
-                        .HasDatabaseName("expediente_id1");
 
                     b.HasIndex(new[] { "FlujoVaginalId" }, "flujo_vaginal_id");
 
@@ -307,19 +455,20 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Alcoholismo")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Cancer")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Dm")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Drogas")
+                        .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int>("ExpedienteId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Hermanos")
                         .HasColumnType("int");
@@ -340,6 +489,7 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Hta")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("Padres")
@@ -352,13 +502,10 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Tabaquismo")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("HeredoFamiliarId");
-
-                    b.HasIndex(new[] { "ExpedienteId" }, "expediente_id")
-                        .IsUnique()
-                        .HasDatabaseName("expediente_id2");
 
                     b.ToTable("heredo_familiar", (string)null);
                 });
@@ -369,26 +516,19 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("DiagnosticoId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nota")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("RangoDolor")
-                        .HasColumnType("int");
+                    b.Property<string>("RangoDolor")
+                        .IsRequired()
+                        .HasColumnType("LONGTEXT");
 
-                    b.Property<int>("ValorX")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ValorY")
-                        .HasColumnType("int");
+                    b.Property<string>("Valor")
+                        .IsRequired()
+                        .HasColumnType("LONGTEXT");
 
                     b.HasKey("MapaCorporalId");
-
-                    b.HasIndex(new[] { "DiagnosticoId" }, "diagnostico_id")
-                        .HasDatabaseName("diagnostico_id1");
 
                     b.ToTable("mapa_corporal", (string)null);
                 });
@@ -397,9 +537,6 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     b.Property<int>("NoPatologicoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("ExpedienteId")
                         .HasColumnType("int");
 
                     b.Property<string>("MedioFisicoambiental")
@@ -416,10 +553,6 @@ namespace Core.Infraestructure.Persistance.Migrations
 
                     b.HasKey("NoPatologicoId");
 
-                    b.HasIndex(new[] { "ExpedienteId" }, "expediente_id")
-                        .IsUnique()
-                        .HasDatabaseName("expediente_id3");
-
                     b.ToTable("no_patologico", (string)null);
                 });
 
@@ -430,7 +563,8 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Apellido")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int>("CodigoPostal")
                         .HasColumnType("int");
@@ -440,12 +574,16 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("Edad")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("date");
 
                     b.Property<int?>("EstadoCivilId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("FisioterapeutaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("FotoPerfil")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Institucion")
@@ -454,7 +592,7 @@ namespace Core.Infraestructure.Persistance.Migrations
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Notas")
                         .HasColumnType("longtext");
@@ -466,13 +604,27 @@ namespace Core.Infraestructure.Persistance.Migrations
                     b.Property<bool>("Sexo")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Telefono")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool>("TipoPaciente")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("PacienteId");
 
+                    b.HasIndex("Telefono")
+                        .IsUnique();
+
+                    b.HasIndex("Nombre", "Apellido")
+                        .IsUnique();
+
                     b.HasIndex(new[] { "EstadoCivilId" }, "estado_civil_id");
+
+                    b.HasIndex(new[] { "FisioterapeutaId" }, "fisioterapueta_id");
 
                     b.ToTable("paciente", (string)null);
                 });
@@ -486,9 +638,6 @@ namespace Core.Infraestructure.Persistance.Migrations
                     b.Property<string>("CortoPlazo")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int>("DiagnosticoId")
-                        .HasColumnType("int");
 
                     b.Property<string>("LargoPlazo")
                         .IsRequired()
@@ -512,9 +661,6 @@ namespace Core.Infraestructure.Persistance.Migrations
 
                     b.HasKey("ProgramaFisioterapeuticoId");
 
-                    b.HasIndex(new[] { "DiagnosticoId" }, "diagnostico_id")
-                        .HasDatabaseName("diagnostico_id2");
-
                     b.ToTable("programa_fisioterapeutico", (string)null);
                 });
 
@@ -527,47 +673,46 @@ namespace Core.Infraestructure.Persistance.Migrations
                     b.Property<int>("DiagnosticoId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int?>("FisioterapeutaId")
+                    b.Property<int>("ExploracionFisicaId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("date");
+
+                    b.Property<string>("FolioPago")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<TimeSpan>("Hora")
+                        .HasColumnType("time");
 
                     b.Property<string>("Notas")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("RevisionId");
-
-                    b.HasIndex(new[] { "DiagnosticoId" }, "diagnostico_id")
-                        .HasDatabaseName("diagnostico_id3");
-
-                    b.HasIndex(new[] { "FisioterapeutaId" }, "fisioterapeuta_id");
-
-                    b.ToTable("revision", (string)null);
-                });
-
-            modelBuilder.Entity("Core.Domain.Entities.TipoAnticonceptivo", b =>
-                {
-                    b.Property<int>("TipoAnticonceptivoId")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int?>("ServicioId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Anticonceptivo")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.HasKey("RevisionId");
 
-                    b.HasKey("TipoAnticonceptivoId");
+                    b.HasIndex(new[] { "DiagnosticoId" }, "diagnostico_id");
 
-                    b.ToTable("tipo_anticonceptivo", (string)null);
+                    b.HasIndex(new[] { "ExploracionFisicaId" }, "exploracionfisica_id");
+
+                    b.HasIndex(new[] { "ServicioId" }, "servicio_id");
+
+                    b.ToTable("revision", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.Usuario", b =>
                 {
                     b.Property<int>("UsuarioId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("usuario_id");
+                        .HasColumnType("int");
+
+                    b.Property<string>("Clave")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Correo")
                         .HasColumnType("varchar(255)");
@@ -576,9 +721,7 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("FotoPerfil")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Nacionalidad")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Password")
@@ -620,125 +763,128 @@ namespace Core.Infraestructure.Persistance.Migrations
 
             modelBuilder.Entity("Core.Domain.Entities.Diagnostico", b =>
                 {
-                    b.HasOne("Core.Domain.Entities.Expediente", "Expedediente")
+                    b.HasOne("Core.Domain.Entities.Expediente", "Expediente")
                         .WithMany("Diagnosticos")
-                        .HasForeignKey("ExpededienteId")
+                        .HasForeignKey("ExpedienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("diagnostico_ibfk_1");
 
-                    b.Navigation("Expedediente");
+                    b.HasOne("Core.Domain.Entities.MapaCorporal", "MapaCorporal")
+                        .WithOne("Diagnostico")
+                        .HasForeignKey("Core.Domain.Entities.Diagnostico", "MapaCorporalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("diagnostico_ibfk_3");
+
+                    b.HasOne("Core.Domain.Entities.Cat_MotivoAlta", "MotivoAlta")
+                        .WithMany("Diagnosticos")
+                        .HasForeignKey("MotivoAltaId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("diagnostico_ibfk_4");
+
+                    b.HasOne("Core.Domain.Entities.ProgramaFisioterapeutico", "ProgramaFisioterapeutico")
+                        .WithOne("Diagnostico")
+                        .HasForeignKey("Core.Domain.Entities.Diagnostico", "ProgramaFisioterapeuticoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("diagnostico_ibfk_2");
+
+                    b.Navigation("Expediente");
+
+                    b.Navigation("MapaCorporal");
+
+                    b.Navigation("MotivoAlta");
+
+                    b.Navigation("ProgramaFisioterapeutico");
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.Expediente", b =>
                 {
-                    b.HasOne("Core.Domain.Entities.Paciente", "paciente")
-                        .WithMany("Expedientes")
-                        .HasForeignKey("PacienteId")
+                    b.HasOne("Core.Domain.Entities.GinecoObstetrico", "GinecoObstetrico")
+                        .WithOne("Expediente")
+                        .HasForeignKey("Core.Domain.Entities.Expediente", "GinecoObstetricoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("expediente_ibfk_1");
 
+                    b.HasOne("Core.Domain.Entities.HeredoFamiliar", "HeredoFamiliar")
+                        .WithOne("Expediente")
+                        .HasForeignKey("Core.Domain.Entities.Expediente", "HeredoFamiliarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("expediente_ibfk_2");
+
+                    b.HasOne("Core.Domain.Entities.NoPatologico", "NoPatologico")
+                        .WithOne("Expediente")
+                        .HasForeignKey("Core.Domain.Entities.Expediente", "NoPatologicoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("expediente_ibfk_3");
+
+                    b.HasOne("Core.Domain.Entities.Paciente", "paciente")
+                        .WithOne("Expediente")
+                        .HasForeignKey("Core.Domain.Entities.Expediente", "PacienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("paciente_ibfk_3");
+
+                    b.Navigation("GinecoObstetrico");
+
+                    b.Navigation("HeredoFamiliar");
+
+                    b.Navigation("NoPatologico");
+
                     b.Navigation("paciente");
                 });
 
-            modelBuilder.Entity("Core.Domain.Entities.ExploracionFisica", b =>
+            modelBuilder.Entity("Core.Domain.Entities.Fisioterapeuta", b =>
                 {
-                    b.HasOne("Core.Domain.Entities.Diagnostico", "Diagnostico")
-                        .WithMany("ExploracionFisicas")
-                        .HasForeignKey("DiagnosticoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("exploracion_fisica_ibfk_1");
+                    b.HasOne("Core.Domain.Entities.Cat_Especialidades", "Especialidades")
+                        .WithMany("Fisioterapeutas")
+                        .HasForeignKey("EspecialidadId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("fisioterapeuta_ibfk_1");
 
-                    b.Navigation("Diagnostico");
+                    b.Navigation("Especialidades");
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.GinecoObstetrico", b =>
                 {
-                    b.HasOne("Core.Domain.Entities.Expediente", "Expediente")
-                        .WithMany("GinecoObstetricos")
-                        .HasForeignKey("ExpedienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("gineco_obstetrico_ibfk_3");
-
-                    b.HasOne("Core.Domain.Entities.FlujoVaginal", "FlujoVaginal")
+                    b.HasOne("Core.Domain.Entities.Cat_FlujoVaginal", "CatFlujoVaginal")
                         .WithMany("GinecoObstetricos")
                         .HasForeignKey("FlujoVaginalId")
                         .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("gineco_obstetrico_ibfk_1");
 
-                    b.HasOne("Core.Domain.Entities.TipoAnticonceptivo", "TipoAnticonceptivo")
+                    b.HasOne("Core.Domain.Entities.Cat_TipoAnticonceptivo", "CatTipoAnticonceptivo")
                         .WithMany("GinecoObstetricos")
                         .HasForeignKey("TipoAnticonceptivoId")
                         .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("gineco_obstetrico_ibfk_2");
 
-                    b.Navigation("Expediente");
+                    b.Navigation("CatFlujoVaginal");
 
-                    b.Navigation("FlujoVaginal");
-
-                    b.Navigation("TipoAnticonceptivo");
-                });
-
-            modelBuilder.Entity("Core.Domain.Entities.HeredoFamiliar", b =>
-                {
-                    b.HasOne("Core.Domain.Entities.Expediente", "Expediente")
-                        .WithMany("HeredoFamiliars")
-                        .HasForeignKey("ExpedienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("heredo_familiar_ibfk_1");
-
-                    b.Navigation("Expediente");
-                });
-
-            modelBuilder.Entity("Core.Domain.Entities.MapaCorporal", b =>
-                {
-                    b.HasOne("Core.Domain.Entities.Diagnostico", "Diagnostico")
-                        .WithMany("MapaCorporals")
-                        .HasForeignKey("DiagnosticoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("mapa_corporal_ibfk_1");
-
-                    b.Navigation("Diagnostico");
-                });
-
-            modelBuilder.Entity("Core.Domain.Entities.NoPatologico", b =>
-                {
-                    b.HasOne("Core.Domain.Entities.Expediente", "Expediente")
-                        .WithMany("NoPatologicos")
-                        .HasForeignKey("ExpedienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("no_patologico_ibfk_1");
-
-                    b.Navigation("Expediente");
+                    b.Navigation("CatTipoAnticonceptivo");
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.Paciente", b =>
                 {
-                    b.HasOne("Core.Domain.Entities.EstadoCivil", "EstadoCivil")
+                    b.HasOne("Core.Domain.Entities.Cat_EstadoCivil", "CatEstadoCivil")
                         .WithMany("Pacientes")
                         .HasForeignKey("EstadoCivilId")
                         .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("paciente_ibfk_1");
 
-                    b.Navigation("EstadoCivil");
-                });
+                    b.HasOne("Core.Domain.Entities.Fisioterapeuta", "Fisioterapeuta")
+                        .WithMany("Pacientes")
+                        .HasForeignKey("FisioterapeutaId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("paciente_ibfk_2");
 
-            modelBuilder.Entity("Core.Domain.Entities.ProgramaFisioterapeutico", b =>
-                {
-                    b.HasOne("Core.Domain.Entities.Diagnostico", "Diagnostico")
-                        .WithMany("ProgramaFisioterapeuticos")
-                        .HasForeignKey("DiagnosticoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("programa_fisioterapeutico_ibfk_1");
+                    b.Navigation("CatEstadoCivil");
 
-                    b.Navigation("Diagnostico");
+                    b.Navigation("Fisioterapeuta");
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.Revision", b =>
@@ -748,66 +894,114 @@ namespace Core.Infraestructure.Persistance.Migrations
                         .HasForeignKey("DiagnosticoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
+                        .HasConstraintName("revision_ibfk_1");
+
+                    b.HasOne("Core.Domain.Entities.ExploracionFisica", "ExploracionFisica")
+                        .WithMany("Revisions")
+                        .HasForeignKey("ExploracionFisicaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("revision_ibfk_2");
 
-                    b.HasOne("Core.Domain.Entities.Fisioterapeutum", "Fisioterapeuta")
+                    b.HasOne("Core.Domain.Entities.Cat_Servicios", "Servicio")
                         .WithMany("Revisions")
-                        .HasForeignKey("FisioterapeutaId")
+                        .HasForeignKey("ServicioId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .HasConstraintName("revision_ibfk_1");
+                        .HasConstraintName("revision_ibfk_3");
 
                     b.Navigation("Diagnostico");
 
-                    b.Navigation("Fisioterapeuta");
+                    b.Navigation("ExploracionFisica");
+
+                    b.Navigation("Servicio");
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.Cat_Especialidades", b =>
+                {
+                    b.Navigation("Fisioterapeutas");
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.Cat_EstadoCivil", b =>
+                {
+                    b.Navigation("Pacientes");
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.Cat_FlujoVaginal", b =>
+                {
+                    b.Navigation("GinecoObstetricos");
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.Cat_MotivoAlta", b =>
+                {
+                    b.Navigation("Diagnosticos");
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.Cat_Servicios", b =>
+                {
+                    b.Navigation("Revisions");
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.Cat_TipoAnticonceptivo", b =>
+                {
+                    b.Navigation("GinecoObstetricos");
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.Diagnostico", b =>
                 {
-                    b.Navigation("ExploracionFisicas");
-
-                    b.Navigation("MapaCorporals");
-
-                    b.Navigation("ProgramaFisioterapeuticos");
-
                     b.Navigation("Revisions");
-                });
-
-            modelBuilder.Entity("Core.Domain.Entities.EstadoCivil", b =>
-                {
-                    b.Navigation("Pacientes");
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.Expediente", b =>
                 {
                     b.Navigation("Diagnosticos");
-
-                    b.Navigation("GinecoObstetricos");
-
-                    b.Navigation("HeredoFamiliars");
-
-                    b.Navigation("NoPatologicos");
                 });
 
-            modelBuilder.Entity("Core.Domain.Entities.Fisioterapeutum", b =>
+            modelBuilder.Entity("Core.Domain.Entities.ExploracionFisica", b =>
                 {
                     b.Navigation("Revisions");
                 });
 
-            modelBuilder.Entity("Core.Domain.Entities.FlujoVaginal", b =>
+            modelBuilder.Entity("Core.Domain.Entities.Fisioterapeuta", b =>
                 {
-                    b.Navigation("GinecoObstetricos");
+                    b.Navigation("Pacientes");
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.GinecoObstetrico", b =>
+                {
+                    b.Navigation("Expediente")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.HeredoFamiliar", b =>
+                {
+                    b.Navigation("Expediente")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.MapaCorporal", b =>
+                {
+                    b.Navigation("Diagnostico")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.NoPatologico", b =>
+                {
+                    b.Navigation("Expediente")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.Paciente", b =>
                 {
                     b.Navigation("Citas");
 
-                    b.Navigation("Expedientes");
+                    b.Navigation("Expediente")
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("Core.Domain.Entities.TipoAnticonceptivo", b =>
+            modelBuilder.Entity("Core.Domain.Entities.ProgramaFisioterapeutico", b =>
                 {
-                    b.Navigation("GinecoObstetricos");
+                    b.Navigation("Diagnostico")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

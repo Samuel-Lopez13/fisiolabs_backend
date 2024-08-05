@@ -12,9 +12,9 @@ public record GetRevisiones() : IRequest<List<GetRevisionesResponse>>
 
 public class GetRevisionesHandler : IRequestHandler<GetRevisiones, List<GetRevisionesResponse>>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
     
-    public GetRevisionesHandler(FisiolabsSofwaredbContext context)
+    public GetRevisionesHandler(FisioContext context)
     {
         _context = context;
     }
@@ -23,7 +23,6 @@ public class GetRevisionesHandler : IRequestHandler<GetRevisiones, List<GetRevis
     {
         var revisiones = await _context.Revisions
             .AsNoTracking()
-            .Include(x => x.Fisioterapeuta)
             .OrderBy(x => x.Fecha)
             .ThenBy(x => x.Hora)
             .Where(x => x.DiagnosticoId == request.DiagnosticoId.HashIdInt())
@@ -34,8 +33,7 @@ public class GetRevisionesHandler : IRequestHandler<GetRevisiones, List<GetRevis
             Notas = x.Notas,
             Fecha = x.Fecha,
             Hora = x.Hora,
-            ComprobantePago = x.ComprobantePago,
-            Fisioterapeuta = x.Fisioterapeuta.Fisioterapeuta
+            ComprobantePago = x.FolioPago
         }).ToList()); 
     }
 }

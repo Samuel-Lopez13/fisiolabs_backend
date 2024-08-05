@@ -20,9 +20,9 @@ public record PostRevisiones() : IRequest
 
 public class PostRevisionHandler : IRequestHandler<PostRevisiones>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
     
-    public PostRevisionHandler(FisiolabsSofwaredbContext context)
+    public PostRevisionHandler(FisioContext context)
     {
         _context = context;
     }
@@ -32,9 +32,8 @@ public class PostRevisionHandler : IRequestHandler<PostRevisiones>
         var revision = new Revision
         {
             DiagnosticoId = request.DiagnosticoId.HashIdInt(),
-            FisioterapeutaId = request.FisioterapeutaId.HashIdInt(),
             Notas = request.Notas,
-            ComprobantePago = request.ComprobantePago,
+            FolioPago = request.ComprobantePago,
             Fecha = FormatDate.DateLocal(),
             Hora = new TimeSpan(FormatDate.DateLocal().Hour, FormatDate.DateLocal().Minute, 0)
         };

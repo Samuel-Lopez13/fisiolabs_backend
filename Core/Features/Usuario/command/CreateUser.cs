@@ -17,9 +17,9 @@ public record CreateUser : IRequest
 
 public class CreateUserHandler : IRequestHandler<CreateUser>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
     
-    public CreateUserHandler(FisiolabsSofwaredbContext context)
+    public CreateUserHandler(FisioContext context)
     {
         _context = context;
     }
@@ -38,8 +38,8 @@ public class CreateUserHandler : IRequestHandler<CreateUser>
         {
             Username = request.Username,
             Password = BCrypt.Net.BCrypt.HashPassword(request.Contraseña),
+            Clave = BCrypt.Net.BCrypt.HashPassword("12345"),
             Especialidad = "Fisioterapeuta general",
-            Nacionalidad = "Mexico",
             FotoPerfil = "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png"
         };
         

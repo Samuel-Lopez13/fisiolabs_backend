@@ -10,9 +10,9 @@ public record GetFisioterapeutas() : IRequest<List<GetFisioterapeutaResponse>>;
 
 public class GetFisioterapeutaHandler : IRequestHandler<GetFisioterapeutas, List<GetFisioterapeutaResponse>>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
 
-    public GetFisioterapeutaHandler(FisiolabsSofwaredbContext context)
+    public GetFisioterapeutaHandler(FisioContext context)
     {
         _context = context;
     }
@@ -21,14 +21,15 @@ public class GetFisioterapeutaHandler : IRequestHandler<GetFisioterapeutas, List
     {
         var fisios = _context.Fisioterapeuta
             .AsNoTracking()
+            .Include(x => x.Especialidades)
             .Select(x => new GetFisioterapeutaResponse()
             {
                 FisioterapeutaId = x.FisioterapeutaId.HashId(),
-                Nombre = x.Fisioterapeuta,
+                Nombre = x.Nombre,
                 CedulaProfesional = x.CedulaProfesional,
                 Correo = x.Correo,
                 Telefono = x.Telefono,
-                Especialidad = x.Especialidad,
+                Especialidad = x.Especialidades.Descripcion,
                 Foto = x.Foto
             }).ToListAsync();
 
@@ -40,13 +41,13 @@ public record GetFisioterapeutaResponse{
     public string FisioterapeutaId { get; set; }
     public string Nombre { get; set; }
     
-    public string CedulaProfesional { get; set; }
-    
     public string Correo { get; set; }
     
     public string Telefono { get; set; }
     
-    public int Especialidad { get; set; }
+    public string CedulaProfesional { get; set; }
     
     public string Foto { get; set; }
+    
+    public string Especialidad { get; set; }
 }

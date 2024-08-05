@@ -1,6 +1,8 @@
+using Core.Features.Usuario.Command;
+
 namespace Core.Domain.Services;
 
 public interface IAuthService
 {
-    Task<string> AuthenticateAsync(string email, string password);
+    Task<JWTSettings> AuthenticateAsync(string email, string password);
 }

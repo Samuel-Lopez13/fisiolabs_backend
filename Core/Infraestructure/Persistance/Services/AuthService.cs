@@ -12,16 +12,16 @@ namespace Core.Features.Usuario.Command;
 
 public class AuthService : IAuthService
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
     private readonly IConfiguration _configuration;
     
-    public AuthService(FisiolabsSofwaredbContext context, IConfiguration configuration)
+    public AuthService(FisioContext context, IConfiguration configuration)
     {
         _context = context;
         _configuration = configuration;
     }
     
-    public async Task<string> AuthenticateAsync(string email, string password)
+    public async Task<JWTSettings> AuthenticateAsync(string email, string password)
     {
         //Devuelve al usuario
         var user = await _context.Usuarios
@@ -47,7 +47,21 @@ public class AuthService : IAuthService
         };
         
         var token = tokenHandler.CreateToken(tokenDescriptor);
-        return tokenHandler.WriteToken(token);
+        //var expiracion = token.ValidTo;
+        //return tokenHandler.WriteToken(token);
+        
+        var response = new JWTSettings()
+        {
+            Token = tokenHandler.WriteToken(token),
+            Expiracion = token.ValidTo
+        };
+
+        return response;
     }
-    
+}
+
+public record JWTSettings
+{
+    public string Token { get; set; }
+    public DateTime Expiracion { get; set; }
 }

@@ -111,9 +111,6 @@ public record ProgramPost()
 
 public record ReviewPost()
 {
-    [Required(ErrorMessage = "El campo FisioterapeutaId es obligatorio")]
-    public string FisioterapeutaId { get; set; }
-    
     [Required(ErrorMessage = "El campo ComprobantePago es obligatorio")]
     public string ComprobantePago { get; set; }
 }
@@ -130,9 +127,9 @@ public record GeneralDiagnosticPost() : IRequest
 
 public class PostDiagnosticHanlder : IRequestHandler<GeneralDiagnosticPost>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
 
-    public PostDiagnosticHanlder(FisiolabsSofwaredbContext context)
+    public PostDiagnosticHanlder(FisioContext context)
     {
         _context = context;
     }
@@ -151,7 +148,7 @@ public class PostDiagnosticHanlder : IRequestHandler<GeneralDiagnosticPost>
                     Categoria = request.Diagnostic.Categoria,
                     DiagnosticoPrevio = request.Diagnostic.DiagnosticoPrevio,
                     DiagnosticoFuncional = request.Diagnostic.DiagnosticoFuncional,
-                    Diagnostico1 = request.Diagnostic.Diagnostico,
+                    Descripcion = request.Diagnostic.Diagnostico,
                     PadecimientoActual = request.Diagnostic.PadecimientoActual,
                     Refiere = request.Diagnostic.Refiere,
                     TerapeuticaEmpleada = request.Diagnostic.TerapeuticaEmpleada,
@@ -160,7 +157,7 @@ public class PostDiagnosticHanlder : IRequestHandler<GeneralDiagnosticPost>
                     Movibilidad = request.Diagnostic.Movibilidad,
                     EstudiosComplementarios = request.Diagnostic.EstudiosComplementarios,
                     DiagnosticoNosologico = request.Diagnostic.DiagnosticoNosologico,
-                    ExpededienteId = request.ExpedienteId.HashIdInt()
+                    ExpedienteId = request.ExpedienteId.HashIdInt()
                 };
                 
                 await _context.Diagnosticos.AddAsync(diagnostico);
@@ -177,8 +174,7 @@ public class PostDiagnosticHanlder : IRequestHandler<GeneralDiagnosticPost>
                     Estatura = request.Exploration.Estatura,
                     Imc = request.Exploration.Imc,
                     IndiceCinturaCadera = request.Exploration.IndiceCinturaCadera,
-                    SaturacionOxigeno = request.Exploration.SaturacionOxigeno,
-                    DiagnosticoId = diagnostico.DiagnosticoId
+                    SaturacionOxigeno = request.Exploration.SaturacionOxigeno
                 };
                 
                 await _context.ExploracionFisicas.AddAsync(exploracion);
@@ -191,8 +187,7 @@ public class PostDiagnosticHanlder : IRequestHandler<GeneralDiagnosticPost>
                     LargoPlazo = request.Program.LargoPlazo,
                     TratamientoFisioterapeutico = request.Program.TratamientoFisioterapeutico,
                     Sugerencias = request.Program.Sugerencias,
-                    Pronostico = request.Program.Pronostico,
-                    DiagnosticoId = diagnostico.DiagnosticoId
+                    Pronostico = request.Program.Pronostico
                 };
                 
                 await _context.ProgramaFisioterapeuticos.AddAsync(program);
@@ -200,10 +195,9 @@ public class PostDiagnosticHanlder : IRequestHandler<GeneralDiagnosticPost>
 
                 var mapa = new MapaCorporal()
                 {
-                    ValorX = request.Map.valores,
+                    Valor = request.Map.valores,
                     RangoDolor = request.Map.RangoDolor,
                     Nota = request.Map.Nota,
-                    DiagnosticoId = diagnostico.DiagnosticoId  
                 };
                 
                 await _context.MapaCorporals.AddAsync(mapa);
@@ -212,10 +206,9 @@ public class PostDiagnosticHanlder : IRequestHandler<GeneralDiagnosticPost>
                 var revision = new Revision()
                 {
                     Notas = request.Map.Nota,
-                    ComprobantePago = request.Review.ComprobantePago,
+                    FolioPago = request.Review.ComprobantePago,
                     Fecha = FormatDate.DateLocal(),
                     Hora =  new TimeSpan(FormatDate.DateLocal().Hour, FormatDate.DateLocal().Minute, 0),
-                    FisioterapeutaId = request.Review.FisioterapeutaId.HashIdInt(),
                     DiagnosticoId = diagnostico.DiagnosticoId
                 };
                 

@@ -37,7 +37,7 @@ DotEnv.Load();
 //Database
 const string connectionName = "ConexionMaestra";
 var connectionString = builder.Configuration.GetConnectionString(connectionName);
-builder.Services.AddDbContext<FisiolabsSofwaredbContext>(options => options.UseMySQL(connectionString));
+builder.Services.AddDbContext<FisioContext>(options => options.UseMySQL(connectionString));
 
 var app = builder.Build();
 
@@ -51,6 +51,8 @@ app.UseSwaggerUI(c =>
     // Incluir hoja de estilos personalizada
     c.InjectStylesheet("/swagger-ui/custom.css");
 });
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 

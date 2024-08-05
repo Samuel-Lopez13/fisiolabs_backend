@@ -13,9 +13,9 @@ public record PatientData : IRequest<PatientDataResponse>
 
 public class DataPatientHandler : IRequestHandler<PatientData, PatientDataResponse>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
 
-    public DataPatientHandler(FisiolabsSofwaredbContext context)
+    public DataPatientHandler(FisioContext context)
     {
         _context = context;
     }
@@ -25,7 +25,7 @@ public class DataPatientHandler : IRequestHandler<PatientData, PatientDataRespon
         //Intentamos buscar al paciente
         var patient = await _context.Pacientes
             .AsNoTracking()
-            .Include(u => u.Expedientes)
+            .Include(u => u.Expediente)
             .FirstOrDefaultAsync(x => x.PacienteId == request.PacienteId.HashIdInt());
 
         //Si no se encuentra, mandar un 404 (Not Found)
@@ -41,7 +41,7 @@ public class DataPatientHandler : IRequestHandler<PatientData, PatientDataRespon
             Edad = FormatDate.DateToYear(patient.Edad.Date),
             FechaNacimiento = patient.Edad,
             Sexo = patient.Sexo,
-            Verificado = patient.Expedientes.Any(),
+            Verificado = patient.Expediente != null,
             Institucion = patient.Institucion,
             Domicilio = patient.Domicilio,
             CodigoPostal = patient.CodigoPostal,

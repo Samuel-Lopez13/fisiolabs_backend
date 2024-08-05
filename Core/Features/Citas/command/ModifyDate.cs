@@ -16,9 +16,9 @@ public record ModifyDate : IRequest
 
 public class ModifyDateHandler : IRequestHandler<ModifyDate>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
 
-    public ModifyDateHandler(FisiolabsSofwaredbContext context)
+    public ModifyDateHandler(FisioContext context)
     {
         _context = context;
     }

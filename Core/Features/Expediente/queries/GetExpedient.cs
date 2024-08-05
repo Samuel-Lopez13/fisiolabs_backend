@@ -13,9 +13,9 @@ public record GetExpedient : IRequest<GetExpedientResponse>
 
 public class GetExpedientHandler : IRequestHandler<GetExpedient, GetExpedientResponse>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
 
-    public GetExpedientHandler(FisiolabsSofwaredbContext context)
+    public GetExpedientHandler(FisioContext context)
     {
         _context = context;
     }
@@ -26,13 +26,16 @@ public class GetExpedientHandler : IRequestHandler<GetExpedient, GetExpedientRes
         var expedient = await _context.Expedientes
             .AsNoTracking()
             .Include(x => x.Diagnosticos)
+            .Include(x => x.GinecoObstetrico)
+            .Include(x => x.HeredoFamiliar)
+            .Include(x => x.NoPatologico)
             .FirstOrDefaultAsync(x => x.PacienteId == request.PacienteId.HashIdInt());
         
         if(expedient == null)
             throw new NotFoundException("No se encontro el expediente");
 
         //Buscamos sus datos
-        var antecedents = await _context.NoPatologicos
+        /*var antecedents = await _context.NoPatologicos
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.ExpedienteId == expedient.ExpedienteId);
         
@@ -42,59 +45,59 @@ public class GetExpedientHandler : IRequestHandler<GetExpedient, GetExpedientRes
         
         var gineco = await _context.GinecoObstetricos
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.ExpedienteId == expedient.ExpedienteId);
+            .FirstOrDefaultAsync(x => x.ExpedienteId == expedient.ExpedienteId);*/
         
         var response = new GetExpedientResponse()
         {
-            ExpedienteId = expedient.ExpedienteId.HashId(),
+            //ExpedienteId = expedient.ExpedienteId.HashId(),
             TipoInterrogatorio = expedient.TipoInterrogatorio,
             Responsable = expedient.Responsable,
             Diagnosticos = expedient.Diagnosticos.Select(x => new DiagnosticGet()
             {
-                Diagnostico = x.Diagnostico1,
+                Diagnostico = x.Descripcion,
                 DiagnosticoId = x.DiagnosticoId.HashId(),
                 Status = x.Estatus
             }).ToList(),
             HeredoFamiliar = new FamilyHistoryGet()
             {
-                Padres = familyHistory.Padres,
-                PadresVivos = familyHistory.PadresVivos,
-                PadresCausaMuerte = familyHistory?.PadresCausaMuerte ?? "Sin registro",
-                Hermanos = familyHistory.Hermanos,
-                HermanosVivos = familyHistory.HermanosVivos,
-                HermanosCausaMuerte = familyHistory.HermanosCausaMuerte ?? "Sin registro",
-                Hijos = familyHistory.Hijos,
-                HijosVivos = familyHistory.HijosVivos,
-                HijosCausaMuerte = familyHistory.HijosCausaMuerte ?? "Sin registro",
-                Dm = familyHistory.Dm ?? "Sin registro",
-                Hta = familyHistory.Hta ?? "Sin registro",
-                Cancer = familyHistory.Cancer ?? "Sin registro",
-                Alcoholismo = familyHistory.Alcoholismo ?? "Sin registro",
-                Tabaquismo = familyHistory.Tabaquismo ?? "Sin registro",
-                Drogas = familyHistory.Drogas ?? "Sin registro"
+                Padres = expedient.HeredoFamiliar.Padres,
+                PadresVivos = expedient.HeredoFamiliar.PadresVivos,
+                PadresCausaMuerte = expedient.HeredoFamiliar?.PadresCausaMuerte ?? "Sin registro",
+                Hermanos = expedient.HeredoFamiliar.Hermanos,
+                HermanosVivos = expedient.HeredoFamiliar.HermanosVivos,
+                HermanosCausaMuerte = expedient.HeredoFamiliar.HermanosCausaMuerte ?? "Sin registro",
+                Hijos = expedient.HeredoFamiliar.Hijos,
+                HijosVivos = expedient.HeredoFamiliar.HijosVivos,
+                HijosCausaMuerte = expedient.HeredoFamiliar.HijosCausaMuerte ?? "Sin registro",
+                Dm = expedient.HeredoFamiliar.Dm ?? "Sin registro",
+                Hta = expedient.HeredoFamiliar.Hta ?? "Sin registro",
+                Cancer = expedient.HeredoFamiliar.Cancer ?? "Sin registro",
+                Alcoholismo = expedient.HeredoFamiliar.Alcoholismo ?? "Sin registro",
+                Tabaquismo = expedient.HeredoFamiliar.Tabaquismo ?? "Sin registro",
+                Drogas = expedient.HeredoFamiliar.Drogas ?? "Sin registro"
             },
             Antecedente = new AntecedentsGet()
             {
                 AntecedentesPatologicos = expedient.AntecedentesPatologicos,
-                MedioLaboral = antecedents.MedioLaboral,
-                MedioSociocultural = antecedents.MedioSociocultural,
-                MedioFisicoambiental = antecedents.MedioFisicoambiental
+                MedioLaboral = expedient.NoPatologico.MedioLaboral,
+                MedioSociocultural = expedient.NoPatologico.MedioSociocultural,
+                MedioFisicoambiental = expedient.NoPatologico.MedioFisicoambiental
             },
             Ginecobstetricos = new GinecobstetricoGet()
             {
-                Fum = gineco == null ? "" : gineco?.Fum ?? "Sin registro",
-                Fpp = gineco == null ? "" : gineco.Fpp ?? "Sin registro",
-                EdadGestional = gineco == null ? "" : gineco.EdadGestional.ToString() ?? "Sin registro",
-                Semanas = gineco == null ? "" : gineco.Semanas.ToString() ?? "Sin registro",
-                Menarca = gineco == null ? "" : gineco.Menarca ?? "Sin registro",
-                Ritmo = gineco == null ? "" : gineco.Ritmo ?? "Sin registro",
-                Gestas = gineco == null ? "" : gineco.Gestas.ToString() ?? "Sin registro",
-                Partos = gineco == null ? "" : gineco.Partos.ToString() ?? "Sin registro",
-                Cesareas = gineco == null ? "" : gineco.Cesareas.ToString() ?? "Sin registro",
-                Abortos = gineco == null ? "" : gineco.Abortos.ToString() ?? "Sin registro",
-                Cirugias = gineco == null ? "" : gineco.Cirugias ?? "Sin registro",
-                FlujoVaginalId = gineco == null ? 0 : gineco.FlujoVaginalId,
-                TipoAnticonceptivoId = gineco == null ? 0 : gineco.TipoAnticonceptivoId
+                Fum = expedient.GinecoObstetrico == null ? "" : expedient.GinecoObstetrico?.Fum ?? "Sin registro",
+                Fpp = expedient.GinecoObstetrico == null ? "" : expedient.GinecoObstetrico.Fpp ?? "Sin registro",
+                EdadGestional = expedient.GinecoObstetrico == null ? "" : expedient.GinecoObstetrico.EdadGestional.ToString() ?? "Sin registro",
+                Semanas = expedient.GinecoObstetrico == null ? "" : expedient.GinecoObstetrico.Semanas.ToString() ?? "Sin registro",
+                Menarca = expedient.GinecoObstetrico == null ? "" : expedient.GinecoObstetrico.Menarca ?? "Sin registro",
+                Ritmo = expedient.GinecoObstetrico == null ? "" : expedient.GinecoObstetrico.Ritmo ?? "Sin registro",
+                Gestas = expedient.GinecoObstetrico == null ? "" : expedient.GinecoObstetrico.Gestas.ToString() ?? "Sin registro",
+                Partos = expedient.GinecoObstetrico == null ? "" : expedient.GinecoObstetrico.Partos.ToString() ?? "Sin registro",
+                Cesareas = expedient.GinecoObstetrico == null ? "" : expedient.GinecoObstetrico.Cesareas.ToString() ?? "Sin registro",
+                Abortos = expedient.GinecoObstetrico == null ? "" : expedient.GinecoObstetrico.Abortos.ToString() ?? "Sin registro",
+                Cirugias = expedient.GinecoObstetrico == null ? "" : expedient.GinecoObstetrico.Cirugias ?? "Sin registro",
+                FlujoVaginalId = expedient.GinecoObstetrico == null ? 0 : expedient.GinecoObstetrico.FlujoVaginalId,
+                TipoAnticonceptivoId = expedient.GinecoObstetrico == null ? 0 : expedient.GinecoObstetrico.TipoAnticonceptivoId
             }
         };
 

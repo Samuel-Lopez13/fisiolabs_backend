@@ -64,29 +64,29 @@ public record AntecedentsPost
 
 public record GinecobstetricoPost
 {
-    public string? Fum { get; set; }
+    public string Fum { get; set; }
 
-    public string? Fpp { get; set; }
+    public string Fpp { get; set; }
 
-    public int? EdadGestional { get; set; }
+    public int EdadGestional { get; set; }
 
-    public int? Semanas { get; set; }
+    public int Semanas { get; set; }
 
-    public string? Menarca { get; set; }
+    public string Menarca { get; set; }
 
-    public string? Ritmo { get; set; }
+    public string Ritmo { get; set; }
 
-    public int? Gestas { get; set; }
+    public int Gestas { get; set; }
 
-    public int? Partos { get; set; }
+    public int Partos { get; set; }
 
-    public int? Cesareas { get; set; }
+    public int Cesareas { get; set; }
 
-    public int? Abortos { get; set; }
+    public int Abortos { get; set; }
 
-    public string? Cirugias { get; set; }
+    public string Cirugias { get; set; }
 
-    public int? FlujoVaginalId { get; set; }
+    public int FlujoVaginalId { get; set; }
 
     [Required(ErrorMessage = "El campo TipoAnticonceptivoId es obligatorio")]
     public int TipoAnticonceptivoId { get; set; }
@@ -109,9 +109,9 @@ public record PostExpedient : IRequest
 
 public class PostExpedientHandler : IRequestHandler<PostExpedient>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
 
-    public PostExpedientHandler(FisiolabsSofwaredbContext context)
+    public PostExpedientHandler(FisioContext context)
     {
         _context = context;
     }
@@ -140,7 +140,7 @@ public class PostExpedientHandler : IRequestHandler<PostExpedient>
                     MedioLaboral = request.Antecedente.MedioLaboral,
                     MedioSociocultural = request.Antecedente.MedioSociocultural,
                     MedioFisicoambiental = request.Antecedente.MedioFisicoambiental,
-                    ExpedienteId = expedient.ExpedienteId,
+                    //ExpedienteId = expedient.ExpedienteId,
                 };
 
                 await _context.NoPatologicos.AddAsync(noPatologico);
@@ -163,7 +163,7 @@ public class PostExpedientHandler : IRequestHandler<PostExpedient>
                     Alcoholismo = request.HeredoFamiliar.Alcoholismo,
                     Tabaquismo = request.HeredoFamiliar.Tabaquismo,
                     Drogas = request.HeredoFamiliar.Drogas,
-                    ExpedienteId = expedient.ExpedienteId
+                    //ExpedienteId = expedient.ExpedienteId
                 };
                 
                 await _context.HeredoFamiliars.AddAsync(heredoFamiliar);
@@ -189,7 +189,7 @@ public class PostExpedientHandler : IRequestHandler<PostExpedient>
                         Cirugias = request.Ginecobstetricos.Cirugias,
                         FlujoVaginalId = request.Ginecobstetricos.FlujoVaginalId,
                         TipoAnticonceptivoId = request.Ginecobstetricos.TipoAnticonceptivoId,
-                        ExpedienteId = expedient.ExpedienteId
+                        //ExpedienteId = expedient.ExpedienteId
                     };
                     
                     await _context.GinecoObstetricos.AddAsync(ginecobtetrico);

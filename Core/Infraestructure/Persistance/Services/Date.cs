@@ -7,9 +7,9 @@ namespace Core.Features.Usuario.Command;
 
 public class Date : IDate
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
     
-    public Date(FisiolabsSofwaredbContext context)
+    public Date(FisioContext context)
     {
         _context = context;
     }

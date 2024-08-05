@@ -18,10 +18,10 @@ public record Login : IRequest<LoginResponse>
 
 public class LoginHandler : IRequestHandler<Login, LoginResponse>
 {
-    private readonly FisiolabsSofwaredbContext _context;
+    private readonly FisioContext _context;
     private readonly IAuthService _authService;
 
-    public LoginHandler(FisiolabsSofwaredbContext context, IAuthService authService)
+    public LoginHandler(FisioContext context, IAuthService authService)
     {
         _context = context;
         _authService = authService;
@@ -50,7 +50,8 @@ public class LoginHandler : IRequestHandler<Login, LoginResponse>
         var response = new LoginResponse()
         {
             Success = true,
-            AccessToken = token,
+            AccessToken = token.Token,
+            Vigencia = token.Expiracion,
             User = new UserDate()
             {
                 Id = user.UsuarioId,
@@ -66,7 +67,7 @@ public record LoginResponse
 {
     public bool Success { get; set; }
     public string AccessToken { get; set; }
-    
+    public DateTime Vigencia { get; set; }
     public UserDate User { get; set; }
 }
 
