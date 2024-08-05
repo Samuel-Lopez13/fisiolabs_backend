@@ -4,6 +4,234 @@
         <name>Presentation</name>
     </assembly>
     <members>
+        <member name="M:Presentation.Controllers.CatalogoController.getEspecialidades(System.Boolean)">
+            <summary>
+            Catalogo Especialidades
+            </summary>
+            <remarks>
+            Devuelve el catalogo de especialidades
+            True: Devuelve solo los campos activos
+            False: Devuelve todos los campos
+            </remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Especialidades</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.CatalogoController.getEstadoCivil(System.Boolean)">
+            <summary>
+            Catalogo Estado Civil
+            </summary>
+            <remarks>
+            Devuelve el catalogo de estados civiles
+            True: Devuelve solo los campos activos
+            False: Devuelve todos los campos
+            </remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Estados Civiles</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.CatalogoController.getFlujoVaginal(System.Boolean)">
+            <summary>
+            Catalogo Flujo Vaginal
+            </summary>
+            <remarks>
+            Devuelve el catalogo de flujo vaginal
+            True: Devuelve solo los campos activos
+            False: Devuelve todos los campos
+            </remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Flujo Vaginal</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.CatalogoController.getMotivoAlta(System.Boolean)">
+            <summary>
+            Catalogo Motivo de Alta
+            </summary>
+            <remarks>
+            Devuelve el catalogo de motivos de alta
+            True: Devuelve solo los campos activos
+            False: Devuelve todos los campos
+            </remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Motivos de Alta</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.CatalogoController.getServicios(System.Boolean)">
+            <summary>
+            Catalogo Servicios
+            </summary>
+            <remarks>
+            Devuelve el catalogo de servicios
+            True: Devuelve solo los campos activos
+            False: Devuelve todos los campos
+            </remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Servicios</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.CatalogoController.getAnticonceptivo(System.Boolean)">
+            <summary>
+            Catalogo Tipo Anticonceptivo
+            </summary>
+            <remarks>
+            Devuelve el catalogo de tipo anticonceptivo
+            True: Devuelve solo los campos activos
+            False: Devuelve todos los campos
+            </remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Tipo Anticonceptivo</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.CatalogoController.PostEspecialidades(Core.Features.Catalogos.command.PostEspecialidades)">
+            <summary>
+            Especialidades
+            </summary>
+            <remarks>
+            Crea una nueva especialidad
+            </remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Se creo exitosamente</remarks>
+            </response>
+            <response code="400"><b>Bad Request:</b>
+            <remarks>Datos Erroneos</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.CatalogoController.PostEstadoCivil(Core.Features.Catalogos.command.PostEstadoCivil)">
+            <summary>
+            Estado Civil
+            </summary>
+            <remarks>
+            Crea un nuevo estado civil
+            </remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Se creo exitosamente</remarks>
+            </response>
+            <response code="400"><b>Bad Request:</b>
+            <remarks>Datos Erroneos</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.CatalogoController.PostFlujoVaginal(Core.Features.Catalogos.command.PostFlujoVaginal)">
+            <summary>
+            Flujo Vaginal
+            </summary>
+            <remarks>
+            Crea un nuevo flujo
+            </remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Se creo exitosamente</remarks>
+            </response>
+            <response code="400"><b>Bad Request:</b>
+            <remarks>Datos Erroneos</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.CatalogoController.PostMotivoAlta(Core.Features.Catalogos.command.PostMotivoAlta)">
+            <summary>
+            Motivo Alta
+            </summary>
+            <remarks>
+            Crea un nuevo motivo de alta
+            </remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Se creo exitosamente</remarks>
+            </response>
+            <response code="400"><b>Bad Request:</b>
+            <remarks>Datos Erroneos</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.CatalogoController.PostServicio(Core.Features.Catalogos.command.PostServicios)">
+            <summary>
+            Servicios
+            </summary>
+            <remarks>
+            Crea un nuevo servicio
+            </remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Se creo exitosamente</remarks>
+            </response>
+            <response code="400"><b>Bad Request:</b>
+            <remarks>Datos Erroneos</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.CatalogoController.PostTivoAnticonceptivo(Core.Features.Catalogos.command.PostAnticonceptivos)">
+            <summary>
+            Tipo Anticonceptivo
+            </summary>
+            <remarks>
+            Crea un nuevo tipo de anticonceptivo
+            </remarks>
+            <response code="200"><b>Ok:</b>
+            <remarks>Se creo exitosamente</remarks>
+            </response>
+            <response code="400"><b>Bad Request:</b>
+            <remarks>Datos Erroneos</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.CatalogoController.PatchEspecialidades(Core.Features.Catalogos.command.PutEspecialidades)">
+            <summary>
+            Modifica catalogo de especialidades
+            </summary>
+            <response code="200"><b>Ok:</b>
+            <remarks>Se modifico correctamente</remarks>
+            </response>
+            <response code="404"><b>Not Found:</b>
+            <remarks>No existe la descripción solicitada</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.CatalogoController.PatchEstadoCivil(Core.Features.Catalogos.command.PutEstadoCivil)">
+            <summary>
+            Modifica catalogo de estados civiles
+            </summary>
+            <response code="200"><b>Ok:</b>
+            <remarks>Se modifico correctamente</remarks>
+            </response>
+            <response code="404"><b>Not Found:</b>
+            <remarks>No existe la descripción solicitada</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.CatalogoController.PatchFlujo(Core.Features.Catalogos.command.PutFlujoVaginal)">
+            <summary>
+            Modifica catalogo de Flujo Vaginal
+            </summary>
+            <response code="200"><b>Ok:</b>
+            <remarks>Se modifico correctamente</remarks>
+            </response>
+            <response code="404"><b>Not Found:</b>
+            <remarks>No existe la descripción solicitada</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.CatalogoController.PatchMotivoAlta(Core.Features.Catalogos.command.PutMotivoAlta)">
+            <summary>
+            Modifica catalogo de Motivo de Alta
+            </summary>
+            <response code="200"><b>Ok:</b>
+            <remarks>Se modifico correctamente</remarks>
+            </response>
+            <response code="404"><b>Not Found:</b>
+            <remarks>No existe la descripción solicitada</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.CatalogoController.PatchServicios(Core.Features.Catalogos.command.PutServicios)">
+            <summary>
+            Modifica catalogo de Servicios
+            </summary>
+            <response code="200"><b>Ok:</b>
+            <remarks>Se modifico correctamente</remarks>
+            </response>
+            <response code="404"><b>Not Found:</b>
+            <remarks>No existe la descripción solicitada</remarks>
+            </response>
+        </member>
+        <member name="M:Presentation.Controllers.CatalogoController.PatchTipoAnticonceptivo(Core.Features.Catalogos.command.PutAnticonceptivo)">
+            <summary>
+            Modifica catalogo de Tipo Anticonceptivo
+            </summary>
+            <response code="200"><b>Ok:</b>
+            <remarks>Se modifico correctamente</remarks>
+            </response>
+            <response code="404"><b>Not Found:</b>
+            <remarks>No existe la descripción solicitada</remarks>
+            </response>
+        </member>
         <member name="M:Presentation.Controllers.DateController.getDateDaily">
             <summary>
             Obtiene las citas del dia
