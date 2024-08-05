@@ -24,8 +24,8 @@ public class GinecoObstetrico
     public int Abortos { get; set; }
     
     // Foreign keys
-    public int FlujoVaginalId { get; set; }
-    public int TipoAnticonceptivoId { get; set; }
+    public int? FlujoVaginalId { get; set; }
+    public int? TipoAnticonceptivoId { get; set; }
 
     // Configuración de relación uno a uno
     public virtual Cat_FlujoVaginal CatFlujoVaginal { get; set; }

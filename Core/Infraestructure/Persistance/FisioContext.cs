@@ -148,7 +148,7 @@ public partial class FisioContext : DbContext
             entity.HasKey(e => e.ExpedienteId);
 
             // Configuración de las propiedades de la entidad Expediente
-            entity.HasIndex(e => e.ExpedienteId).IsUnique();
+            entity.HasIndex(e => e.Nomenclatura).IsUnique();
             
             // Configuración de las relaciones de la entidad Expediente
             entity.HasIndex(e => e.PacienteId, "paciente_id");

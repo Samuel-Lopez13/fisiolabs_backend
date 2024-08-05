@@ -21,6 +21,7 @@ public class GetFisioterapeutaHandler : IRequestHandler<GetFisioterapeutas, List
     {
         var fisios = _context.Fisioterapeuta
             .AsNoTracking()
+            .Include(x => x.Especialidades)
             .Select(x => new GetFisioterapeutaResponse()
             {
                 FisioterapeutaId = x.FisioterapeutaId.HashId(),
@@ -28,7 +29,7 @@ public class GetFisioterapeutaHandler : IRequestHandler<GetFisioterapeutas, List
                 CedulaProfesional = x.CedulaProfesional,
                 Correo = x.Correo,
                 Telefono = x.Telefono,
-                Especialidad = x.EspecialidadId,
+                Especialidad = x.Especialidades.Descripcion,
                 Foto = x.Foto
             }).ToListAsync();
 
@@ -40,13 +41,13 @@ public record GetFisioterapeutaResponse{
     public string FisioterapeutaId { get; set; }
     public string Nombre { get; set; }
     
-    public string CedulaProfesional { get; set; }
-    
     public string Correo { get; set; }
     
     public string Telefono { get; set; }
     
-    public int Especialidad { get; set; }
+    public string CedulaProfesional { get; set; }
     
     public string Foto { get; set; }
+    
+    public string Especialidad { get; set; }
 }

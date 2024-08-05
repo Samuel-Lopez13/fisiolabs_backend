@@ -21,7 +21,7 @@ public class AuthService : IAuthService
         _configuration = configuration;
     }
     
-    public async Task<string> AuthenticateAsync(string email, string password)
+    public async Task<JWTSettings> AuthenticateAsync(string email, string password)
     {
         //Devuelve al usuario
         var user = await _context.Usuarios
@@ -47,7 +47,21 @@ public class AuthService : IAuthService
         };
         
         var token = tokenHandler.CreateToken(tokenDescriptor);
-        return tokenHandler.WriteToken(token);
+        //var expiracion = token.ValidTo;
+        //return tokenHandler.WriteToken(token);
+        
+        var response = new JWTSettings()
+        {
+            Token = tokenHandler.WriteToken(token),
+            Expiracion = token.ValidTo
+        };
+
+        return response;
     }
-    
+}
+
+public record JWTSettings
+{
+    public string Token { get; set; }
+    public DateTime Expiracion { get; set; }
 }

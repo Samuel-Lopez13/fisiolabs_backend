@@ -24,7 +24,7 @@ public class Fisioterapeuta
     public bool Status { get; set; }
 
     // Foreign Key
-    public int EspecialidadId { get; set; }
+    public int? EspecialidadId { get; set; }
     
     // Configuración de relación uno a uno
     public virtual Cat_Especialidades Especialidades { get; set; } = null!;

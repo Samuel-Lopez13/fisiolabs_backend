@@ -12,8 +12,9 @@ public class Expediente
     
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public string ExpedienteId { get; set; }
+    public int ExpedienteId { get; set; }
 
+    public string Nomenclatura { get; set; } = null!;
     public bool TipoInterrogatorio { get; set; }
     public string Responsable { get; set; } = null!;
     public string AntecedentesPatologicos { get; set; } = null!;

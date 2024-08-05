@@ -27,12 +27,12 @@ public class Paciente
     public bool Sexo { get; set; }
     public bool TipoPaciente { get; set; }
     public bool Status { get; set; }
-    public int CodigoPostal { get; set; }
     public DateTime Edad { get; set; }
+    public int CodigoPostal { get; set; }
     
     // Foreign keys
-    public int EstadoCivilId { get; set; }
-    public int FisioterapeutaId { get; set; }
+    public int? EstadoCivilId { get; set; }
+    public int? FisioterapeutaId { get; set; }
 
     // Configuración de relación uno a uno
     public virtual Expediente Expediente { get; set; }

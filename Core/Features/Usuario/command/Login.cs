@@ -50,7 +50,8 @@ public class LoginHandler : IRequestHandler<Login, LoginResponse>
         var response = new LoginResponse()
         {
             Success = true,
-            AccessToken = token,
+            AccessToken = token.Token,
+            Vigencia = token.Expiracion,
             User = new UserDate()
             {
                 Id = user.UsuarioId,
@@ -66,7 +67,7 @@ public record LoginResponse
 {
     public bool Success { get; set; }
     public string AccessToken { get; set; }
-    
+    public DateTime Vigencia { get; set; }
     public UserDate User { get; set; }
 }
 

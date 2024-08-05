@@ -38,6 +38,7 @@ public class CreateUserHandler : IRequestHandler<CreateUser>
         {
             Username = request.Username,
             Password = BCrypt.Net.BCrypt.HashPassword(request.Contraseña),
+            Clave = BCrypt.Net.BCrypt.HashPassword("12345"),
             Especialidad = "Fisioterapeuta general",
             FotoPerfil = "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png"
         };

@@ -52,6 +52,8 @@ app.UseSwaggerUI(c =>
     c.InjectStylesheet("/swagger-ui/custom.css");
 });
 
+app.UseMiddleware<ExceptionMiddleware>();
+
 app.UseHttpsRedirection();
 
 //app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
