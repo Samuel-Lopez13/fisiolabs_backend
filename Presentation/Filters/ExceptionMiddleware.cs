@@ -59,14 +59,13 @@ public class ExceptionMiddleware
             }
         }
         
-        /*context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
         return context.Response.WriteAsync(JsonConvert.SerializeObject(new ErrorResponse
         {
             Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1",
             Title = "Error Interno del Servidor",
             Status = context.Response.StatusCode,
             Detail = exception.Message
-        }));*/
-        throw exception;
+        }));
     }
 }
