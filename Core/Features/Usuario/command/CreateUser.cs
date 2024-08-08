@@ -8,10 +8,10 @@ namespace Core.Features.Usuario.command;
 
 public record CreateUser : IRequest
 {
-    [Required]
+    [Required(ErrorMessage = "El campo Username es obligatorio")]
     public string Username { get; set; }
     
-    [Required]
+    [Required(ErrorMessage = "El campo Contraseña es obligatorio")]
     public string Contraseña { get; set; }
 };
 

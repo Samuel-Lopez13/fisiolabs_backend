@@ -1,5 +1,4 @@
 using Core.Domain.Entities;
-using Core.Domain.Helpers;
 using Core.Domain.Services;
 using Core.Features.Usuario.Command;
 using Core.Infraestructure;
@@ -8,7 +7,6 @@ using dotenv.net;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Presentation;
-using Presentation.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
