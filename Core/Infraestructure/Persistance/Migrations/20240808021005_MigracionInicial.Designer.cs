@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Infraestructure.Persistance.Migrations
 {
     [DbContext(typeof(FisioContext))]
-    [Migration("20240805041913_Modificacion catalogos")]
-    partial class Modificacioncatalogos
+    [Migration("20240808021005_MigracionInicial")]
+    partial class MigracionInicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

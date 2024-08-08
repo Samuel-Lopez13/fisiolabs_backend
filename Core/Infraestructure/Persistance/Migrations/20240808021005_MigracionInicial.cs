@@ -21,7 +21,8 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     EspecialidadesId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Descripcion = table.Column<string>(type: "longtext", nullable: false)
+                    Descripcion = table.Column<string>(type: "varchar(255)", nullable: false),
+                    Status = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -35,7 +36,8 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     EstadoCivilId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Descripcion = table.Column<string>(type: "longtext", nullable: false)
+                    Descripcion = table.Column<string>(type: "varchar(255)", nullable: false),
+                    Status = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,7 +51,8 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     FlujoVaginalId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Descripcion = table.Column<string>(type: "longtext", nullable: false)
+                    Descripcion = table.Column<string>(type: "varchar(255)", nullable: false),
+                    Status = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,7 +66,8 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     MotivoAltaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Descripcion = table.Column<string>(type: "longtext", nullable: false)
+                    Descripcion = table.Column<string>(type: "varchar(255)", nullable: false),
+                    Status = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -77,7 +81,8 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     ServiciosId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Descripcion = table.Column<string>(type: "longtext", nullable: false)
+                    Descripcion = table.Column<string>(type: "varchar(255)", nullable: false),
+                    Status = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -91,7 +96,8 @@ namespace Core.Infraestructure.Persistance.Migrations
                 {
                     TipoAnticonceptivoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Descripcion = table.Column<string>(type: "longtext", nullable: false)
+                    Descripcion = table.Column<string>(type: "varchar(255)", nullable: false),
+                    Status = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -301,8 +307,8 @@ namespace Core.Infraestructure.Persistance.Migrations
                     Sexo = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     TipoPaciente = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     Status = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    CodigoPostal = table.Column<int>(type: "int", nullable: false),
                     Edad = table.Column<DateTime>(type: "date", nullable: false),
+                    CodigoPostal = table.Column<int>(type: "int", nullable: false),
                     EstadoCivilId = table.Column<int>(type: "int", nullable: true),
                     FisioterapeutaId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -488,6 +494,42 @@ namespace Core.Infraestructure.Persistance.Migrations
                         onDelete: ReferentialAction.SetNull);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_cat_especialidad_Descripcion",
+                table: "cat_especialidad",
+                column: "Descripcion",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_cat_estado_civil_Descripcion",
+                table: "cat_estado_civil",
+                column: "Descripcion",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_cat_flujo_vaginal_Descripcion",
+                table: "cat_flujo_vaginal",
+                column: "Descripcion",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_cat_motivo_alta_Descripcion",
+                table: "cat_motivo_alta",
+                column: "Descripcion",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_cat_servicios_Descripcion",
+                table: "cat_servicios",
+                column: "Descripcion",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_cat_tipo_anticonceptivo_Descripcion",
+                table: "cat_tipo_anticonceptivo",
+                column: "Descripcion",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "paciente_id",

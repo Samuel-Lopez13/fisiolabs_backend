@@ -16,17 +16,5 @@
         <member name="M:Core.Infraestructure.Persistance.Migrations.MigracionInicial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:Core.Infraestructure.Persistance.Migrations.Modificacioncatalogos">
-            <inheritdoc />
-        </member>
-        <member name="M:Core.Infraestructure.Persistance.Migrations.Modificacioncatalogos.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:Core.Infraestructure.Persistance.Migrations.Modificacioncatalogos.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:Core.Infraestructure.Persistance.Migrations.Modificacioncatalogos.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
     </members>
 </doc>
