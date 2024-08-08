@@ -8,7 +8,7 @@ namespace Core.Features.Pacientes.queries;
 public record GetPatients : IRequest<GetPatientsResponse>
 {
     public int Pagina { get; set; }
-    public bool Estatus { get; set; }
+    public bool OnlyActive { get; set; }
 };
 
 public class GetPatientsHandler : IRequestHandler<GetPatients, GetPatientsResponse>
@@ -33,7 +33,7 @@ public class GetPatientsHandler : IRequestHandler<GetPatients, GetPatientsRespon
         //Devuelve una lista de 10 pacientes
         var patients = await _context.Pacientes
             .AsNoTracking() // true || true == false
-            .Where(x => EstatusHelp.Estatus(request.Estatus, x.Status))
+            .Where(x => !request.OnlyActive || x.Status) //Si solo quiero los activos o todos
             .Include(x => x.Expediente)
             .OrderBy(x => x.Nombre)
             .Skip((request.Pagina - 1) * 10)

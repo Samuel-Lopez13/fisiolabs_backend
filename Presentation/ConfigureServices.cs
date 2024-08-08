@@ -13,6 +13,7 @@ public static class ConfigureServices
 {
     public static IServiceCollection AddPresentationServices(this IServiceCollection services, IConfiguration config)
     {
+        //Configura la manera en que se envian los errores, Son para los modelos
         services.Configure<ApiBehaviorOptions>(options =>
         {
             options.InvalidModelStateResponseFactory = context =>
