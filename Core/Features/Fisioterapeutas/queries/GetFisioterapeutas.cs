@@ -6,7 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Features;
 
-public record GetFisioterapeutas() : IRequest<List<GetFisioterapeutaResponse>>;
+public record GetFisioterapeutas() : IRequest<List<GetFisioterapeutaResponse>>
+{
+    public bool OnlyActive { get; set; }
+}
 
 public class GetFisioterapeutaHandler : IRequestHandler<GetFisioterapeutas, List<GetFisioterapeutaResponse>>
 {
@@ -21,6 +24,7 @@ public class GetFisioterapeutaHandler : IRequestHandler<GetFisioterapeutas, List
     {
         var fisios = _context.Fisioterapeuta
             .AsNoTracking()
+            .Where(x => !request.OnlyActive || x.Status) //Si solo quiero los activos o todos
             .Include(x => x.Especialidades)
             .Select(x => new GetFisioterapeutaResponse()
             {

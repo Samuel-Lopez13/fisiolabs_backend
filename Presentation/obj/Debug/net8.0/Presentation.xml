@@ -329,7 +329,7 @@
             <remarks>Algun dato se lleno incorrectamente</remarks>
             </response>
         </member>
-        <member name="M:Presentation.Controllers.FisioController.GetFisio">
+        <member name="M:Presentation.Controllers.FisioController.GetFisio(System.Boolean)">
             <summary>
             Obtiene todos los fisioterapeutas
             </summary>
@@ -340,7 +340,7 @@
             <remarks>Fisioterapeutas</remarks>
             </response>
         </member>
-        <member name="M:Presentation.Controllers.PacientesController.getPatients(System.Int32)">
+        <member name="M:Presentation.Controllers.PacientesController.getPatients(System.Int32,System.Boolean)">
             <summary>
             Obtener Pacientes
             </summary>

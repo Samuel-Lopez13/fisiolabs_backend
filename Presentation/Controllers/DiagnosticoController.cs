@@ -18,7 +18,7 @@ public class DiagnosticoController : ControllerBase
     {
         _mediator = mediator;
     }
-    
+    /*
     [HttpGet()]
     public async Task<GeneralDiagnosticResponse> DiagnosticGet([FromQuery] string diagnostico)
     {
@@ -56,5 +56,5 @@ public class DiagnosticoController : ControllerBase
     {
         await _mediator.Send(command);
         return Ok("Se modifico el expediente correctamente");
-    }
+    }*/
 }

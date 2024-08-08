@@ -20,7 +20,7 @@ public class ExpedienteController : ControllerBase
     {
         _mediator = mediator;
     }
-    
+    /*
     /// <summary>
     /// Expediente de paciente
     /// </summary>
@@ -61,5 +61,5 @@ public class ExpedienteController : ControllerBase
     {
         await _mediator.Send(command);
         return Ok("Se agregaron los datos correctamente");
-    }
+    }*/
 }

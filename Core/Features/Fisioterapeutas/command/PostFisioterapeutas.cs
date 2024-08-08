@@ -38,14 +38,12 @@ public class PostFisioterapeutasHandler : IRequestHandler<PostFisioterapeutas>
     
     public async Task Handle(PostFisioterapeutas request, CancellationToken cancellationToken)
     {
-        var especialidad = await _context.Especialidades.FindAsync(request.EspecialidadId.HashIdInt());
-        
         var fisio = new Fisioterapeuta() {
             Nombre = request.Nombre,
             Correo = request.Correo,
             Telefono = request.Telefono,
             CedulaProfesional = request.Cedula,
-            Foto = request.Foto == null ? "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png" : request.Foto,
+            Foto = request.Foto ?? "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png",
             Status = true, //Activo
             EspecialidadId = request.EspecialidadId.HashIdInt()
         };

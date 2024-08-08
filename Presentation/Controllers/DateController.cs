@@ -20,7 +20,7 @@ public class DateController : ControllerBase
     {
         _mediator = mediator;
     }
-    
+    /*
     /// <summary>
     /// Obtiene las citas del dia
     /// </summary>
@@ -99,5 +99,5 @@ public class DateController : ControllerBase
     {
         await _mediator.Send(command);
         return Ok("Se modifico la cita correctamente");
-    }
+    }*/
 }

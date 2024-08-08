@@ -22,7 +22,7 @@ public class CatalogoController : ControllerBase
     {
         _mediator = mediator;
     }
-    
+    /*
     /// <summary>
     /// Catalogo Especialidades
     /// </summary>
@@ -363,5 +363,5 @@ public class CatalogoController : ControllerBase
     {
         await _mediator.Send(command);
         return Ok("Se modifico correctamente");
-    }
+    }*/
 }

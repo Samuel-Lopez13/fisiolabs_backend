@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Core.Domain.Exceptions;
+using Core.Domain.Helpers;
 using Core.Domain.Services;
 using Core.Infraestructure.Persistance;
 using MediatR;
@@ -54,7 +55,7 @@ public class LoginHandler : IRequestHandler<Login, LoginResponse>
             Vigencia = token.Expiracion,
             User = new UserDate()
             {
-                Id = user.UsuarioId,
+                Id = user.UsuarioId.HashId(),
                 Username = user.Username
             }
         };
@@ -73,6 +74,6 @@ public record LoginResponse
 
 public record UserDate
 {
-    public int Id { get; set; }
+    public string Id { get; set; }
     public string Username { get; init; }
 }

@@ -21,7 +21,7 @@ public class UsuarioController : ControllerBase
     {
         _mediator = mediator;
     }
-    
+    /*
     /// <summary>
     /// Verifica si el token del usuario es verdadero
     /// </summary>
@@ -78,5 +78,5 @@ public class UsuarioController : ControllerBase
     {
         await _mediator.Send(command);
         return Ok("Se registro el usuario correctamente");
-    }
+    }*/
 }
