@@ -20,7 +20,7 @@ public class PacientesController: ControllerBase
     {
         _mediator = mediator;
     }
-
+    /*
     /// <summary>
     /// Obtener Pacientes
     /// </summary>
@@ -32,9 +32,9 @@ public class PacientesController: ControllerBase
     /// <remarks>Pacientes</remarks>
     /// </response>
     [HttpGet()]
-    public async Task<GetPatientsResponse> getPatients([FromQuery] int pagina)
+    public async Task<GetPatientsResponse> getPatients([FromQuery] int pagina, [FromQuery] bool estatus)
     {
-        return await _mediator.Send(new GetPatients() { Pagina = pagina });
+        return await _mediator.Send(new GetPatients() { Pagina = pagina, Estatus = estatus });
     }
     
     /// <summary>
@@ -127,5 +127,5 @@ public class PacientesController: ControllerBase
     {
         await _mediator.Send(new RemovePatient() { PacienteId = id });
         return Ok("Se elimino el paciente correctamente");
-    }
+    }*/
 }

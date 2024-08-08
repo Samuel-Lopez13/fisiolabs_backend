@@ -34,7 +34,7 @@ public class FisioController : ControllerBase
     /// <response code="400"><b>Bad Request:</b>
     /// <remarks>Algun dato se lleno incorrectamente</remarks>
     /// </response>
-    [SwaggerResponse(StatusCodes.Status200OK)]
+    /*[SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status400BadRequest, "Hubo algun fallo en el registro", typeof(ErrorResponse))]
     [HttpPost()]
     public async Task<IActionResult> PostFisio([FromBody] PostFisioterapeutas command)
@@ -54,8 +54,8 @@ public class FisioController : ControllerBase
     /// </response>
     [SwaggerResponse(StatusCodes.Status200OK)]
     [HttpGet()]
-    public async Task<List<GetFisioterapeutaResponse>> GetFisio()
+    public async Task<List<GetFisioterapeutaResponse>> GetFisio([FromQuery] bool onlyActive)
     {
-        return await _mediator.Send(new GetFisioterapeutas());
-    }
+        return await _mediator.Send(new GetFisioterapeutas(){ OnlyActive = onlyActive});
+    }*/
 }

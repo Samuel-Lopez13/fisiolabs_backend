@@ -8,6 +8,7 @@ namespace Core.Features.Pacientes.queries;
 public record GetPatients : IRequest<GetPatientsResponse>
 {
     public int Pagina { get; set; }
+    public bool Estatus { get; set; }
 };
 
 public class GetPatientsHandler : IRequestHandler<GetPatients, GetPatientsResponse>
@@ -31,7 +32,8 @@ public class GetPatientsHandler : IRequestHandler<GetPatients, GetPatientsRespon
         
         //Devuelve una lista de 10 pacientes
         var patients = await _context.Pacientes
-            .AsNoTracking()
+            .AsNoTracking() // true || true == false
+            .Where(x => EstatusHelp.Estatus(request.Estatus, x.Status))
             .Include(x => x.Expediente)
             .OrderBy(x => x.Nombre)
             .Skip((request.Pagina - 1) * 10)
@@ -39,7 +41,7 @@ public class GetPatientsHandler : IRequestHandler<GetPatients, GetPatientsRespon
             .Select(x => new GetPacientesModel()
             {
                 PacienteId = x.PacienteId.HashId(), 
-                Nombre = x.Nombre + " " + (x.Apellido ?? ""),
+                Nombre = $"{x.Nombre} {x.Apellido}",
                 Edad = FormatDate.DateToYear(x.Edad.Date),
                 Sexo = x.Sexo == true ? "Hombre" : "Mujer",
                 Telefono = x.Telefono,
@@ -72,5 +74,5 @@ public record GetPacientesModel
     public int Edad { get; set; }
     public string Sexo { get; set; }
     public string Telefono { get; set; }
-    public bool Verificado { get; set; }
+    public bool Verificado { get; set; } //Este son para los que tienen completado el expediente
 }

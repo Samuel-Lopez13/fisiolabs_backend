@@ -25,8 +25,8 @@ public class Paciente
     public string FotoPerfil {get; set;} = null!;
     public string? Notas { get; set; }
     public bool Sexo { get; set; }
-    public bool TipoPaciente { get; set; }
-    public bool Status { get; set; }
+    public bool TipoPaciente { get; set; } //True = Interno, False = Externo
+    public bool Status { get; set; } //True = Activo, False = Inactivo
     public DateTime Edad { get; set; }
     public int CodigoPostal { get; set; }
     

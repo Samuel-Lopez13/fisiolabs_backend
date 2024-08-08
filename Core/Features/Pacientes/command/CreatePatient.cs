@@ -26,19 +26,17 @@ public record CreatePatient : IRequest<CreatePatientResponse>
     public string Ocupacion { get; set; }
 
     [Required(ErrorMessage = "El campo Telefono es obligatorio")]
-    [RegularExpression(@"^\d{1,10}$", ErrorMessage = "El campo Telefono solo puede contener números")]
-    [MaxLength(10)]
-    [MinLength(10)]
+    [Phone(ErrorMessage = "El campo Telefono no es valido")]
     public string Telefono { get; set; }
     
     public string? FotoPerfil { get; set; }
     
     public string? Notas { get; set; }
     
-    [Required]
+    [Required(ErrorMessage = "El campo Sexo es obligatorio")]
     public bool Sexo { get; set; }
     
-    [Required]
+    [Required(ErrorMessage = "El campo TipoPaciente es obligatorio")]
     public bool TipoPaciente { get; set; }
     
     [Required(ErrorMessage = "El campo Edad es obligatorio")]
@@ -48,10 +46,10 @@ public record CreatePatient : IRequest<CreatePatientResponse>
     public int CodigoPostal { get; set; }
     
     [Required(ErrorMessage = "El campo Estado Civil es obligatorio")]
-    public int EstadoCivilId { get; set; }
+    public string EstadoCivilId { get; set; }
     
     [Required(ErrorMessage = "El campo Fisioterapeuta es obligatorio")]
-    public int FisioterapeutaId { get; set; }
+    public string FisioterapeutaId { get; set; }
     
 }
 
@@ -66,14 +64,6 @@ public class CreatePatientHandler : IRequestHandler<CreatePatient, CreatePatient
     
     public async Task<CreatePatientResponse> Handle(CreatePatient request, CancellationToken cancellationToken)
     {
-        /*var validate = await _context.Pacientes.
-            AsNoTracking().
-            FirstOrDefaultAsync(x => x.Telefono == request.Telefono);
-
-        if (validate != null) {
-            throw new BadRequestException("Ya existe un paciente con el numero telefonico ingresado");
-        }*/
-        
         var patient = new Paciente() {
             Nombre = request.Nombre,
             Apellido = request.Apellido,
@@ -81,15 +71,15 @@ public class CreatePatientHandler : IRequestHandler<CreatePatient, CreatePatient
             Domicilio = request.Domicilio,
             Ocupacion = request.Ocupacion,
             Telefono = request.Telefono,
-            FotoPerfil = request.FotoPerfil == null ? "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png" : request.FotoPerfil,
+            FotoPerfil = request.FotoPerfil ?? "https://res.cloudinary.com/doi0znv2t/image/upload/v1718432025/Utils/fotoPerfil.png",
             Notas = request.Notas,
             Sexo = request.Sexo,
             TipoPaciente = request.TipoPaciente,
             Status = true, //Activo
             Edad = request.Edad,
             CodigoPostal = request.CodigoPostal,
-            EstadoCivilId = request.EstadoCivilId,
-            FisioterapeutaId = request.FisioterapeutaId
+            EstadoCivilId = request.EstadoCivilId.HashIdInt(),
+            FisioterapeutaId = request.FisioterapeutaId.HashIdInt()
         };
 
         await _context.Pacientes.AddAsync(patient);
