@@ -22,120 +22,126 @@ public class CatalogoController : ControllerBase
     {
         _mediator = mediator;
     }
-    /*
+    
     /// <summary>
-    /// Catalogo Especialidades
+    /// Catalogo de especialidades
     /// </summary>
     /// <remarks>
-    /// Devuelve el catalogo de especialidades
-    /// True: Devuelve solo los campos activos
-    /// False: Devuelve todos los campos
+    /// Devuelve una lista de las especialidades de los fisioterapeutas
+    /// <br/>
+    /// <b>onlyActive:</b> Si no se devuelve ningun valor, por defecto sera <b>False</b>
     /// </remarks>
+    /// <param name="onlyActive"><b>True: </b>solo devolvera a los activos, <b>False: </b> Devuelve todos los datos</param>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Especialidades</remarks>
     /// </response>
     [SwaggerResponse(StatusCodes.Status200OK)]
     [HttpGet("Especialidades")]
-    public async Task<List<GetEspecialidadesResponse>> getEspecialidades([FromQuery] bool activo)
+    public async Task<List<GetEspecialidadesResponse>> getEspecialidades([FromQuery] bool onlyActive)
     {
-        return await _mediator.Send(new GetEspecialidades(){ Activos = activo});
+        return await _mediator.Send(new GetEspecialidades(){ OnlyActive = onlyActive});
     }
     
     /// <summary>
     /// Catalogo Estado Civil
     /// </summary>
     /// <remarks>
-    /// Devuelve el catalogo de estados civiles
-    /// True: Devuelve solo los campos activos
-    /// False: Devuelve todos los campos
+    /// Devuelve una lista de los tipos de estado civil
+    /// <br/>
+    /// <b>onlyActive:</b> Si no se devuelve ningun valor, por defecto sera <b>False</b>
     /// </remarks>
+    /// <param name="onlyActive"><b>True: </b>solo devolvera a los activos, <b>False: </b> Devuelve todos los datos</param>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Estados Civiles</remarks>
     /// </response>
     [SwaggerResponse(StatusCodes.Status200OK)]
     [HttpGet("EstadoCivil")]
-    public async Task<List<GetEstadoCivilResponse>> getEstadoCivil([FromQuery] bool activo)
+    public async Task<List<GetEstadoCivilResponse>> getEstadoCivil([FromQuery] bool onlyActive)
     {
-        return await _mediator.Send(new GetEstadoCivil(){ Activos = activo});
+        return await _mediator.Send(new GetEstadoCivil(){ OnlyActive = onlyActive});
     }
     
     /// <summary>
     /// Catalogo Flujo Vaginal
     /// </summary>
     /// <remarks>
-    /// Devuelve el catalogo de flujo vaginal
-    /// True: Devuelve solo los campos activos
-    /// False: Devuelve todos los campos
+    /// Devuelve una lista de los tipos de flujo vaginal
+    /// <br/>
+    /// <b>onlyActive:</b> Si no se devuelve ningun valor, por defecto sera <b>False</b>
     /// </remarks>
+    /// <param name="onlyActive"><b>True: </b>solo devolvera a los activos, <b>False: </b> Devuelve todos los datos</param>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Flujo Vaginal</remarks>
     /// </response>
     [SwaggerResponse(StatusCodes.Status200OK)]
     [HttpGet("FlujoVaginal")]
-    public async Task<List<GetFlujoVaginalResponse>> getFlujoVaginal([FromQuery] bool activo)
+    public async Task<List<GetFlujoVaginalResponse>> getFlujoVaginal([FromQuery] bool onlyActive)
     {
-        return await _mediator.Send(new GetFlujoVaginal(){ Activos = activo});
+        return await _mediator.Send(new GetFlujoVaginal(){ OnlyActive = onlyActive});
     }
     
     /// <summary>
     /// Catalogo Motivo de Alta
     /// </summary>
     /// <remarks>
-    /// Devuelve el catalogo de motivos de alta
-    /// True: Devuelve solo los campos activos
-    /// False: Devuelve todos los campos
+    /// Devuelve una lista de los motivos de alta
+    /// <br/>
+    /// <b>onlyActive:</b> Si no se devuelve ningun valor, por defecto sera <b>False</b>
     /// </remarks>
+    /// <param name="onlyActive"><b>True: </b>solo devolvera a los activos, <b>False: </b> Devuelve todos los datos</param>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Motivos de Alta</remarks>
     /// </response>
     [SwaggerResponse(StatusCodes.Status200OK)]
     [HttpGet("MotivoAlta")]
-    public async Task<List<GetMotivoAltaResponse>> getMotivoAlta([FromQuery] bool activo)
+    public async Task<List<GetMotivoAltaResponse>> getMotivoAlta([FromQuery] bool onlyActive)
     {
-        return await _mediator.Send(new GetMotivoAlta(){ Activos = activo});
+        return await _mediator.Send(new GetMotivoAlta(){ OnlyActive = onlyActive});
     }
     
     /// <summary>
     /// Catalogo Servicios
     /// </summary>
     /// <remarks>
-    /// Devuelve el catalogo de servicios
-    /// True: Devuelve solo los campos activos
-    /// False: Devuelve todos los campos
+    /// Devuelve una lista de los servicios ofrecidos por los fisioterapeutas
+    /// <br/>
+    /// <b>onlyActive:</b> Si no se devuelve ningun valor, por defecto sera <b>False</b>
     /// </remarks>
+    /// <param name="onlyActive"><b>True: </b>solo devolvera a los activos, <b>False: </b> Devuelve todos los datos</param>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Servicios</remarks>
     /// </response>
     [SwaggerResponse(StatusCodes.Status200OK)]
     [HttpGet("Servicios")]
-    public async Task<List<GetServiciosResponse>> getServicios([FromQuery] bool activo)
+    public async Task<List<GetServiciosResponse>> getServicios([FromQuery] bool onlyActive)
     {
-        return await _mediator.Send(new GetServicios(){ Activos = activo});
+        return await _mediator.Send(new GetServicios(){ OnlyActive = onlyActive});
     }
     
     /// <summary>
-    /// Catalogo Tipo Anticonceptivo
+    /// Catalogo de tipos de anticonceptivos
     /// </summary>
     /// <remarks>
-    /// Devuelve el catalogo de tipo anticonceptivo
-    /// True: Devuelve solo los campos activos
-    /// False: Devuelve todos los campos
+    /// Devuelve una lista de los tipos de anticonceptivos
+    /// <br/>
+    /// <b>onlyActive:</b> Si no se devuelve ningun valor, por defecto sera <b>False</b>
     /// </remarks>
+    /// <param name="onlyActive"><b>True: </b>solo devolvera a los activos, <b>False: </b> Devuelve todos los datos</param>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Tipo Anticonceptivo</remarks>
     /// </response>
     [SwaggerResponse(StatusCodes.Status200OK)]
     [HttpGet("TipoAnticonceptivo")]
-    public async Task<List<GetAnticonceptivoResponse>> getAnticonceptivo([FromQuery] bool activo)
+    public async Task<List<GetAnticonceptivoResponse>> getAnticonceptivo([FromQuery] bool onlyActive)
     {
-        return await _mediator.Send(new GetAnticonceptivo(){ Activos = activo});
+        return await _mediator.Send(new GetAnticonceptivo(){ OnlyActive = onlyActive});
     }
     
     /// <summary>
-    /// Especialidades
+    /// Registrar una nueva especialidad
     /// </summary>
     /// <remarks>
-    /// Crea una nueva especialidad
+    /// Catalogo de especialidades de los fisioterapeutas
     /// </remarks>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Se creo exitosamente</remarks>
@@ -153,10 +159,10 @@ public class CatalogoController : ControllerBase
     }
     
     /// <summary>
-    /// Estado Civil
+    /// Registra un nuevo estado civil
     /// </summary>
     /// <remarks>
-    /// Crea un nuevo estado civil
+    /// Catalogo de estados civiles
     /// </remarks>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Se creo exitosamente</remarks>
@@ -174,10 +180,10 @@ public class CatalogoController : ControllerBase
     }
     
     /// <summary>
-    /// Flujo Vaginal
+    /// Registra un nuevo dato en flujo vaginal
     /// </summary>
     /// <remarks>
-    /// Crea un nuevo flujo
+    /// Registra un nuevo dato en flujo vaginal
     /// </remarks>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Se creo exitosamente</remarks>
@@ -195,10 +201,10 @@ public class CatalogoController : ControllerBase
     }
     
     /// <summary>
-    /// Motivo Alta
+    /// Registra un nuevo dato en motivo alta
     /// </summary>
     /// <remarks>
-    /// Crea un nuevo motivo de alta
+    /// Posibles motivos de alta para los pacientes
     /// </remarks>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Se creo exitosamente</remarks>
@@ -216,10 +222,10 @@ public class CatalogoController : ControllerBase
     }
     
     /// <summary>
-    /// Servicios
+    /// Registra un nuevo servicio
     /// </summary>
     /// <remarks>
-    /// Crea un nuevo servicio
+    /// Servicios que los fisioterapeutas ofrecen
     /// </remarks>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Se creo exitosamente</remarks>
@@ -237,10 +243,10 @@ public class CatalogoController : ControllerBase
     }
     
     /// <summary>
-    /// Tipo Anticonceptivo
+    /// Registra un nuevo tipo de anticonceptivo
     /// </summary>
     /// <remarks>
-    /// Crea un nuevo tipo de anticonceptivo
+    /// Registra un nuevo tipo de anticonceptivo
     /// </remarks>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Se creo exitosamente</remarks>
@@ -260,6 +266,13 @@ public class CatalogoController : ControllerBase
     /// <summary>
     /// Modifica catalogo de especialidades
     /// </summary>
+    /// <remarks>
+    /// No es necesario enviar todos los campos, solo los que se desean modificar
+    /// <br/>
+    /// <b>Descripcion</b>: Descripcion de la especialidad
+    /// <br/>
+    /// <b>Estatus</b>: Si quiere activar o desactivar la especialidad
+    /// </remarks>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Se modifico correctamente</remarks>
     /// </response>
@@ -278,6 +291,13 @@ public class CatalogoController : ControllerBase
     /// <summary>
     /// Modifica catalogo de estados civiles
     /// </summary>
+    /// <remarks>
+    /// No es necesario enviar todos los campos, solo los que se desean modificar
+    /// <br/>
+    /// <b>Descripcion</b>: Descripcion de la especialidad
+    /// <br/>
+    /// <b>Estatus</b>: Si quiere activar o desactivar la especialidad
+    /// </remarks>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Se modifico correctamente</remarks>
     /// </response>
@@ -296,6 +316,13 @@ public class CatalogoController : ControllerBase
     /// <summary>
     /// Modifica catalogo de Flujo Vaginal
     /// </summary>
+    /// <remarks>
+    /// No es necesario enviar todos los campos, solo los que se desean modificar
+    /// <br/>
+    /// <b>Descripcion</b>: Descripcion de la especialidad
+    /// <br/>
+    /// <b>Estatus</b>: Si quiere activar o desactivar la especialidad
+    /// </remarks>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Se modifico correctamente</remarks>
     /// </response>
@@ -314,6 +341,13 @@ public class CatalogoController : ControllerBase
     /// <summary>
     /// Modifica catalogo de Motivo de Alta
     /// </summary>
+    /// <remarks>
+    /// No es necesario enviar todos los campos, solo los que se desean modificar
+    /// <br/>
+    /// <b>Descripcion</b>: Descripcion de la especialidad
+    /// <br/>
+    /// <b>Estatus</b>: Si quiere activar o desactivar la especialidad
+    /// </remarks>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Se modifico correctamente</remarks>
     /// </response>
@@ -332,6 +366,13 @@ public class CatalogoController : ControllerBase
     /// <summary>
     /// Modifica catalogo de Servicios
     /// </summary>
+    /// <remarks>
+    /// No es necesario enviar todos los campos, solo los que se desean modificar
+    /// <br/>
+    /// <b>Descripcion</b>: Descripcion de la especialidad
+    /// <br/>
+    /// <b>Estatus</b>: Si quiere activar o desactivar la especialidad
+    /// </remarks>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Se modifico correctamente</remarks>
     /// </response>
@@ -350,6 +391,13 @@ public class CatalogoController : ControllerBase
     /// <summary>
     /// Modifica catalogo de Tipo Anticonceptivo
     /// </summary>
+    /// <remarks>
+    /// No es necesario enviar todos los campos, solo los que se desean modificar
+    /// <br/>
+    /// <b>Descripcion</b>: Descripcion de la especialidad
+    /// <br/>
+    /// <b>Estatus</b>: Si quiere activar o desactivar la especialidad
+    /// </remarks>
     /// <response code="200"><b>Ok:</b>
     /// <remarks>Se modifico correctamente</remarks>
     /// </response>
@@ -363,5 +411,5 @@ public class CatalogoController : ControllerBase
     {
         await _mediator.Send(command);
         return Ok("Se modifico correctamente");
-    }*/
+    }
 }
