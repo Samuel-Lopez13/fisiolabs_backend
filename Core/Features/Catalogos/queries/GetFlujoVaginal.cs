@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Features.Catalogos.queries;
 
-public class GetFlujoVaginal: IRequest<List<GetFlujoVaginalResponse>>
+public class GetFlujoVaginal : IRequest<List<GetFlujoVaginalResponse>>
 {
-    public bool Activos { get; set; }
+    public bool OnlyActive { get; set; }
 }
 
 public class GetFlujoVaginalHandler : IRequestHandler<GetFlujoVaginal, List<GetFlujoVaginalResponse>>
@@ -21,30 +21,17 @@ public class GetFlujoVaginalHandler : IRequestHandler<GetFlujoVaginal, List<GetF
 
     public async Task<List<GetFlujoVaginalResponse>> Handle(GetFlujoVaginal request, CancellationToken cancellationToken)
     {
-        if (request.Activos) {
-            var flujo = await _context.FlujoVaginals
-                .Where(x => x.Status)
-                .Select(x => new GetFlujoVaginalResponse
-                {
-                    FlujoVaginalId = x.FlujoVaginalId.HashId(),
-                    Descripcion = x.Descripcion,
-                    Status = x.Status
-                })
-                .ToListAsync(cancellationToken);
-            
-            return flujo;
-        } else {
-            var flujo = await _context.FlujoVaginals
-                .Select(x => new GetFlujoVaginalResponse
-                {
-                    FlujoVaginalId = x.FlujoVaginalId.HashId(),
-                    Descripcion = x.Descripcion,
-                    Status = x.Status
-                })
-                .ToListAsync(cancellationToken);
-            
-            return flujo;
-        }
+        var flujo = await _context.FlujoVaginals
+            .Where(x => !request.OnlyActive || x.Status) //Si solo quiero los activos o todos
+            .Select(x => new GetFlujoVaginalResponse
+            {
+                FlujoVaginalId = x.FlujoVaginalId.HashId(),
+                Descripcion = x.Descripcion,
+                Status = x.Status
+            })
+            .ToListAsync(cancellationToken);
+
+        return flujo;
     }
 }
 

@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Features.Catalogos.queries;
 
-public class GetEstadoCivil: IRequest<List<GetEstadoCivilResponse>>
+public class GetEstadoCivil : IRequest<List<GetEstadoCivilResponse>>
 {
-    public bool Activos { get; set; }
+    public bool OnlyActive { get; set; }
 }
 
 public class GetEstadoCivilHandler : IRequestHandler<GetEstadoCivil, List<GetEstadoCivilResponse>>
@@ -21,30 +21,17 @@ public class GetEstadoCivilHandler : IRequestHandler<GetEstadoCivil, List<GetEst
 
     public async Task<List<GetEstadoCivilResponse>> Handle(GetEstadoCivil request, CancellationToken cancellationToken)
     {
-        if (request.Activos) {
-            var estado = await _context.EstadoCivils
-                .Where(x => x.Status)
-                .Select(x => new GetEstadoCivilResponse
-                {
-                    EstadoCivilId = x.EstadoCivilId.HashId(),
-                    Descripcion = x.Descripcion,
-                    Status = x.Status
-                })
-                .ToListAsync(cancellationToken);
-            
-            return estado;
-        } else {
-            var estado = await _context.EstadoCivils
-                .Select(x => new GetEstadoCivilResponse
-                {
-                    EstadoCivilId = x.EstadoCivilId.HashId(),
-                    Descripcion = x.Descripcion,
-                    Status = x.Status
-                })
-                .ToListAsync(cancellationToken);
-            
-            return estado;
-        }
+        var estado = await _context.EstadoCivils
+            .Where(x => !request.OnlyActive || x.Status) //Si solo quiero los activos o todos
+            .Select(x => new GetEstadoCivilResponse
+            {
+                EstadoCivilId = x.EstadoCivilId.HashId(),
+                Descripcion = x.Descripcion,
+                Status = x.Status
+            })
+            .ToListAsync(cancellationToken);
+
+        return estado;
     }
 }
 

@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Features.Catalogos.queries;
 
-public class GetMotivoAlta: IRequest<List<GetMotivoAltaResponse>>
+public class GetMotivoAlta : IRequest<List<GetMotivoAltaResponse>>
 {
-    public bool Activos { get; set; }
+    public bool OnlyActive { get; set; }
 }
 
 public class GetMotivoAltaHandler : IRequestHandler<GetMotivoAlta, List<GetMotivoAltaResponse>>
@@ -21,30 +21,17 @@ public class GetMotivoAltaHandler : IRequestHandler<GetMotivoAlta, List<GetMotiv
 
     public async Task<List<GetMotivoAltaResponse>> Handle(GetMotivoAlta request, CancellationToken cancellationToken)
     {
-        if (request.Activos) {
-            var motivo = await _context.MotivoAltas
-                .Where(x => x.Status)
-                .Select(x => new GetMotivoAltaResponse
-                {
-                    MotivoAltaId = x.MotivoAltaId.HashId(),
-                    Descripcion = x.Descripcion,
-                    Status = x.Status
-                })
-                .ToListAsync(cancellationToken);
-            
-            return motivo;
-        } else {
-            var motivo = await _context.MotivoAltas
-                .Select(x => new GetMotivoAltaResponse
-                {
-                    MotivoAltaId = x.MotivoAltaId.HashId(),
-                    Descripcion = x.Descripcion,
-                    Status = x.Status
-                })
-                .ToListAsync(cancellationToken);
-            
-            return motivo;
-        }
+        var motivo = await _context.MotivoAltas
+            .Where(x => !request.OnlyActive || x.Status) //Si solo quiero los activos o todos
+            .Select(x => new GetMotivoAltaResponse
+            {
+                MotivoAltaId = x.MotivoAltaId.HashId(),
+                Descripcion = x.Descripcion,
+                Status = x.Status
+            })
+            .ToListAsync(cancellationToken);
+
+        return motivo;
     }
 }
 
